@@ -25,6 +25,8 @@ import face4 from "../assets/images/face-4.jpg";
 import face5 from "../assets/images/face-5.jpeg";
 import face6 from "../assets/images/face-6.jpeg";
 import pencil from "../assets/images/pencil.svg";
+import { CloseOutlined } from "@ant-design/icons"
+import { Input } from 'antd';
 import "./table.css"
 import React, { Component } from 'react'
 const { Title } = Typography;
@@ -332,51 +334,21 @@ const data = [
 
 
 
-
 export default class Tables extends Component {
+  openModal2 = () => {
+    document.querySelector(".Modal2").classList.add("openModal2")
+  }
+  close_modal = () => {
+    document.querySelector(".Modal2").classList.remove("openModal2")
+  }
   render() {
     return (
       <>
-
-
-
         <div className="tabled">
           <Row gutter={[24, 0]}>
             <Col xs="24" xl={24}>
-            <div className="cards1">
-          <div className="card1">
-                  <label htmlFor="sel1">testing1</label><br />
-                  <select className="sel1" name="sel1" id="">
-                    <option value="1">test1</option>
-                    <option value="2">test2</option>
-                    <option value="3">test3</option>
-                  </select>
-          </div>
-          <div className="card1">
-                  <label htmlFor="sel1">testing1</label><br />
-                  <select className="sel1" name="sel1" id="">
-                    <option value="1">test1</option>
-                    <option value="2">test2</option>
-                    <option value="3">test3</option>
-                  </select>
-          </div>
-          <div className="card1">
-                  <label htmlFor="sel1">testing1</label><br />
-                  <select className="sel1" name="sel1" id="">
-                    <option value="1">test1</option>
-                    <option value="2">test2</option>
-                    <option value="3">test3</option>
-                  </select>
-          </div>
-          <div className="card1">
-                  <label htmlFor="sel1">testing1</label><br />
-                  <select className="sel1" name="sel1" id="">
-                    <option value="1">test1</option>
-                    <option value="2">test2</option>
-                    <option value="3">test3</option>
-                  </select>
-          </div>
-          <div className="card1">
+              <div className="cards1">
+                <div className="card1">
                   <label htmlFor="sel1">testing1</label><br />
                   <select className="sel1" name="sel1" id="">
                     <option value="1">test1</option>
@@ -384,7 +356,7 @@ export default class Tables extends Component {
                     <option value="3">test3</option>
                   </select>
                 </div>
-          <div className="card1">
+                <div className="card1">
                   <label htmlFor="sel1">testing1</label><br />
                   <select className="sel1" name="sel1" id="">
                     <option value="1">test1</option>
@@ -392,17 +364,48 @@ export default class Tables extends Component {
                     <option value="3">test3</option>
                   </select>
                 </div>
-          <div className="card1">
+                <div className="card1">
+                  <label htmlFor="sel1">testing1</label><br />
+                  <select className="sel1" name="sel1" id="">
+                    <option value="1">test1</option>
+                    <option value="2">test2</option>
+                    <option value="3">test3</option>
+                  </select>
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1">testing1</label><br />
+                  <select className="sel1" name="sel1" id="">
+                    <option value="1">test1</option>
+                    <option value="2">test2</option>
+                    <option value="3">test3</option>
+                  </select>
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1">testing1</label><br />
+                  <select className="sel1" name="sel1" id="">
+                    <option value="1">test1</option>
+                    <option value="2">test2</option>
+                    <option value="3">test3</option>
+                  </select>
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1">testing1</label><br />
+                  <select className="sel1" name="sel1" id="">
+                    <option value="1">test1</option>
+                    <option value="2">test2</option>
+                    <option value="3">test3</option>
+                  </select>
+                </div>
+                <div className="card1">
                   <label htmlFor="sel1">kun boshi</label><br />
-                  <input type="date" className="sel1" name="sel1" id="" />
-                 
-                </div>
-          <div className="card1">
-                  <label htmlFor="sel1">Kun oxiri</label><br />
                   <input type="date" className="sel1" name="sel1" id="" />
 
                 </div>
-            </div>
+                <div className="card1">
+                  <label htmlFor="sel1">Kun oxiri</label><br />
+                  <input type="date" className="sel1" name="sel1" id="" />
+                </div>
+              </div>
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
@@ -414,6 +417,8 @@ export default class Tables extends Component {
                       <Radio.Button value="b">xlsx ko`rinishda yuklab olish</Radio.Button>
                       <Radio.Button value="c">docx ko`rinishda yuklab olish</Radio.Button>
                     </Radio.Group>
+
+                    <Button onClick={this.openModal2} className="modal_btn">Add</Button>
                   </>
                 }
               >
@@ -429,6 +434,73 @@ export default class Tables extends Component {
 
             </Col>
           </Row>
+        </div>
+
+        <div className="Modal2">
+          <CloseOutlined onClick={this.close_modal} className="close_modal" />
+          <div className="modal_body">
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+          </div>
         </div>
       </>
     );
