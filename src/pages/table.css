@@ -1,0 +1,19 @@
+.sel1{
+width: 213px;
+    margin: 0 7px 0 0;
+    border-radius: 6px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #d9d9d9;
+}
+.cards1{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+}
+.card1{
+    width: 25%;
+    min-width: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
