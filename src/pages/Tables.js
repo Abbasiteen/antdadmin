@@ -11,11 +11,11 @@ import {
   Avatar,
   Typography,Checkbox,
 } from "antd";
-
+import Highlighter from 'react-highlight-words';
 // import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 
 import {  Space } from 'antd';
-import { ToTopOutlined } from "@ant-design/icons";
+import { SearchOutlined, ToTopOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import ava1 from "../assets/images/logo-shopify.svg";
 import ava2 from "../assets/images/logo-atlassian.svg";
@@ -57,15 +57,16 @@ const formProps = {
 const columns = [
   {
     title: "F.I.Sh",
-    dataIndex: "IshProk",
-    key: "IshProk",
     width: "32%",
+    render: (text, record) => {
+      return record.person.map((item, key) => (<div key={key}>{item.UserName}</div>))
+    },
   },
   {
-    title: "FUNCTION",
-    dataIndex: "function",
-    render:(text, record)=>{
-     return record.person.map((item,key)=>(<div key={key}>{item.UserName}</div>))
+    title: "Name",
+    dataIndex: "Date",
+    render: (text, record) => {
+      return record.person.map((item, key) => (<div key={key}>{item.Date}</div>))
     }
   },
 
@@ -340,11 +341,12 @@ const data = [
 ];
 
 
-
 export default class Tables extends Component {
 state={
   form:1,
-  data:[]
+  data:[],
+  searchText: "",
+  searchedColumn: ""
 }
 
 getData=()=>{
@@ -407,12 +409,118 @@ switch (key) {
   close_modal = () => {
     document.querySelector(".Modal2").classList.remove("openModal2")
   }
+
+  handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    this.setState({ searchText: selectedKeys[0] })
+    this.setState({ searchedColumn : dataIndex });
+  };
+  handleReset = (clearFilters) => {
+    clearFilters();
+    this.setState({ searchText: "" });
+  };
+
+  getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={this.state.searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && this.handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({
+                closeDropdown: false,
+              });
+              this.setState({searchText:selectedKeys[0]});
+              this.setState({SearchedColumn:dataIndex}) ;
+            }}
+          >
+            Filter
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1890ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => this.state.searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      this.state.searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[this.state.searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
  
 
   componentDidMount(){
     this.getData()
     this.openForm(1)
   }
+
   render() {
     return (
       <>
