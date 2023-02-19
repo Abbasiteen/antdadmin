@@ -441,64 +441,242 @@ export default class Tables extends Component {
           <div className="modal_body">
 
                 <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchi F.I.O</label><br />
                   <input className="sel1 sel2" name="sel1" id="" /> 
                 </div>
 
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchi tugilgan vaqti</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinsi</label><br />
+                  <select className="sel1 sel2" name="sel1" id="">
+                    <option value="1">ayol</option>
+                    <option value="2">erkak</option>
+                    <option value="3">Noma`lum</option>
+                  </select>
+                  
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchining ruhiy holati (jinoyat sodir etilgan vaqtda / ish sudda koʼrilayotgan vaqtda)</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchining ish joyi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchining lavozimi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchining oilaviy ahvoli</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchining qaramogʼidagi voyaga yetmagan farzanlari soni</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchining muqaddam sudlanganligi</label><br />
+                  <select className="sel1 sel2" name="sel1" id="">
+                    <option value="1">Sudlangan</option>
+                    <option value="2">Sudlanmagan</option>
+                  </select>
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Sudlanuvchi muqaddam sudlangan vaqti, qaysi sud, moddasi, qismi, bandi, jazo turi, jazo miqdori</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyblovning qisqacha mazmuni</label><br />
+                  <input className="sel1 sel2"  name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan vaqt</label><br />
+                  <input className="sel1 sel2" type="date" name="sel1" id="" /> 
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan hudud</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan joy</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Shaxs ushlangan sana(JPK 224,227)</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilingan vaqt</label><br />
+                  <input className="sel1 sel2" name="sel1" type="date" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilingan modda</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilingan moddaning qismi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilingan moddaning bandi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergov organi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergovchining F.I.Sh.</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Qamoq bilan bogʼliq boʼlmagan</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Qamoq ehtiyot chorasi tanlangan sana</label><br />
+                  <input className="sel1 sel2" type="date" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Uy qamogʼi ehtiyot chorasi tanlangan sana</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning lavozimi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning F.I.Sh.</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat ishi boʼyicha yetkazilgan zarar 
+(ming soʼmda).</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat ishi boʼyicha yetkazilgan zararning qoplanishi 
+(ming soʼmda)</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat ishi boʼyicha yetkazilgan zararning, shu jumladan, xatlangan mol-mulk hisobidan qoplanishi 
+(ming soʼmda)</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
+                  <input className="sel1 sel2" name="sel1" id="" /> 
+                </div>
                 <div className="card1">
                   <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
                   <input className="sel1 sel2" name="sel1" id="" /> 
                 </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
-                <div className="card1">
-                  <label htmlFor="sel1" className="sel2_text">F.I.O</label><br />
-                  <input className="sel1 sel2" name="sel1" id="" /> 
-                </div>
 
           </div>
         </div>
