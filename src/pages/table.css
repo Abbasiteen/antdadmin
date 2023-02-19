@@ -9,19 +9,22 @@ width: 213px;
 .cards1{
 display: flex;
 justify-content: space-around;
+
 flex-wrap: wrap;
 }
 .card1{
     width: 25%;
     min-width: 300px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .Modal2 {
     width: 100vw !important;
-    height: 100vh !important;
-    background-color: #00000097 !important;
+    min-height: 100vh !important;
+    
+    background-color: #00000095 !important;
     position: fixed;
+    backdrop-filter: blur(30px);
     top: 0; right: -110%;
     z-index: 99;
     transition: .8s;
@@ -75,4 +78,10 @@ flex-wrap: wrap;
     outline: none;
     color: #000;
     padding: 0 5px;
+}
+.abbas1{
+position: absolute;
+top: 0px;
+left: 20px;
+
 }

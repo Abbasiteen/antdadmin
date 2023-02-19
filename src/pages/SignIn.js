@@ -30,7 +30,7 @@ export default class SignIn extends Component {
       <>
         <Layout style={{margin:"auto"}} className="layout-default layout-signin">
           <Content className="signin">
-            <Row gutter={[24, 0]} justify="space-around">
+            <Row gutter={[24, 0]} justify="space-around" style={{alignItems:'center',minHeight:'80vh'}}>
               <Col
                 xs={{ span: 24, offset: 0 }}
                 lg={{ span: 6, offset: 2 }}
@@ -102,7 +102,7 @@ export default class SignIn extends Component {
                 lg={{ span: 12 }}
                 md={{ span: 12 }}
               >
-                <img src="https://www.prokuratura.uz/img/ill/mib_mini.png" alt="" />
+                <img src="https://klike.net/uploads/posts/2022-09/1662526271_s-2.jpg" alt="" />
               </Col>
             </Row>
           </Content>

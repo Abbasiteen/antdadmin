@@ -194,22 +194,13 @@ function Sidenav({ color }) {
             <span className="label">Turlar</span>
           </NavLink>
         </Menu.Item>
-        {/* <Menu.Item key="4">
-          <NavLink to="/rtl">
-            <span
-              className="icon"
-              style={{
-                background: page === "rtl" ? color : "",
-              }}
-            >
-              {rtl}
-            </span>
-            <span className="label">RTL</span>
+
+        <Menu.Item key="8">
+          <NavLink to="/sign-up">
+            <span className="icon">{signup}</span>
+            <span className="label">Nazorat</span>
           </NavLink>
-        </Menu.Item> */}
-        {/* <Menu.Item className="menu-item-header" key="5">
-          Account Pages
-        </Menu.Item> */}
+        </Menu.Item>
         <Menu.Item key="6">
           <NavLink to="/profile">
             <span
@@ -229,12 +220,7 @@ function Sidenav({ color }) {
             <span className="label">Chiqish</span>
           </NavLink>
         </Menu.Item>
-        {/* <Menu.Item key="8">
-          <NavLink to="/sign-up">
-            <span className="icon">{signup}</span>
-            <span className="label">chiqish</span>
-          </NavLink>
-        </Menu.Item> */}
+      
       </Menu>
     </>
   );

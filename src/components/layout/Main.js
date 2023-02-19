@@ -38,7 +38,7 @@ function Main({ children }) {
         pathname === "profile" ? "layout-profile" : ""
       } ${pathname === "rtl" ? "layout-dashboard-rtl" : ""}`}
     >
-      <Drawer
+      {/* <Drawer
         title={false}
         placement={placement === "right" ? "left" : "right"}
         closable={false}
@@ -67,7 +67,7 @@ function Main({ children }) {
             <Sidenav color={sidenavColor} />
           </Sider>
         </Layout>
-      </Drawer>
+      </Drawer> */}
       <Sider
         breakpoint="lg"
         collapsedWidth="0"

@@ -7,15 +7,15 @@ function Footer() {
       <Row className="just">
         <Col xs={24} md={12} lg={12}>
           <div className="copyright">
-            © 2021, made with
+            © 2023, made with
             {<HeartFilled />} by
-            <a href="#pablo" className="font-weight-bold" target="_blank">
-              Creative Tim
+            <a href="mailto:webabbas9@gmail.com" className="font-weight-bold" target="_blank">
+              abbas team
             </a>
-            for a better web.
+            sayt test rejimida ishlayapdi
           </div>
         </Col>
-        <Col xs={24} md={12} lg={12}>
+        {/* <Col xs={24} md={12} lg={12}>
           <div className="footer-menu">
             <ul>
               <li className="nav-item">
@@ -56,7 +56,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </AntFooter>
   );
