@@ -603,7 +603,7 @@ switch (key) {
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
-                title="Authors Table"
+                title="Barcha ishlar"
                 extra={
                   <>
                     <Radio.Group defaultValue="a">

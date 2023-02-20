@@ -17,13 +17,13 @@ function App() {
       <Switch>
         <Route path="/sign-in" exact component={SignIn} />
         <Main>
-          <Route path="/sign-up" exact component={SignUp} />
-          <Route exact path="/dashboard" component={Home} />
-          <Route exact path="/tables" component={Tables} />
-          <Route exact path="/billing" component={Billing} />
-          <Route exact path="/rtl" component={Rtl} />
+          <Route path="/nazorat" exact component={SignUp} />
+          <Route exact path="/bosh-sahifa" component={Home} />
+          <Route exact path="/ishlar" component={Tables} />
+          <Route exact path="/turlar" component={Billing} />
+          {/* <Route exact path="/rtl" component={Rtl} /> */}
           <Route exact path="/profile" component={Profile} />
-          <Redirect from="*" to="/dashboard" />
+          <Redirect from="*" to="/bosh-sahifa" />
         </Main>
       </Switch>
     </div>
