@@ -15,13 +15,7 @@ import Highlighter from 'react-highlight-words';
 // import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 
 import {  Space } from 'antd';
-import { SearchOutlined, ToTopOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-import ava1 from "../assets/images/logo-shopify.svg";
-import ava2 from "../assets/images/logo-atlassian.svg";
-import ava3 from "../assets/images/logo-slack.svg";
-import ava5 from "../assets/images/logo-jira.svg";
-import ava6 from "../assets/images/logo-invision.svg";
+import { DeleteTwoTone, EditTwoTone, PushpinTwoTone, SearchOutlined} from "@ant-design/icons";
 import face from "../assets/images/face-1.jpg";
 import face2 from "../assets/images/face-2.jpg";
 import face3 from "../assets/images/face-3.jpg";
@@ -37,23 +31,7 @@ import axios from "axios"
 import { url } from "../host/host";
 const { Title } = Typography;
 
-const formProps = {
-  name: "file",
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  headers: {
-    authorization: "authorization-text",
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
+
 const columns = [
   {
     title: "F.I.Sh",
@@ -65,294 +43,60 @@ const columns = [
   {
     title: "Name",
     dataIndex: "Date",
-    width: "10%",
+    width: "15%",
     render: (text, record) => {
       return record.person.map((item, key) => (<div key={key}>{item.Date}</div>))
     }
   },
 
   {
-    title: " jinoyat sanasi",
+    title: "hukum sanasi",
+    key: "SSudHukmSana",
+    width: "15%",
+    dataIndex: "SSudHukmSana",
+  },
+  {
+    title: "jinoyat sanasi",
     key: "JinoyatVaqti",
-    width: "10%",
+    width: "15%",
     dataIndex: "JinoyatVaqti",
   },
   {
     title: "jinoyat hududi",
     key: "JinoyatHudud",
-    width: "10%",
+    width: "15%",
     dataIndex: "JinoyatHudud",
   },
   {
-    title: "SudyaFIO",
+    title: "Sudya",
     key: "SSudyaFIO",
+      width: "15%",
     dataIndex: "SSudyaFIO",
   },
+    {
+    title: "Prokuror",
+    key: "IshPorkFIO",
+      width: "15%",
+    dataIndex: "IshPorkFIO",
+  },
   {
-    title: "EMPLOYED",
+    title: "action",
     key: "employed",
-    dataIndex: "employed",
+      width: "15%",
+    render:(_,record)=>(
+      <div >
+        <Button style={{ marginRight:'10px' }} type="primary">Push</Button>
+        <Button style={{ marginRight: '10px' }} type="primary">Edit</Button>
+        <Button type="primary" danger>
+          Delete
+        </Button>
+      </div>
+    )
   },
   
 ];
 
-const data = [
-  {
-    key: "1",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face2}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Michael John</Title>
-            <p>michael@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Manager</Title>
-          <p>Organization</p>
-        </div>
-      </>
-    ),
 
-    status: (
-      <>
-        <Button type="primary" className="tag-primary">
-          ONLINE
-        </Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>23/04/18</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "2",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face3}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Alexa Liras</Title>
-            <p>alexa@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Programator</Title>
-          <p>Developer</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button className="tag-badge">ONLINE</Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>23/12/20</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "3",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Laure Perrier</Title>
-            <p>laure@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Executive</Title>
-          <p>Projects</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button type="primary" className="tag-primary">
-          ONLINE
-        </Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>03/04/21</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-  {
-    key: "4",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face4}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Miriam Eric</Title>
-            <p>miriam@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Marketing</Title>
-          <p>Organization</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button type="primary" className="tag-primary">
-          ONLINE
-        </Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>03/04/21</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-  {
-    key: "5",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face5}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>Richard Gran</Title>
-            <p>richard@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Manager</Title>
-          <p>Organization</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button className="tag-badge">ONLINE</Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>23/03/20</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "6",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar
-            className="shape-avatar"
-            shape="square"
-            size={40}
-            src={face6}
-          ></Avatar>
-          <div className="avatar-info">
-            <Title level={5}>John Levi</Title>
-            <p>john@mail.com</p>
-          </div>
-        </Avatar.Group>{" "}
-      </>
-    ),
-    function: (
-      <>
-        <div className="author-info">
-          <Title level={5}>Tester</Title>
-          <p>Developer</p>
-        </div>
-      </>
-    ),
-
-    status: (
-      <>
-        <Button className="tag-badge">ONLINE</Button>
-      </>
-    ),
-    employed: (
-      <>
-        <div className="ant-employed">
-          <span>14/04/17</span>
-          <a href="#pablo">Edit</a>
-        </div>
-      </>
-    ),
-  },
-];
 
 
 export default class Tables extends Component {
@@ -415,7 +159,94 @@ switch (key) {
     break;
 }
 }
-
+postData=()=>{
+  var data={
+AybElonFIO: "Siiiiiiiiiiuuuuuuuuuuu",
+AyblovProkFIO: "asdasd",
+AyblovProkLavozim: "zxc",
+BoshXul: "hello",
+IshPorkFIO: "asd",
+IshProk: "sad",
+JinoyatHudud: "zxc",
+JinoyatJoyi: "zcx",
+JinoyatVaqti: "zxzxcczx",
+SSudHukmSana: "asd",
+SSudyaFIO: "sad",
+ShaharXul: "xa",
+TumanXul: "xasd",
+WorkId: "11a8569b-b450-4226-b780-c2d39ca8bc9a",
+  AktiTufay: "dsa",
+  AmaldaPushay: "dassad",
+  AybElon: "zc",
+  AybModda: "cxz",
+  AybModdaBandi: "zx",
+  AybModdaQism: "xzc",
+  AybOrgani: "xcz",
+  AybTopish: "asd",
+  AyblovQisqa: "zxc",
+  AyblovVozKech: "sda",
+  Bandi: "sad",
+  IjYoq: "das",
+  Ijkattabol: "asd",
+  
+  JazoMiqdori: "sda",
+  JazoTur: "sad",
+  JinoyatZarar: "sad",
+  Kasallik: "sda",
+  Modda57: "sda",
+  Modda96: "asd",
+  Moddasi: "sad",
+  MolMulQoplanish: "asd",
+  MuddatOtib: "sda",
+  MuqaddamSud: "asda",
+  MuqaddamVaqti: "adsaadd",
+  Nogironligi: "wewe",
+  Ogir: "adsx",
+ 
+  OtaOgir: "asdx",
+  Pushaymon: "sda",
+  QamoqBolmagan: "xzc",
+  QamoqExtiyot: "asdsad",
+  QamoqUy: "xzc",
+  Qismi: "sadasd",
+  QoplanishFoiz: "sad",
+  S57Modda: "asd",
+  S96Modda: "ad",
+  SAktAs: "sd",
+  SAmal: "as",
+  SAmaldaPush: "a",
+  SAybliBandi: "asd",
+  SAybliModda: "sad",
+  SAybliQismi: "asddas",
+  SAydanVoz: "sad",
+  SIjXavf: "a",
+  SJazoMiq: "asd",
+  SJazoTuri: "sda",
+  SKasallik: "sd",
+  SOtibket: "aa",
+  SShartli: "sda",
+  SYarshMun: "dsa",
+  SYoq: "sd",
+  ShartliHukm: "sda",
+  Unchaogir: "asdx",
+  UserId: "ea97c8cc-b7e5-46cd-8c03-3f40354f789a",
+  UshlanganSana: "zxc",
+  VoyYetmaganFarzandi: "sa",
+  XavfYoqot: "sda",
+  Yarashgan: "dsa",
+  ZararQoplanish: "asd",
+  userscol: "asd"
+  }
+  var formdata= new FormData()
+  formdata.appand("UserName", "Abbas2")
+  formdata.appand("Date", "hhhh")
+  formdata.appand("Jinsi", "si")
+  formdata.appand("RuxiyHolat", "a")
+formdata.appand("Ishjoyi","aa")
+  formdata.appand('lavozimi', "a")
+  formdata.appand(' OilaAxvoli', "a")
+formdata.appand()
+}
 
   openModal2 = () => {
     document.querySelector(".Modal2").classList.add("openModal2")
