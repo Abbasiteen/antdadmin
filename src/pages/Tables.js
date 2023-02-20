@@ -57,7 +57,7 @@ const formProps = {
 const columns = [
   {
     title: "F.I.Sh",
-    width: "32%",
+    width: "10%",
     render: (text, record) => {
       return record.person.map((item, key) => (<div key={key}>{item.UserName}</div>))
     },
@@ -65,21 +65,35 @@ const columns = [
   {
     title: "Name",
     dataIndex: "Date",
+    width: "10%",
     render: (text, record) => {
       return record.person.map((item, key) => (<div key={key}>{item.Date}</div>))
     }
   },
 
   {
-    title: "STATUS",
-    key: "status",
-    dataIndex: "status",
+    title: " jinoyat sanasi",
+    key: "JinoyatVaqti",
+    width: "10%",
+    dataIndex: "JinoyatVaqti",
+  },
+  {
+    title: "jinoyat hududi",
+    key: "JinoyatHudud",
+    width: "10%",
+    dataIndex: "JinoyatHudud",
+  },
+  {
+    title: "SudyaFIO",
+    key: "SSudyaFIO",
+    dataIndex: "SSudyaFIO",
   },
   {
     title: "EMPLOYED",
     key: "employed",
     dataIndex: "employed",
   },
+  
 ];
 
 const data = [
