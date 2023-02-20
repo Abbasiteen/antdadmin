@@ -9,6 +9,7 @@ import SignIn from "./pages/SignIn";
 import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
+import Persons from './pages/Persons'
 import "./assets/styles/responsive.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/bosh-sahifa" component={Home} />
           <Route exact path="/ishlar" component={Tables} />
           <Route exact path="/turlar" component={Billing} />
+          <Route exact path="/odamlar" component={Persons} />
           {/* <Route exact path="/rtl" component={Rtl} /> */}
           <Route exact path="/profile" component={Profile} />
           <Redirect from="*" to="/bosh-sahifa" />
