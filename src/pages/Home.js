@@ -40,7 +40,6 @@ function Home() {
 
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
-  const [reverse, setReverse] = useState(false);
 
   const dollor = [
     <svg

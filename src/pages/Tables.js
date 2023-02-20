@@ -159,94 +159,158 @@ export default class Tables extends Component {
         break;
     }
   }
-  postData = () => {
-    var data = {
-      AybElonFIO: "Siiiiiiiiiiuuuuuuuuuuu",
-      AyblovProkFIO: "asdasd",
-      AyblovProkLavozim: "zxc",
-      BoshXul: "hello",
-      IshPorkFIO: "asd",
-      IshProk: "sad",
-      JinoyatHudud: "zxc",
-      JinoyatJoyi: "zcx",
-      JinoyatVaqti: "zxzxcczx",
-      SSudHukmSana: "asd",
-      SSudyaFIO: "sad",
-      ShaharXul: "xa",
-      TumanXul: "xasd",
-      WorkId: "11a8569b-b450-4226-b780-c2d39ca8bc9a",
-      AktiTufay: "dsa",
-      AmaldaPushay: "dassad",
-      AybElon: "zc",
-      AybModda: "cxz",
-      AybModdaBandi: "zx",
-      AybModdaQism: "xzc",
-      AybOrgani: "xcz",
-      AybTopish: "asd",
-      AyblovQisqa: "zxc",
-      AyblovVozKech: "sda",
-      Bandi: "sad",
-      IjYoq: "das",
-      Ijkattabol: "asd",
+//   postData = () => {
+ 
+// state={
+//   form:1,
+//   data:[],
+//   searchText: "",
+//   searchedColumn: ""
+// }
 
-      JazoMiqdori: "sda",
-      JazoTur: "sad",
-      JinoyatZarar: "sad",
-      Kasallik: "sda",
-      Modda57: "sda",
-      Modda96: "asd",
-      Moddasi: "sad",
-      MolMulQoplanish: "asd",
-      MuddatOtib: "sda",
-      MuqaddamSud: "asda",
-      MuqaddamVaqti: "adsaadd",
-      Nogironligi: "wewe",
-      Ogir: "adsx",
+getData=()=>{
+  axios.get(`${url}/works`).then(res=>{
+    this.setState({ data: res.data })
+    console.log(this.state.data)
+  })
+}
+openForm=(key)=>{
+switch (key) {
+  case 1:
+    document.querySelector(".form1").style.display="block"
+    document.querySelector(".form2").style.display = "none"
+    document.querySelector(".form3").style.display="none"
+    document.querySelector(".form4").style.display="none"
+    document.querySelector(".form5").style.display = "none"
+    break;
+  case 2:
+    document.querySelector(".form1").style.display = "none"
+    document.querySelector(".form2").style.display ="block"
+    document.querySelector(".form3").style.display = "none"
+    document.querySelector(".form4").style.display = "none"
+    document.querySelector(".form5").style.display = "none"
+    break;
+  case 3:
+    document.querySelector(".form1").style.display = "none"
+    document.querySelector(".form2").style.display = "none"
+    document.querySelector(".form3").style.display = "block"
+    document.querySelector(".form4").style.display = "none"
+    document.querySelector(".form5").style.display = "none"
+    break;
+  case 4:
+    document.querySelector(".form1").style.display = "none"
+    document.querySelector(".form2").style.display = "none"
+    document.querySelector(".form3").style.display = "none"
+    document.querySelector(".form4").style.display = "block"
+    document.querySelector(".form5").style.display = "none"
+    break;
+  case 5:
+    document.querySelector(".form1").style.display = "none"
+    document.querySelector(".form2").style.display = "none"
+    document.querySelector(".form3").style.display = "none"
+    document.querySelector(".form4").style.display = "none"
+    document.querySelector(".form5").style.display = "block"
+    break;
+  default:
+    document.querySelector(".form1").style.display = "flex"
+    document.querySelector(".form2").style.display = "none"
+    document.querySelector(".form3").style.display = "none"
+    document.querySelector(".form4").style.display = "none"
+    document.querySelector(".form5").style.display = "none"
+    break;
+}
+}
+postData=()=>{
+  // var data={
 
-      OtaOgir: "asdx",
-      Pushaymon: "sda",
-      QamoqBolmagan: "xzc",
-      QamoqExtiyot: "asdsad",
-      QamoqUy: "xzc",
-      Qismi: "sadasd",
-      QoplanishFoiz: "sad",
-      S57Modda: "asd",
-      S96Modda: "ad",
-      SAktAs: "sd",
-      SAmal: "as",
-      SAmaldaPush: "a",
-      SAybliBandi: "asd",
-      SAybliModda: "sad",
-      SAybliQismi: "asddas",
-      SAydanVoz: "sad",
-      SIjXavf: "a",
-      SJazoMiq: "asd",
-      SJazoTuri: "sda",
-      SKasallik: "sd",
-      SOtibket: "aa",
-      SShartli: "sda",
-      SYarshMun: "dsa",
-      SYoq: "sd",
-      ShartliHukm: "sda",
-      Unchaogir: "asdx",
-      UserId: "ea97c8cc-b7e5-46cd-8c03-3f40354f789a",
-      UshlanganSana: "zxc",
-      VoyYetmaganFarzandi: "sa",
-      XavfYoqot: "sda",
-      Yarashgan: "dsa",
-      ZararQoplanish: "asd",
-      userscol: "asd"
-    }
-    var formdata = new FormData()
-    formdata.appand("UserName", "Abbas2")
-    formdata.appand("Date", "hhhh")
-    formdata.appand("Jinsi", "si")
-    formdata.appand("RuxiyHolat", "a")
-    formdata.appand("Ishjoyi", "aa")
-    formdata.appand('lavozimi', "a")
-    formdata.appand(' OilaAxvoli', "a")
-    formdata.appand()
-  }
+  // : "adsaadd",
+  // Nogironligi: "wewe",
+  // SAmal: "as",
+  // userscol: "asd"
+  // }
+  var formdata= new FormData()
+  formdata.appand("UserName", document.querySelector("#s1").value)
+  formdata.appand("Date", document.querySelector("#s2").value)
+  formdata.appand("Jinsi", document.querySelector("#s3").value)
+  formdata.appand("RuxiyHolat", document.querySelector("#s4").value)
+  formdata.appand("Ishjoyi", document.querySelector("#s5").value)
+  formdata.appand('lavozimi', document.querySelector("#s6").value)
+  formdata.appand('OilaAxvoli', document.querySelector("#s7").value)
+  formdata.appand('VoyYetmaganFarzandi', document.querySelector("#s8").value)
+  formdata.appand("MuqaddamSud", document.querySelector("#s9").value)
+  formdata.appand('MuqaddamVaqti', document.querySelector("#s10").value)
+  formdata.appand('AyblovQisqa', document.querySelector("#s11").value)
+  formdata.append("JinoyatVaqti", document.querySelector("#s12").value)
+  formdata.append("JinoyatHudud", document.querySelector("#s13").value)
+  formdata.append("JinoyatJoyi", document.querySelector("#s14").value)
+  formdata.append("UshlanganSana", document.querySelector("#s15").value)
+  formdata.append("AybElon", document.querySelector("#s16").value)
+  formdata.append("AybModda", document.querySelector("#s17").value)
+  formdata.append("AybModdaQism", document.querySelector("#s18").value)
+  formdata.append("AybModdaBandi", document.querySelector("#s19").value)
+  formdata.append("AybOrgani", document.querySelector("#s20").value)
+  formdata.append("AybElonFIO", document.querySelector("#s21").value)
+  formdata.append('QamoqBolmagan', document.querySelector("#s22").value)
+  formdata.append('QamoqExtiyot', document.querySelector("#s23").value)
+  formdata.append('QamoqUy',document.querySelector("#s24").value)
+  formdata.append('AyblovProkLavozim', document.querySelector("#s25").value)
+  formdata.append('AyblovProkFIO', document.querySelector("#s26").value)
+  formdata.append('JinoyatZarar', document.querySelector("#s27").value)
+  formdata.append('ZararQoplanish', document.querySelector("#s28").value)
+  formdata.append('MolMulQoplanish', document.querySelector("#s29").value)
+  formdata.append('QoplanishFoiz', document.querySelector("#s30").value)
+  formdata.append('IshProk', document.querySelector("#s31").value)
+  formdata.append('IshPorkFIO', document.querySelector("#s32").value)
+  formdata.append('AybTopishAybTopish', document.querySelector("#s33").value)
+  formdata.append('Moddasi', document.querySelector("#s34").value)
+  formdata.append('Qismi', document.querySelector("#s35").value,)
+  formdata.append('Bandi', document.querySelector("#s36").value)
+  formdata.append('AyblovVozKech', document.querySelector("#s37").value)
+  formdata.appand('JazoTur', document.querySelector("#s38").value)
+  formdata.append('JazoMiqdori', document.querySelector("#s39").value)
+  formdata.append('ShartliHukm', document.querySelector("#s40").value)
+  formdata.append('Modda57', document.querySelector("#s41").value)
+  formdata.append('Modda96', document.querySelector("#s42").value)
+  formdata.append('MuddatOtib', document.querySelector("#s43").value)
+  formdata.append('XavfYoqot', document.querySelector("#s44").value)
+  formdata.append('Pushaymon', document.querySelector("#s45").value)
+  formdata.append('Yarashgan', document.querySelector("#s46").value)
+  formdata.append('Kasallik', document.querySelector("#s47").value)
+  formdata.append('AktiTufay', document.querySelector("#s48").value)
+  formdata.append('IjYoq', document.querySelector("#s49").value)  
+  formdata.append('AmaldaPushay', document.querySelector("#s50").value)
+  formdata.append('SSudHukmSana', document.querySelector("#s51").value)
+  formdata.append('SSudyaFIO', document.querySelector("#s52").value)
+  formdata.append('SAybliModda', document.querySelector("#s53").value)
+  formdata.append('SAybliQismi', document.querySelector("#s54").value)
+  formdata.append('SAybliBandi', document.querySelector("#s55").value)
+  formdata.append('SAydanVoz', document.querySelector("#s56").value)
+  formdata.append('SJazoTuri', document.querySelector("#s57").value) 
+  formdata.append('SJazoMiq', document.querySelector("#s58").value)
+  formdata.append('SShartli', document.querySelector("#s59").value)
+  formdata.append('S57Modda', document.querySelector("#s60").value)
+  formdata.append('S96Modda', document.querySelector("#s61").value)
+  formdata.append('SOtibket', document.querySelector("#s62").value)
+  formdata.append('SYoq', document.querySelector("#s63").value)
+  formdata.append('SAmaldaPush', document.querySelector("#s64").value)
+  formdata.append('SYarshMun', document.querySelector("#s65").value)
+  formdata.append('SKasallik', document.querySelector("#s66").value)
+  formdata.append('SAktAs', document.querySelector("#s67").value)
+  formdata.append('SIjXavf', document.querySelector("#s68").value)
+  formdata.append('SAmaldaPush', document.querySelector("#s69").value)
+  formdata.append('Ogir', document.querySelector("#s70").value)
+  formdata.append('TumanXul', document.querySelector("#s71").value)
+  formdata.append('ShaharXul', document.querySelector("#s72").value)
+  formdata.append('BoshXul', document.querySelector("#s73").value)
+  axios.post("https://prokror.onrender.com/works", formdata).then(res=>{
+    alert("yuborildi")
+  }).catch(err=>{
+    alert("malumot yuborilmadi mutahasis bilan gaplashing")
+  })
+
+
+}
+
 
   openModal2 = () => {
     document.querySelector(".Modal2").classList.add("openModal2")
@@ -475,7 +539,7 @@ export default class Tables extends Component {
 
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Sudlanuvchi tugilgan vaqti</label><br />
-                <input className="sel1 sel2" name="sel1" id="s2" />
+                <input className="sel1 sel2" type='date' name="sel1" id="s2" />
               </div>
 
               <div className="card1">
@@ -593,7 +657,7 @@ export default class Tables extends Component {
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Uy qamogʼi ehtiyot chorasi tanlangan sana</label><br />
-                <input className="sel1 sel2" name="sel1" id="s24" />
+                <input className="sel1 sel2" type="date" name="sel1" id="s24" />
               </div></div>
             <center><h3 style={{ color: 'white' }}>Ayblov xulosasini tasdiqlagan prokuror</h3> </center>
             <div className="modal_body">
@@ -669,51 +733,51 @@ export default class Tables extends Component {
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jazo miqdori</label><br />
-                <input className="sel1 sel2" name="sel1" id="s38" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Shartli hukm qilish</label><br />
                 <input className="sel1 sel2" name="sel1" id="s39" />
               </div>
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">JKning 57-moddasini qo‘llash</label><br />
+                <label htmlFor="sel1" className="sel2_text">Shartli hukm qilish</label><br />
                 <input className="sel1 sel2" name="sel1" id="s40" />
               </div>
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">JKning 96-moddasini qo‘llash</label><br />
+                <label htmlFor="sel1" className="sel2_text">JKning 57-moddasini qo‘llash</label><br />
                 <input className="sel1 sel2" name="sel1" id="s41" />
               </div>
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Javobgarlikka tortish muddatining o‘tib ketganligi munosabati bilan</label><br />
+                <label htmlFor="sel1" className="sel2_text">JKning 96-moddasini qo‘llash</label><br />
                 <input className="sel1 sel2" name="sel1" id="s42" />
               </div>
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Qilmish yoki shaxs ijtimoiy xavfliligini yo‘qotganligi</label><br />
+                <label htmlFor="sel1" className="sel2_text">Javobgarlikka tortish muddatining o‘tib ketganligi munosabati bilan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s43" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Qilmish yoki shaxs ijtimoiy xavfliligini yo‘qotganligi</label><br />
+                <input className="sel1 sel2" name="sel1" id="s44" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s45" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s46" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
+                <input className="sel1 sel2" name="sel1" id="s47" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
+                <input className="sel1 sel2" name="sel1" id="s48" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s49" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s50" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s51" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
-                <input className="sel1 sel2" name="sel1" id="s52" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
-                <input className="sel1 sel2" name="sel1" id="s53" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s54" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s55" />
               </div>
             </div>
           </div>
@@ -723,54 +787,74 @@ export default class Tables extends Component {
             <div className="modal_body">
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Sud hukmi sanasi</label><br />
-                <input className="sel1 sel2" type='date' name="sel1" id="s56" />
+                <input className="sel1 sel2" type='date' name="sel1" id="s51" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Sud'ya F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s57" />
+                <input className="sel1 sel2" name="sel1" id="s52" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybli deb topish moddasi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s58" />
+                <input className="sel1 sel2" name="sel1" id="s53" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybli deb topish qismi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s59" />
+                <input className="sel1 sel2" name="sel1" id="s54" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybli deb topish bandi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s60" />
+                <input className="sel1 sel2" name="sel1" id="s55" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Ayblovdan voz kechish</label><br />
-                <input className="sel1 sel2" name="sel1" id="s61" />
+                <input className="sel1 sel2" name="sel1" id="s56" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jazo turi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s62" />
+                <input className="sel1 sel2" name="sel1" id="s57" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jazo miqdori</label><br />
-                <input className="sel1 sel2" name="sel1" id="s63" />
+                <input className="sel1 sel2" name="sel1" id="s58" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Shartli hukm qilish</label><br />
-                <input className="sel1 sel2" name="sel1" id="s64" />
+                <input className="sel1 sel2" name="sel1" id="s59" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">JKning 57-moddasini qo‘llash</label><br />
-                <input className="sel1 sel2" name="sel1" id="s65" />
+                <input className="sel1 sel2" name="sel1" id="s60" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">JKning 96-moddasini qo‘llash</label><br />
-                <input className="sel1 sel2" name="sel1" id="s66" />
+                <input className="sel1 sel2" name="sel1" id="s61" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Javobgarlikka tortish muddatining o‘tib ketganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s67" />
+                <input className="sel1 sel2" name="sel1" id="s62" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Qilmish yoki shaxs ijtimoiy xavfliligini yo‘qotganligi</label><br />
+                <input className="sel1 sel2" name="sel1" id="s63" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s64" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s65" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
+                <input className="sel1 sel2" name="sel1" id="s66" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
+                <input className="sel1 sel2" name="sel1" id="s67" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s68" />
               </div>
               <div className="card1">
@@ -778,28 +862,8 @@ export default class Tables extends Component {
                 <input className="sel1 sel2" name="sel1" id="s69" />
               </div>
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s70" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
-                <input className="sel1 sel2" name="sel1" id="s71" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
-                <input className="sel1 sel2" name="sel1" id="s72" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s73" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s74" />
-              </div>
-              <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jinoyatning ijtimoiy xavflilik darajasi</label><br />
-                <select className="sel1 sel2" name="sel1" id="s75">
+                <select className="sel1 sel2" name="sel1" id="s70">
                   <option value="1">ijtimoiy xavfi katta bo‘lmagan</option>
                   <option value="2">uncha og‘ir bo‘lmagan</option>
                   <option value="3">og‘ir</option>
@@ -811,15 +875,15 @@ export default class Tables extends Component {
 
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Tuman (shahar) prokuraturasi xulosasi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s76" />
+                <input className="sel1 sel2" name="sel1" id="s71" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Qoraqalpog‘iston Respublikasi, viloyatlar, Toshkent shahar prokuraturasi xulosasi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s77" />
+                <input className="sel1 sel2" name="sel1" id="s72" />
               </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Bosh prokuraturagning xulosasi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s78" />
+                <input className="sel1 sel2" name="sel1" id="s73" />
               </div>
 
             </div>
@@ -849,8 +913,10 @@ export default class Tables extends Component {
               </Checkbox.Group>
 
             </div>
-          </div>
+            <Button className="abbas1" onClick={() => this.postData()}>.malumotni yuborish</Button>
 
+         </div>
+         
 
 
 
