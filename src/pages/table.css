@@ -94,7 +94,8 @@ left: 20px;
     border: 1px solid #52c41a;
     color: #52c41a;
 }
-.createModal {
+.createModal,
+.editModal {
     width: 400px;
     height: 250px;
     background-color: #fff;

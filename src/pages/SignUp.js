@@ -57,9 +57,9 @@ const columns = [
     key: "date",
   },
   {
-    title: "STATUS",
-    key: "status",
-    dataIndex: "status",
+    title: "Vaqti",
+    key: "hour",
+    dataIndex: "hour",
   },
   {
     title: "EMPLOYED",

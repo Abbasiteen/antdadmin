@@ -10,7 +10,8 @@ import {
   Space,
   Form,
   message,
-  Input
+  Input,
+  Alert
 } from "antd";
 import { ToTopOutlined } from "@ant-design/icons";
 import { CloseOutlined } from "@ant-design/icons"
@@ -22,32 +23,7 @@ const { Title } = Typography;
 
 
 
-const columns = [
-  {
-    title: "Categoriya Nomlari",
-    dataIndex: "CategoryName",
-    key: "CategoryName",
-    width: "32%",
-  },
-  {
-    title: "FUNCTION",
-    dataIndex: "function",
-    key: "function",
-  },
 
-  {
-    title: "STATUS",
-    key: "status",
-    render: (text, record) => {
-      return (<div>{record.Object.length}</div>)
-    }
-  },
-  {
-    title: "action",
-    key: "employed",
-    render: () => { return <div><Button danger>O'chirish</Button><Button style={{ border: "1px solid #52c41a", color: "#52c41a", marginLeft: "20px" }}>Tahrirlash</Button></div> }
-  },
-];
 
 const project = [
   {
@@ -104,6 +80,9 @@ export default class Billing extends Component {
       .catch((err) => {
         console.log(err)
       })
+      .finally(() => {
+        document.querySelector("#categoryInp").value = ''
+      })
   }
   createModal = () => {
     document.querySelector(".createModal").style = "display: flex;"
@@ -111,14 +90,65 @@ export default class Billing extends Component {
   close_modal = () => {
     document.querySelector(".createModal").style = "display: none;"
   }
-
+  deleteCategory = (Id) => {
+    axios.delete(`https://prokror.onrender.com/category/${Id}`)
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  editCategoryModal = (Id) => {
+    document.querySelector(".editModal").style = "display: flex"
+    document.querySelector("#categoryInp3").value = Id
+  }
+  closeEditModal = () => {
+    document.querySelector(".editModal").style = "display: none"
+  }
+  editCategory = () => {
+    const inp = document.querySelector("#categoryInp3").value
+    var newForm = new FormData()
+    newForm.append("CategoryName", document.querySelector("#categoryInp2").value)
+    axios.put(`https://prokror.onrender.com/category/${inp}`, newForm)
+    .then(res => {
+      console.log(res.data)
+    })
+  }
 
   componentDidMount() {
     this.getData()
   }
   render() {
+    const columns = [
+      {
+        title: "Categoriya Nomlari",
+        dataIndex: "CategoryName",
+        key: "CategoryName",
+        width: "32%",
+      },
+      {
+        title: "FUNCTION",
+        dataIndex: "function",
+        key: "function",
+      },
+
+      {
+        title: "STATUS",
+        key: "status",
+        render: (text, record) => {
+          return (<div>{record.Object.length}</div>)
+        }
+      },
+      {
+        title: "action",
+        key: "employed",
+        render: (text, record) => { return <div><Button onClick={() => { this.deleteCategory(record.Id) }} danger>O'chirish</Button><Button onClick={() => { this.editCategoryModal(record.Id) }} style={{ border: "1px solid #52c41a", color: "#52c41a", marginLeft: "20px" }}>Tahrirlash</Button></div> }
+      },
+    ];
     return (
       <>
+
         <div className="createModal">
           <Form
             layout="vertical"
@@ -140,6 +170,28 @@ export default class Billing extends Component {
             </Form.Item>
           </Form>
         </div>
+
+        <div className="editModal">
+          <Form
+            layout="vertical"
+            autoComplete="off"
+          >
+            <CloseOutlined onClick={this.closeEditModal} className="close_modal2" />
+            <Form.Item>
+              <h4 className="category_text">Categoriya Nomi</h4>
+              <Input disabled id="categoryInp3" style={{ marginBottom: "20px", marginTop: "10px" }} />
+              <Input placeholder="Categoriya nomini kiriting" id="categoryInp2" />
+            </Form.Item>
+            <Form.Item>
+              <Space>
+                <Button type="primary" typeof="submit" htmlType="submit" onClick={this.editCategory}>
+                  Tahrirlash
+                </Button>
+              </Space>
+            </Form.Item>
+          </Form>
+        </div>
+
         <div className="tabled">
           <Row gutter={[24, 0]}>
             <Col xs="24" xl={24}>
