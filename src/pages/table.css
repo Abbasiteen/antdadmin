@@ -94,3 +94,27 @@ left: 20px;
     border: 1px solid #52c41a;
     color: #52c41a;
 }
+.createModal {
+    width: 400px;
+    height: 250px;
+    background-color: #fff;
+    position: fixed;
+    top: 25%; right: 50%;
+    transform: translateX(50%);
+    z-index: 99;
+    border-radius: 20px;
+    display: flex;
+    padding: 0 40px;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 15px #ccc;
+    display: none;
+}
+.createDb {
+    display: flex;
+}
+.close_modal2 {
+    position: absolute;
+    right: 20px; top: 20px;
+    font-size: 18px;
+}

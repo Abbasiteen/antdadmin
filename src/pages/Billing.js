@@ -8,22 +8,13 @@ import {
   Typography,
   Spin,
   Space,
-  Modal
+  Form,
+  message,
+  Input
 } from "antd";
 import { ToTopOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom";
-import ava1 from "../assets/images/logo-shopify.svg";
-import ava2 from "../assets/images/logo-atlassian.svg";
-import ava3 from "../assets/images/logo-slack.svg";
-import ava5 from "../assets/images/logo-jira.svg";
-import ava6 from "../assets/images/logo-invision.svg";
-import face from "../assets/images/face-1.jpg";
-import face2 from "../assets/images/face-2.jpg";
-import face3 from "../assets/images/face-3.jpg";
-import face4 from "../assets/images/face-4.jpg";
-import face5 from "../assets/images/face-5.jpeg";
-import face6 from "../assets/images/face-6.jpeg";
-import pencil from "../assets/images/pencil.svg";
 import "../pages/table.css"
 import axios from "axios";
 import React, { Component } from 'react'
@@ -83,8 +74,7 @@ const project = [
 export default class Billing extends Component {
   state = {
     data: [],
-    loading: true,
-    isModalOpen: false
+    loading: true
   }
   getData = () => {
     axios.get("https://prokror.onrender.com/category")
@@ -98,6 +88,30 @@ export default class Billing extends Component {
         this.setState({ loading: false })
       })
   }
+  onFinish = () => {
+    message.success(`Categoriya qo'shildi!`);
+  };
+  onFinishFailed = () => {
+    message.error('Submit failed!');
+  };
+  postCategory = () => {
+    var newData = new FormData()
+    newData.append("CategoryName", document.querySelector("#categoryInp").value)
+    axios.post("https://prokror.onrender.com/category", newData)
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  createModal = () => {
+    document.querySelector(".createModal").style = "display: flex;"
+  }
+  close_modal = () => {
+    document.querySelector(".createModal").style = "display: none;"
+  }
+
 
   componentDidMount() {
     this.getData()
@@ -105,14 +119,34 @@ export default class Billing extends Component {
   render() {
     return (
       <>
-
+        <div className="createModal">
+          <Form
+            layout="vertical"
+            onFinish={this.onFinish}
+            onFinishFailed={this.onFinishFailed}
+            autoComplete="off"
+          >
+            <CloseOutlined onClick={this.close_modal} className="close_modal2" />
+            <Form.Item>
+              <h4 className="category_text">Categoriya Nomi</h4>
+              <Input placeholder="Categoriya nomini kiriting" id="categoryInp" />
+            </Form.Item>
+            <Form.Item>
+              <Space>
+                <Button type="primary" typeof="submit" htmlType="submit" onClick={this.postCategory}>
+                  Qo'shish
+                </Button>
+              </Space>
+            </Form.Item>
+          </Form>
+        </div>
         <div className="tabled">
           <Row gutter={[24, 0]}>
             <Col xs="24" xl={24}>
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
-                title="Projects Table"
+                title="Categoriya"
                 extra={
                   <>
                     <Radio.Group defaultValue="all">
@@ -141,7 +175,7 @@ export default class Billing extends Component {
                 </div>
 
                 <div className="uploadfile pb-15 shadow-none">
-                  <Button
+                  <Button onClick={this.createModal}
                     className="ant-full-box" id="addBtn"
                     icon={<ToTopOutlined />}
                   >

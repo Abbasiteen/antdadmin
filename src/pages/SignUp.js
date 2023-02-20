@@ -4,12 +4,13 @@ import {
   Card,
   Radio,
   Table,
-  Upload,
   message,
   Progress,
   Button,
   Avatar,
   Typography,
+  Spin,
+  Space
 } from "antd";
 import { ToTopOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -18,6 +19,7 @@ import ava2 from "../assets/images/logo-atlassian.svg";
 import ava3 from "../assets/images/logo-slack.svg";
 import ava5 from "../assets/images/logo-jira.svg";
 import ava6 from "../assets/images/logo-invision.svg";
+import axios from "axios";
 
 import pencil from "../assets/images/pencil.svg";
 
@@ -44,17 +46,16 @@ const formProps = {
 // table code start
 const columns = [
   {
-    title: "AUTHOR",
-    dataIndex: "name",
-    key: "name",
+    title: "Ismi",
+    dataIndex: "UserName",
+    key: "UserName",
     width: "32%",
   },
   {
-    title: "FUNCTION",
-    dataIndex: "function",
-    key: "function",
+    title: "Sanasi",
+    dataIndex: "date",
+    key: "date",
   },
-
   {
     title: "STATUS",
     key: "status",
@@ -312,6 +313,26 @@ const dataproject = [
 
 
 export default class Billing extends Component {
+  state = {
+    data: [],
+    loading: true
+  }
+  getData = () => {
+    axios.get("https://prokror.onrender.com/history")
+      .then(res => {
+        this.setState({ data: res.data })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        this.setState({ loading: false })
+      })
+  }
+
+  componentDidMount() {
+    this.getData()
+  }
   render() {
     return (
       <>
@@ -323,7 +344,7 @@ export default class Billing extends Component {
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
-                title="Projects Table"
+                title="Projects Table1"
                 extra={
                   <>
                     <Radio.Group defaultValue="all">
@@ -335,23 +356,20 @@ export default class Billing extends Component {
                 }
               >
                 <div className="table-responsive">
-                  <Table
-                    columns={project}
-                    dataSource={dataproject}
-                    pagination={false}
-                    className="ant-border-space"
-                  />
-                </div>
-                <div className="uploadfile pb-15 shadow-none">
-                  <Upload {...formProps}>
-                    <Button
-                      type="dashed"
-                      className="ant-full-box"
-                      icon={<ToTopOutlined />}
-                    >
-                      Click to Upload
-                    </Button>
-                  </Upload>
+                  {
+                    this.state.loading === true ? (
+                      <Space style={{ display: "flex", justifyContent: "center", height: "200px", alignItems: "center", width: "100%" }}>
+                        <Spin tip="Loading" size="large"></Spin>
+                      </Space>
+                    ) : (
+                      <Table
+                        columns={columns}
+                        dataSource={this.state.data}
+                        pagination={false}
+                        className="ant-border-space"
+                      />
+                    )
+                  }
                 </div>
               </Card>
             </Col>
