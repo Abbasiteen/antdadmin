@@ -85,3 +85,12 @@ top: 0px;
 left: 20px;
 
 }
+
+#addBtn {
+    border: 1px dashed #52c41a;
+    transition: .3s;
+}
+#addBtn:hover {
+    border: 1px solid #52c41a;
+    color: #52c41a;
+}

@@ -4,12 +4,11 @@ import {
   Card,
   Radio,
   Table,
-  Upload,
-  message,
-  Progress,
   Button,
-  Avatar,
   Typography,
+  Spin,
+  Space,
+  Modal
 } from "antd";
 import { ToTopOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -25,33 +24,18 @@ import face4 from "../assets/images/face-4.jpg";
 import face5 from "../assets/images/face-5.jpeg";
 import face6 from "../assets/images/face-6.jpeg";
 import pencil from "../assets/images/pencil.svg";
-
+import "../pages/table.css"
+import axios from "axios";
 import React, { Component } from 'react'
 const { Title } = Typography;
 
-const formProps = {
-  name: "file",
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  headers: {
-    authorization: "authorization-text",
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
-// table code start
+
+
 const columns = [
   {
-    title: "AUTHOR",
-    dataIndex: "name",
-    key: "name",
+    title: "Categoriya Nomlari",
+    dataIndex: "CategoryName",
+    key: "CategoryName",
     width: "32%",
   },
   {
@@ -63,19 +47,22 @@ const columns = [
   {
     title: "STATUS",
     key: "status",
-    dataIndex: "status",
+    render: (text, record) => {
+      return (<div>{record.Object.length}</div>)
+    }
   },
   {
-    title: "EMPLOYED",
+    title: "action",
     key: "employed",
-    dataIndex: "employed",
+    render: () => { return <div><Button danger>O'chirish</Button><Button style={{ border: "1px solid #52c41a", color: "#52c41a", marginLeft: "20px" }}>Tahrirlash</Button></div> }
   },
 ];
 
 const project = [
   {
-    title: "COMPANIES",
+    title: "Categoriya Nomlari",
     dataIndex: "name",
+    key: "CategoryName",
     width: "32%",
   },
   {
@@ -91,240 +78,37 @@ const project = [
     dataIndex: "completion",
   },
 ];
-const dataproject = [
-  {
-    key: "1",
-
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava1} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Spotify Version</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$14,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">working</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={30} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "2",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava2} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Progress Track</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$3,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">working</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={10} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "3",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava3} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}> Jira Platform Errors</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">Not Set</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">done</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={100} size="small" format={() => "done"} />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "4",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava5} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}> Launch new Mobile App</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$20,600</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">canceled</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress
-            percent={50}
-            size="small"
-            status="exception"
-            format={() => "50%"}
-          />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "5",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava5} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Web Dev</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$4,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">working</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={80} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "6",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava6} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Redesign Online Store</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$2,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">canceled</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={0} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-];
 
 
 export default class Billing extends Component {
+  state = {
+    data: [],
+    loading: true,
+    isModalOpen: false
+  }
+  getData = () => {
+    axios.get("https://prokror.onrender.com/category")
+      .then(res => {
+        this.setState({ data: res.data })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        this.setState({ loading: false })
+      })
+  }
+
+  componentDidMount() {
+    this.getData()
+  }
   render() {
     return (
       <>
+
         <div className="tabled">
           <Row gutter={[24, 0]}>
             <Col xs="24" xl={24}>
-
-
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
@@ -340,23 +124,29 @@ export default class Billing extends Component {
                 }
               >
                 <div className="table-responsive">
-                  <Table
-                    columns={project}
-                    dataSource={dataproject}
-                    pagination={false}
-                    className="ant-border-space"
-                  />
+                  {
+                    this.state.loading === true ? (
+                      <Space style={{ display: "flex", justifyContent: "center", height: "200px", alignItems: "center", width: "100%" }}>
+                        <Spin tip="Loading" size="large"></Spin>
+                      </Space>
+                    ) : (
+                      <Table
+                        columns={columns}
+                        dataSource={this.state.data}
+                        pagination={false}
+                        className="ant-border-space"
+                      />
+                    )
+                  }
                 </div>
+
                 <div className="uploadfile pb-15 shadow-none">
-                  <Upload {...formProps}>
-                    <Button
-                      type="dashed"
-                      className="ant-full-box"
-                      icon={<ToTopOutlined />}
-                    >
-                      Click to Upload
-                    </Button>
-                  </Upload>
+                  <Button
+                    className="ant-full-box" id="addBtn"
+                    icon={<ToTopOutlined />}
+                  >
+                    Categoriya Qo'shish
+                  </Button>
                 </div>
               </Card>
             </Col>

@@ -9,13 +9,13 @@ import {
   Progress,
   Button,
   Avatar,
-  Typography,Checkbox,
+  Typography, Checkbox,
 } from "antd";
 import Highlighter from 'react-highlight-words';
 // import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 
-import {  Space } from 'antd';
-import { DeleteTwoTone, EditTwoTone, PushpinTwoTone, SearchOutlined} from "@ant-design/icons";
+import { Space } from 'antd';
+import { DeleteTwoTone, EditTwoTone, PushpinTwoTone, SearchOutlined } from "@ant-design/icons";
 import face from "../assets/images/face-1.jpg";
 import face2 from "../assets/images/face-2.jpg";
 import face3 from "../assets/images/face-3.jpg";
@@ -25,7 +25,7 @@ import face6 from "../assets/images/face-6.jpeg";
 import pencil from "../assets/images/pencil.svg";
 import { CloseOutlined } from "@ant-design/icons"
 import { Input } from 'antd';
-import "./table.css"
+import "../pages/table.css"
 import React, { Component } from 'react'
 import axios from "axios"
 import { url } from "../host/host";
@@ -70,22 +70,22 @@ const columns = [
   {
     title: "Sudya",
     key: "SSudyaFIO",
-      width: "15%",
+    width: "15%",
     dataIndex: "SSudyaFIO",
   },
-    {
+  {
     title: "Prokuror",
     key: "IshPorkFIO",
-      width: "15%",
+    width: "15%",
     dataIndex: "IshPorkFIO",
   },
   {
     title: "action",
     key: "employed",
-      width: "15%",
-    render:(_,record)=>(
+    width: "15%",
+    render: (_, record) => (
       <div >
-        <Button style={{ marginRight:'10px' }} type="primary">Push</Button>
+        <Button style={{ marginRight: '10px' }} type="primary">Push</Button>
         <Button style={{ marginRight: '10px' }} type="primary">Edit</Button>
         <Button type="primary" danger>
           Delete
@@ -93,160 +93,160 @@ const columns = [
       </div>
     )
   },
-  
+
 ];
 
 
 
 
 export default class Tables extends Component {
-state={
-  form:1,
-  data:[],
-  searchText: "",
-  searchedColumn: ""
-}
-
-getData=()=>{
-  axios.get(`${url}/works`).then(res=>{
-    this.setState({ data: res.data })
-    console.log(this.state.data)
-  })
-}
-openForm=(key)=>{
-switch (key) {
-  case 1:
-    document.querySelector(".form1").style.display="block"
-    document.querySelector(".form2").style.display = "none"
-    document.querySelector(".form3").style.display="none"
-    document.querySelector(".form4").style.display="none"
-    document.querySelector(".form5").style.display = "none"
-    break;
-  case 2:
-    document.querySelector(".form1").style.display = "none"
-    document.querySelector(".form2").style.display ="block"
-    document.querySelector(".form3").style.display = "none"
-    document.querySelector(".form4").style.display = "none"
-    document.querySelector(".form5").style.display = "none"
-    break;
-  case 3:
-    document.querySelector(".form1").style.display = "none"
-    document.querySelector(".form2").style.display = "none"
-    document.querySelector(".form3").style.display = "block"
-    document.querySelector(".form4").style.display = "none"
-    document.querySelector(".form5").style.display = "none"
-    break;
-  case 4:
-    document.querySelector(".form1").style.display = "none"
-    document.querySelector(".form2").style.display = "none"
-    document.querySelector(".form3").style.display = "none"
-    document.querySelector(".form4").style.display = "block"
-    document.querySelector(".form5").style.display = "none"
-    break;
-  case 5:
-    document.querySelector(".form1").style.display = "none"
-    document.querySelector(".form2").style.display = "none"
-    document.querySelector(".form3").style.display = "none"
-    document.querySelector(".form4").style.display = "none"
-    document.querySelector(".form5").style.display = "block"
-    break;
-  default:
-    document.querySelector(".form1").style.display = "flex"
-    document.querySelector(".form2").style.display = "none"
-    document.querySelector(".form3").style.display = "none"
-    document.querySelector(".form4").style.display = "none"
-    document.querySelector(".form5").style.display = "none"
-    break;
-}
-}
-postData=()=>{
-  var data={
-AybElonFIO: "Siiiiiiiiiiuuuuuuuuuuu",
-AyblovProkFIO: "asdasd",
-AyblovProkLavozim: "zxc",
-BoshXul: "hello",
-IshPorkFIO: "asd",
-IshProk: "sad",
-JinoyatHudud: "zxc",
-JinoyatJoyi: "zcx",
-JinoyatVaqti: "zxzxcczx",
-SSudHukmSana: "asd",
-SSudyaFIO: "sad",
-ShaharXul: "xa",
-TumanXul: "xasd",
-WorkId: "11a8569b-b450-4226-b780-c2d39ca8bc9a",
-  AktiTufay: "dsa",
-  AmaldaPushay: "dassad",
-  AybElon: "zc",
-  AybModda: "cxz",
-  AybModdaBandi: "zx",
-  AybModdaQism: "xzc",
-  AybOrgani: "xcz",
-  AybTopish: "asd",
-  AyblovQisqa: "zxc",
-  AyblovVozKech: "sda",
-  Bandi: "sad",
-  IjYoq: "das",
-  Ijkattabol: "asd",
-  
-  JazoMiqdori: "sda",
-  JazoTur: "sad",
-  JinoyatZarar: "sad",
-  Kasallik: "sda",
-  Modda57: "sda",
-  Modda96: "asd",
-  Moddasi: "sad",
-  MolMulQoplanish: "asd",
-  MuddatOtib: "sda",
-  MuqaddamSud: "asda",
-  MuqaddamVaqti: "adsaadd",
-  Nogironligi: "wewe",
-  Ogir: "adsx",
- 
-  OtaOgir: "asdx",
-  Pushaymon: "sda",
-  QamoqBolmagan: "xzc",
-  QamoqExtiyot: "asdsad",
-  QamoqUy: "xzc",
-  Qismi: "sadasd",
-  QoplanishFoiz: "sad",
-  S57Modda: "asd",
-  S96Modda: "ad",
-  SAktAs: "sd",
-  SAmal: "as",
-  SAmaldaPush: "a",
-  SAybliBandi: "asd",
-  SAybliModda: "sad",
-  SAybliQismi: "asddas",
-  SAydanVoz: "sad",
-  SIjXavf: "a",
-  SJazoMiq: "asd",
-  SJazoTuri: "sda",
-  SKasallik: "sd",
-  SOtibket: "aa",
-  SShartli: "sda",
-  SYarshMun: "dsa",
-  SYoq: "sd",
-  ShartliHukm: "sda",
-  Unchaogir: "asdx",
-  UserId: "ea97c8cc-b7e5-46cd-8c03-3f40354f789a",
-  UshlanganSana: "zxc",
-  VoyYetmaganFarzandi: "sa",
-  XavfYoqot: "sda",
-  Yarashgan: "dsa",
-  ZararQoplanish: "asd",
-  userscol: "asd"
+  state = {
+    form: 1,
+    data: [],
+    searchText: "",
+    searchedColumn: ""
   }
-  var formdata= new FormData()
-  formdata.appand("UserName", "Abbas2")
-  formdata.appand("Date", "hhhh")
-  formdata.appand("Jinsi", "si")
-  formdata.appand("RuxiyHolat", "a")
-formdata.appand("Ishjoyi","aa")
-  formdata.appand('lavozimi', "a")
-  formdata.appand(' OilaAxvoli', "a")
-formdata.appand()
-}
+
+  getData = () => {
+    axios.get(`${url}/works`).then(res => {
+      this.setState({ data: res.data })
+      console.log(this.state.data)
+    })
+  }
+  openForm = (key) => {
+    switch (key) {
+      case 1:
+        document.querySelector(".form1").style.display = "block"
+        document.querySelector(".form2").style.display = "none"
+        document.querySelector(".form3").style.display = "none"
+        document.querySelector(".form4").style.display = "none"
+        document.querySelector(".form5").style.display = "none"
+        break;
+      case 2:
+        document.querySelector(".form1").style.display = "none"
+        document.querySelector(".form2").style.display = "block"
+        document.querySelector(".form3").style.display = "none"
+        document.querySelector(".form4").style.display = "none"
+        document.querySelector(".form5").style.display = "none"
+        break;
+      case 3:
+        document.querySelector(".form1").style.display = "none"
+        document.querySelector(".form2").style.display = "none"
+        document.querySelector(".form3").style.display = "block"
+        document.querySelector(".form4").style.display = "none"
+        document.querySelector(".form5").style.display = "none"
+        break;
+      case 4:
+        document.querySelector(".form1").style.display = "none"
+        document.querySelector(".form2").style.display = "none"
+        document.querySelector(".form3").style.display = "none"
+        document.querySelector(".form4").style.display = "block"
+        document.querySelector(".form5").style.display = "none"
+        break;
+      case 5:
+        document.querySelector(".form1").style.display = "none"
+        document.querySelector(".form2").style.display = "none"
+        document.querySelector(".form3").style.display = "none"
+        document.querySelector(".form4").style.display = "none"
+        document.querySelector(".form5").style.display = "block"
+        break;
+      default:
+        document.querySelector(".form1").style.display = "flex"
+        document.querySelector(".form2").style.display = "none"
+        document.querySelector(".form3").style.display = "none"
+        document.querySelector(".form4").style.display = "none"
+        document.querySelector(".form5").style.display = "none"
+        break;
+    }
+  }
+  postData = () => {
+    var data = {
+      AybElonFIO: "Siiiiiiiiiiuuuuuuuuuuu",
+      AyblovProkFIO: "asdasd",
+      AyblovProkLavozim: "zxc",
+      BoshXul: "hello",
+      IshPorkFIO: "asd",
+      IshProk: "sad",
+      JinoyatHudud: "zxc",
+      JinoyatJoyi: "zcx",
+      JinoyatVaqti: "zxzxcczx",
+      SSudHukmSana: "asd",
+      SSudyaFIO: "sad",
+      ShaharXul: "xa",
+      TumanXul: "xasd",
+      WorkId: "11a8569b-b450-4226-b780-c2d39ca8bc9a",
+      AktiTufay: "dsa",
+      AmaldaPushay: "dassad",
+      AybElon: "zc",
+      AybModda: "cxz",
+      AybModdaBandi: "zx",
+      AybModdaQism: "xzc",
+      AybOrgani: "xcz",
+      AybTopish: "asd",
+      AyblovQisqa: "zxc",
+      AyblovVozKech: "sda",
+      Bandi: "sad",
+      IjYoq: "das",
+      Ijkattabol: "asd",
+
+      JazoMiqdori: "sda",
+      JazoTur: "sad",
+      JinoyatZarar: "sad",
+      Kasallik: "sda",
+      Modda57: "sda",
+      Modda96: "asd",
+      Moddasi: "sad",
+      MolMulQoplanish: "asd",
+      MuddatOtib: "sda",
+      MuqaddamSud: "asda",
+      MuqaddamVaqti: "adsaadd",
+      Nogironligi: "wewe",
+      Ogir: "adsx",
+
+      OtaOgir: "asdx",
+      Pushaymon: "sda",
+      QamoqBolmagan: "xzc",
+      QamoqExtiyot: "asdsad",
+      QamoqUy: "xzc",
+      Qismi: "sadasd",
+      QoplanishFoiz: "sad",
+      S57Modda: "asd",
+      S96Modda: "ad",
+      SAktAs: "sd",
+      SAmal: "as",
+      SAmaldaPush: "a",
+      SAybliBandi: "asd",
+      SAybliModda: "sad",
+      SAybliQismi: "asddas",
+      SAydanVoz: "sad",
+      SIjXavf: "a",
+      SJazoMiq: "asd",
+      SJazoTuri: "sda",
+      SKasallik: "sd",
+      SOtibket: "aa",
+      SShartli: "sda",
+      SYarshMun: "dsa",
+      SYoq: "sd",
+      ShartliHukm: "sda",
+      Unchaogir: "asdx",
+      UserId: "ea97c8cc-b7e5-46cd-8c03-3f40354f789a",
+      UshlanganSana: "zxc",
+      VoyYetmaganFarzandi: "sa",
+      XavfYoqot: "sda",
+      Yarashgan: "dsa",
+      ZararQoplanish: "asd",
+      userscol: "asd"
+    }
+    var formdata = new FormData()
+    formdata.appand("UserName", "Abbas2")
+    formdata.appand("Date", "hhhh")
+    formdata.appand("Jinsi", "si")
+    formdata.appand("RuxiyHolat", "a")
+    formdata.appand("Ishjoyi", "aa")
+    formdata.appand('lavozimi', "a")
+    formdata.appand(' OilaAxvoli', "a")
+    formdata.appand()
+  }
 
   openModal2 = () => {
     document.querySelector(".Modal2").classList.add("openModal2")
@@ -258,7 +258,7 @@ formdata.appand()
   handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     this.setState({ searchText: selectedKeys[0] })
-    this.setState({ searchedColumn : dataIndex });
+    this.setState({ searchedColumn: dataIndex });
   };
   handleReset = (clearFilters) => {
     clearFilters();
@@ -312,8 +312,8 @@ formdata.appand()
               confirm({
                 closeDropdown: false,
               });
-              this.setState({searchText:selectedKeys[0]});
-              this.setState({SearchedColumn:dataIndex}) ;
+              this.setState({ searchText: selectedKeys[0] });
+              this.setState({ SearchedColumn: dataIndex });
             }}
           >
             Filter
@@ -359,9 +359,9 @@ formdata.appand()
         text
       ),
   });
- 
 
-  componentDidMount(){
+
+  componentDidMount() {
     this.getData()
     this.openForm(1)
   }
@@ -464,10 +464,10 @@ formdata.appand()
 
         <div className="Modal2">
           <CloseOutlined onClick={this.close_modal} className="close_modal" />
-          <div className="form1"> 
+          <div className="form1">
             <Button className="abbas1" onClick={() => this.openForm(2)}>2-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Sudlanuvchining shaxsiga oid ma'lumotlar</h3> </center>
-          <div className="modal_body">
+            <div className="modal_body">
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Sudlanuvchi F.I.O</label><br />
                 <input className="sel1 sel2" name="sel1" id="s1" />
@@ -526,7 +526,7 @@ formdata.appand()
                 <input className="sel1 sel2" name="sel1" id="s10" />
               </div></div>
             <center><h3 style={{ color: 'white' }}>Ayblov yuzasidan ma'lumotlar</h3> </center>
-<div className="modal_body">
+            <div className="modal_body">
 
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Аyblovning qisqacha mazmuni</label><br />
@@ -561,17 +561,17 @@ formdata.appand()
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilingan moddaning qismi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s18" />
-              </div>  
+              </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilingan moddaning bandi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s19" />
-              </div>         
-          </div>
+              </div>
+            </div>
           </div>
           <div className="form2">
             <Button className="abbas1" onClick={() => this.openForm(3)}>3-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Tergov yuzasidan ma'lumotlar</h3> </center>
-          <div className="modal_body">
+            <div className="modal_body">
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergov organi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s20" />
@@ -582,7 +582,7 @@ formdata.appand()
               </div></div>
             <center><h3 style={{ color: 'white' }}>Ehtiyot chorasi</h3> </center>
 
-              <div className="modal_body">
+            <div className="modal_body">
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Qamoq bilan bogʼliq boʼlmagan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s22" />
@@ -596,7 +596,7 @@ formdata.appand()
                 <input className="sel1 sel2" name="sel1" id="s24" />
               </div></div>
             <center><h3 style={{ color: 'white' }}>Ayblov xulosasini tasdiqlagan prokuror</h3> </center>
-              <div className="modal_body">
+            <div className="modal_body">
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning lavozimi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s25" />
@@ -606,7 +606,7 @@ formdata.appand()
                 <input className="sel1 sel2" name="sel1" id="s26" />
               </div></div>
             <center><h3 style={{ color: 'white' }}>Jinoyat ishi bo‘yicha yetkazilgan zarar haqida ma'lumotlarJinoyat ishi bo‘yicha yetkazilgan zarar haqida ma'lumotlar</h3> </center>
-              <div className="modal_body">
+            <div className="modal_body">
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jinoyat ishi boʼyicha yetkazilgan zarar
                   (ming soʼmda).</label><br />
@@ -627,7 +627,7 @@ formdata.appand()
                 <input className="sel1 sel2" name="sel1" id="s30" />
               </div></div>
             <center><h3 style={{ color: 'white' }}>Ishda ishtirok etayotgan prokuror haqida ma'lumotlar</h3> </center>
-              <div className="modal_body">
+            <div className="modal_body">
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning lavozimi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s31" />
@@ -636,10 +636,10 @@ formdata.appand()
                 <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning F.I.Sh.</label><br />
                 <input className="sel1 sel2" name="sel1" id="s32" />
               </div>
-        
-</div>
+
+            </div>
           </div>
-         <div className="form3">
+          <div className="form3">
             <Button className="abbas1" onClick={() => this.openForm(4)}>4-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Ishda ishtirok etayotgan prokurorning fikri</h3> </center>
             <div className="modal_body">
@@ -716,8 +716,8 @@ formdata.appand()
                 <input className="sel1 sel2" name="sel1" id="s55" />
               </div>
             </div>
-         </div>
-         <div className="form4">
+          </div>
+          <div className="form4">
             <Button className="abbas1" onClick={() => this.openForm(5)}>5-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Sud natijasi</h3> </center>
             <div className="modal_body">
@@ -807,8 +807,8 @@ formdata.appand()
                 </select>
               </div></div>
             <center><h3 style={{ color: 'white' }}>Sud hukmiga nisbatan prokuror xulosasi</h3> </center>
-              <div className="modal_body">
-              
+            <div className="modal_body">
+
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Tuman (shahar) prokuraturasi xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s76" />
@@ -821,14 +821,14 @@ formdata.appand()
                 <label htmlFor="sel1" className="sel2_text">Bosh prokuraturagning xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s78" />
               </div>
-              
+
             </div>
-         </div>
-         <div className="form5">
+          </div>
+          <div className="form5">
             <Button className="abbas1" onClick={() => this.openForm(1)}>Boshiga qaytish</Button>
-           
+
             <div className="modal_body">
-              <Checkbox.Group style={{ width: '100%'}}>
+              <Checkbox.Group style={{ width: '100%' }}>
                 <Row>
                   <Col span={8}>
                     <Checkbox value="A" style={{ color: 'white' }}>Ko`rilgan ishlar ro`yhati</Checkbox>
@@ -847,10 +847,10 @@ formdata.appand()
                   </Col>
                 </Row>
               </Checkbox.Group>
-        
+
             </div>
-         </div>
-         
+          </div>
+
 
 
 
