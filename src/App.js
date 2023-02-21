@@ -2,7 +2,6 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Tables from "./pages/Tables";
 import Billing from "./pages/Billing";
-
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
@@ -23,9 +22,7 @@ function App() {
           <Route exact path="/ishlar" component={Tables} />
           <Route exact path="/turlar" component={Billing} />
           <Route exact path="/odamlar" component={Persons} />
-          {/* <Route exact path="/rtl" component={Rtl} /> */}
           <Route exact path="/profile" component={Profile} />
-          {/* <Redirect from="*" to="/bosh-sahifa" /> */}
         </Main>
       </Switch>
     </div>
