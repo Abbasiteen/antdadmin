@@ -66,6 +66,7 @@ export default class Profile extends Component {
   componentDidMount() {
     this.getData()
   }
+  
   render() {
 
     const columns = [

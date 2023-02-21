@@ -9,28 +9,35 @@ import {
   Form,
   Input,
   Switch,
+  message,
 } from "antd";
+import axios from "axios";
 
 function onChange(checked) {
   console.log(`switch to ${checked}`);
 }
 const { Title } = Typography;
-const {  Content } = Layout;
+const { Content } = Layout;
 
 export default class SignIn extends Component {
+  loginPost = () => {
+    var newData = new FormData()
+    newData.append("nickname", document.querySelector("#nickname").value)
+    newData.append("password", document.querySelector("#password").value)
+    axios.post(`https://prokror.onrender.com/login`, newData)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log("XAto")
+      })
+  }
   render() {
-    const onFinish = (values) => {
-      console.log("Success:", values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-      console.log("Failed:", errorInfo);
-    };
     return (
       <>
-        <Layout style={{margin:"auto"}} className="layout-default layout-signin">
+        <Layout style={{ margin: "auto" }} className="layout-default layout-signin">
           <Content className="signin">
-            <Row gutter={[24, 0]} justify="space-around" style={{alignItems:'center',minHeight:'80vh'}}>
+            <Row gutter={[24, 0]} justify="space-around" style={{ alignItems: 'center', minHeight: '80vh' }}>
               <Col
                 xs={{ span: 24, offset: 0 }}
                 lg={{ span: 6, offset: 2 }}
@@ -41,15 +48,13 @@ export default class SignIn extends Component {
                   Login va parolni kiriting. Sayt o`zini o`zi himoyalaydi. Buzib kirishga urunish sizni ma`lumotlariz saqlanadi!
                 </Title>
                 <Form
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
                   layout="vertical"
                   className="row-col"
                 >
                   <Form.Item
                     className="username"
                     label="Login"
-                    name="email"
+                    name="nickname"
                     rules={[
                       {
                         required: true,
@@ -57,7 +62,7 @@ export default class SignIn extends Component {
                       },
                     ]}
                   >
-                    <Input placeholder="Login" />
+                    <Input placeholder="Login" id="nickname" />
                   </Form.Item>
 
                   <Form.Item
@@ -71,7 +76,7 @@ export default class SignIn extends Component {
                       },
                     ]}
                   >
-                    <Input placeholder="Password" />
+                    <Input placeholder="Password" id="password" />
                   </Form.Item>
 
                   <Form.Item
@@ -88,11 +93,12 @@ export default class SignIn extends Component {
                       type="primary"
                       htmlType="submit"
                       style={{ width: "100%" }}
+                      onClick={this.loginPost}
                     >
                       Yuborish
                     </Button>
                   </Form.Item>
-                
+
                 </Form>
               </Col>
               <Col
