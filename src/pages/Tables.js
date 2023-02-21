@@ -4,32 +4,15 @@ import {
   Card,
   Radio,
   Table,
-  Upload,
-  message,
-  Progress,
   Button,
-  Avatar,
-  Typography, Checkbox,
+  Checkbox,
 } from "antd";
-import Highlighter from 'react-highlight-words';
-// import type { CheckboxValueType } from 'antd/es/checkbox/Group';
-
-import { Space } from 'antd';
-import { DeleteTwoTone, EditTwoTone, PushpinTwoTone, SearchOutlined } from "@ant-design/icons";
-import face from "../assets/images/face-1.jpg";
-import face2 from "../assets/images/face-2.jpg";
-import face3 from "../assets/images/face-3.jpg";
-import face4 from "../assets/images/face-4.jpg";
-import face5 from "../assets/images/face-5.jpeg";
-import face6 from "../assets/images/face-6.jpeg";
-import pencil from "../assets/images/pencil.svg";
 import { CloseOutlined } from "@ant-design/icons"
-import { Input } from 'antd';
 import "../pages/table.css"
 import React, { Component } from 'react'
 import axios from "axios"
 import { url } from "../host/host";
-const { Title } = Typography;
+
 
 
 
@@ -55,6 +38,8 @@ getData=()=>{
   axios.get(`${url}/works`,headers).then(res=>{
     this.setState({ data: res.data })
     console.log(this.state.data)
+  }).catch(err=>{
+    alert("qayta urunib koring yoki birozdan keyin tekshring")
   })
 }
 openForm=(key)=>{
@@ -104,13 +89,7 @@ switch (key) {
 }
 }
 postData=()=>{
-  let headers = {
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
-
-  }
+ 
   var formdata= new FormData()
   formdata.append("UserName", document.querySelector("#s1").value)
   formdata.append("Date", document.querySelector("#s2").value)
@@ -185,9 +164,10 @@ postData=()=>{
   formdata.append('TumanXul', document.querySelector("#s71").value)
   formdata.append('ShaharXul', document.querySelector("#s72").value)
   formdata.append('BoshXul', document.querySelector("#s73").value)
+  
   axios.post(`${url}/works`, formdata).then(res=>{
     alert("yuborildi")
-this.getData()
+ window.location.reload() 
 this.close_modal()
   }).catch(err=>{
     alert("malumot yuborilmadi mutahasis bilan gaplashing")
@@ -261,10 +241,8 @@ pushUser=(key)=>{
   formdata.append('OtaOgir' , 'OtaOgir')
 
   axios.post(`${url}/works/person/${key}`,formdata).then(res=>{
-      console.log('created');
-    setTimeout(() => {
-      this.getData()
-    }, 100);
+     alert("yaratildi")
+window.location.reload()  
   }).catch(err=>{
     console.log("err");
       console.log(err);
@@ -282,9 +260,10 @@ DeleteData=(key)=>{
   console.log(key);
 axios.delete(`${url}/works/${key}`, headers).then(res=>{
 alert('o`chirildi')
-this.getData()
+  window.location.reload()  
 }).catch(err=>{
   alert('qayta uruning') 
+  window.location.reload()
 })
 }
   openModal2 = () => {
@@ -353,7 +332,7 @@ this.getData()
         key: "employed",
         width: "15%",
         render: (_, record) => {
-        return  <div >
+        return  <div>
             <Button onClick={()=>{this.pushUser(record.WorkId)}} style={{ marginRight: '10px' }} type="primary">Push</Button>
             <Button style={{ marginRight: '10px' }} type="primary">Edit</Button>
             <Button onClick={()=>{this.DeleteData(record.WorkId)}} type="primary" danger>

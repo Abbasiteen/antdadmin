@@ -5,46 +5,26 @@ import {
   Radio,
   Table,
   Button,
-  Typography,
+ 
   Spin,
   Space,
   Form,
   message,
   Input,
-  Alert
+
 } from "antd";
 import { ToTopOutlined } from "@ant-design/icons";
 import { CloseOutlined } from "@ant-design/icons"
-import { Link } from "react-router-dom";
+
 import "../pages/table.css"
 import axios from "axios";
 import React, { Component } from 'react'
-const { Title } = Typography;
 
 
 
 
 
-const project = [
-  {
-    title: "Categoriya Nomlari",
-    dataIndex: "name",
-    key: "CategoryName",
-    width: "32%",
-  },
-  {
-    title: "BUDGET",
-    dataIndex: "age",
-  },
-  {
-    title: "STATUS",
-    dataIndex: "address",
-  },
-  {
-    title: "COMPLETION",
-    dataIndex: "completion",
-  },
-];
+
 
 
 export default class Billing extends Component {

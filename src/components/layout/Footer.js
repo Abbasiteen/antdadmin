@@ -9,7 +9,7 @@ function Footer() {
           <div className="copyright">
             © 2023, made with
             {<HeartFilled />} by
-            <a href="mailto:webabbas9@gmail.com" className="font-weight-bold" target="_blank">
+            <a href="mailto:webabbas9@gmail.com" className="font-weight-bold">
               abbas team
             </a>
             sayt test rejimida ishlayapdi

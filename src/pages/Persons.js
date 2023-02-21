@@ -10,10 +10,10 @@ import {
     Radio,
     Table,
     Button,
-    Typography,
+
     Spin,
     Space,
-    Modal
+   
   } from "antd";
 
   const columns = [
@@ -64,26 +64,7 @@ import {
 
   
 
-  const project = [
-    {
-      title: "Categoriya Nomlari",
-      dataIndex: "name",
-      key: "CategoryName",
-      width: "15%",
-    },
-    {
-      title: "BUDGET",
-      dataIndex: "age",
-    },
-    {
-      title: "STATUS",
-      dataIndex: "address",
-    },
-    {
-      title: "COMPLETION",
-      dataIndex: "completion",
-    },
-  ];
+
 
 
 

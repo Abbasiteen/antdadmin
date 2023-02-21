@@ -19,13 +19,13 @@ flex-wrap: wrap;
     margin-bottom: 10px;
 }
 .Modal2 {
-    width: 100vw !important;
+    width: 100% !important;
     min-height: 100vh !important;
     
     background-color: #00000095 !important;
-    position: fixed;
+    position: absolute;
     backdrop-filter: blur(30px);
-    top: 0; right: -110%;
+    top: 0; right: -120%;
     z-index: 99;
     transition: .8s;
     padding-top: 5%;
