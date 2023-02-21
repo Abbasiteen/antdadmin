@@ -8,14 +8,17 @@ import {
   Avatar,
   Radio,
   Space,
-  Spin
+  Spin,
+  Table
 } from "antd";
 
 import {
   FacebookOutlined,
   TwitterOutlined,
   InstagramOutlined,
-  UserOutlined
+  UserOutlined,
+  EditOutlined,
+  DeleteOutlined
 } from "@ant-design/icons";
 
 import React, { Component } from 'react'
@@ -64,6 +67,30 @@ export default class Profile extends Component {
     this.getData()
   }
   render() {
+
+    const columns = [
+      {
+        title: "Ismi",
+        dataIndex: "name",
+        key: "name",
+        width: "32%",
+      },
+      {
+        title: "Familiyasi",
+        dataIndex: "surname",
+        key: "surname",
+      },
+      {
+        title: "Nikcname",
+        dataIndex: "nickname",
+        key: "nickname",
+      },
+      {
+        title: "action",
+        key: "employed",
+        render: (text, record) => { return <Space><EditOutlined style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined  style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+      },
+    ];
     return (
       <>
         <div
@@ -162,7 +189,13 @@ export default class Profile extends Component {
                     <Spin tip="Loading" size="large"></Spin>
                   </Space>
                 ) : (
-                  <List
+                <Table
+                    columns={columns}
+                    dataSource={this.state.data}
+                    pagination={false}
+                    className="ant-border-space"
+                  />
+                  /* <List
                     itemLayout="horizontal"
                     dataSource={this.state.data}
                     split={false}
@@ -176,10 +209,14 @@ export default class Profile extends Component {
                           title={item.name}
                           description={item.surname}
                         />
+                        <List.Item.Meta
+                          title={item.name}
+                          description={item.surname}
+                        />
                       </List.Item>
                     )}
-                  />
-                )
+                  /> */
+              )
               }
             </Card>
           </Col>
