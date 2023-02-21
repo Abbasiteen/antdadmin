@@ -32,69 +32,6 @@ import { url } from "../host/host";
 const { Title } = Typography;
 
 
-const columns = [
-  {
-    title: "F.I.Sh",
-    width: "10%",
-    render: (text, record) => {
-      return record.person.map((item, key) => (<div key={key}>{item.UserName}</div>))
-    },
-  },
-  {
-    title: "Name",
-    dataIndex: "Date",
-    width: "15%",
-    render: (text, record) => {
-      return record.person.map((item, key) => (<div key={key}>{item.Date}</div>))
-    }
-  },
-
-  {
-    title: "hukum sanasi",
-    key: "SSudHukmSana",
-    width: "15%",
-    dataIndex: "SSudHukmSana",
-  },
-  {
-    title: "jinoyat sanasi",
-    key: "JinoyatVaqti",
-    width: "15%",
-    dataIndex: "JinoyatVaqti",
-  },
-  {
-    title: "jinoyat hududi",
-    key: "JinoyatHudud",
-    width: "15%",
-    dataIndex: "JinoyatHudud",
-  },
-  {
-    title: "Sudya",
-    key: "SSudyaFIO",
-    width: "15%",
-    dataIndex: "SSudyaFIO",
-  },
-  {
-    title: "Prokuror",
-    key: "IshPorkFIO",
-    width: "15%",
-    dataIndex: "IshPorkFIO",
-  },
-  {
-    title: "action",
-    key: "employed",
-    width: "15%",
-    render: (_, record) => (
-      <div >
-        <Button style={{ marginRight: '10px' }} type="primary">Push</Button>
-        <Button style={{ marginRight: '10px' }} type="primary">Edit</Button>
-        <Button type="primary" danger>
-          Delete
-        </Button>
-      </div>
-    )
-  },
-
-];
 
 
 
@@ -107,69 +44,15 @@ export default class Tables extends Component {
     searchedColumn: ""
   }
 
-  getData = () => {
-    axios.get(`${url}/works`).then(res => {
-      this.setState({ data: res.data })
-      console.log(this.state.data)
-    })
-  }
-  openForm = (key) => {
-    switch (key) {
-      case 1:
-        document.querySelector(".form1").style.display = "block"
-        document.querySelector(".form2").style.display = "none"
-        document.querySelector(".form3").style.display = "none"
-        document.querySelector(".form4").style.display = "none"
-        document.querySelector(".form5").style.display = "none"
-        break;
-      case 2:
-        document.querySelector(".form1").style.display = "none"
-        document.querySelector(".form2").style.display = "block"
-        document.querySelector(".form3").style.display = "none"
-        document.querySelector(".form4").style.display = "none"
-        document.querySelector(".form5").style.display = "none"
-        break;
-      case 3:
-        document.querySelector(".form1").style.display = "none"
-        document.querySelector(".form2").style.display = "none"
-        document.querySelector(".form3").style.display = "block"
-        document.querySelector(".form4").style.display = "none"
-        document.querySelector(".form5").style.display = "none"
-        break;
-      case 4:
-        document.querySelector(".form1").style.display = "none"
-        document.querySelector(".form2").style.display = "none"
-        document.querySelector(".form3").style.display = "none"
-        document.querySelector(".form4").style.display = "block"
-        document.querySelector(".form5").style.display = "none"
-        break;
-      case 5:
-        document.querySelector(".form1").style.display = "none"
-        document.querySelector(".form2").style.display = "none"
-        document.querySelector(".form3").style.display = "none"
-        document.querySelector(".form4").style.display = "none"
-        document.querySelector(".form5").style.display = "block"
-        break;
-      default:
-        document.querySelector(".form1").style.display = "flex"
-        document.querySelector(".form2").style.display = "none"
-        document.querySelector(".form3").style.display = "none"
-        document.querySelector(".form4").style.display = "none"
-        document.querySelector(".form5").style.display = "none"
-        break;
-    }
-  }
-//   postData = () => {
- 
-// state={
-//   form:1,
-//   data:[],
-//   searchText: "",
-//   searchedColumn: ""
-// }
 
 getData=()=>{
-  axios.get(`${url}/works`).then(res=>{
+  let headers = {
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+  }
+  axios.get(`${url}/works`,headers).then(res=>{
     this.setState({ data: res.data })
     console.log(this.state.data)
   })
@@ -221,25 +104,25 @@ switch (key) {
 }
 }
 postData=()=>{
-  // var data={
+  let headers = {
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
 
-  // : "adsaadd",
-  // Nogironligi: "wewe",
-  // SAmal: "as",
-  // userscol: "asd"
-  // }
+  }
   var formdata= new FormData()
-  formdata.appand("UserName", document.querySelector("#s1").value)
-  formdata.appand("Date", document.querySelector("#s2").value)
-  formdata.appand("Jinsi", document.querySelector("#s3").value)
-  formdata.appand("RuxiyHolat", document.querySelector("#s4").value)
-  formdata.appand("Ishjoyi", document.querySelector("#s5").value)
-  formdata.appand('lavozimi', document.querySelector("#s6").value)
-  formdata.appand('OilaAxvoli', document.querySelector("#s7").value)
-  formdata.appand('VoyYetmaganFarzandi', document.querySelector("#s8").value)
-  formdata.appand("MuqaddamSud", document.querySelector("#s9").value)
-  formdata.appand('MuqaddamVaqti', document.querySelector("#s10").value)
-  formdata.appand('AyblovQisqa', document.querySelector("#s11").value)
+  formdata.append("UserName", document.querySelector("#s1").value)
+  formdata.append("Date", document.querySelector("#s2").value)
+  formdata.append("Jinsi", document.querySelector("#s3").value)
+  formdata.append("RuxiyHolat", document.querySelector("#s4").value)
+  formdata.append("Ishjoyi", document.querySelector("#s5").value)
+  formdata.append('lavozimi', document.querySelector("#s6").value)
+  formdata.append('OilaAxvoli', document.querySelector("#s7").value)
+  formdata.append('VoyYetmaganFarzandi', document.querySelector("#s8").value)
+  formdata.append("MuqaddamSud", document.querySelector("#s9").value)
+  formdata.append('MuqaddamVaqti', document.querySelector("#s10").value)
+  formdata.append('AyblovQisqa', document.querySelector("#s11").value)
   formdata.append("JinoyatVaqti", document.querySelector("#s12").value)
   formdata.append("JinoyatHudud", document.querySelector("#s13").value)
   formdata.append("JinoyatJoyi", document.querySelector("#s14").value)
@@ -266,7 +149,7 @@ postData=()=>{
   formdata.append('Qismi', document.querySelector("#s35").value,)
   formdata.append('Bandi', document.querySelector("#s36").value)
   formdata.append('AyblovVozKech', document.querySelector("#s37").value)
-  formdata.appand('JazoTur', document.querySelector("#s38").value)
+  formdata.append('JazoTur', document.querySelector("#s38").value)
   formdata.append('JazoMiqdori', document.querySelector("#s39").value)
   formdata.append('ShartliHukm', document.querySelector("#s40").value)
   formdata.append('Modda57', document.querySelector("#s41").value)
@@ -302,127 +185,114 @@ postData=()=>{
   formdata.append('TumanXul', document.querySelector("#s71").value)
   formdata.append('ShaharXul', document.querySelector("#s72").value)
   formdata.append('BoshXul', document.querySelector("#s73").value)
-  axios.post("https://prokror.onrender.com/works", formdata).then(res=>{
+  axios.post(`${url}/works`, formdata).then(res=>{
     alert("yuborildi")
+this.getData()
+this.close_modal()
   }).catch(err=>{
     alert("malumot yuborilmadi mutahasis bilan gaplashing")
   })
+}
+pushUser=(key)=>{
+  const formdata = new FormData()
+  formdata.append("UserName", "Abbas2")
+  formdata.append("Date", "hhhh")
+  formdata.append("Jinsi", "si")
+  formdata.append("RuxiyHolat", "a")
+  formdata.append("Ishjoyi", "aa")
+  formdata.append('lavozimi', "a")
+  formdata.append('OilaAxvoli', "a")
+  formdata.append('VoyYetmaganFarzandi' , 'as')
+  formdata.append('MuqaddamSud' , 'AAA')
+  formdata.append('MuqaddamVaqti' , 'a')
+  formdata.append('AyblovQisqa' , 'aasas')
+  formdata.append('UshlanganSana' , 'asasasasdas')
+  formdata.append('AybElon' , '1222')
+  formdata.append('AybModda' , '19')
+  formdata.append('AybModdaQism', '2')
+  formdata.append('AybModdaBandi' , '31')
+  formdata.append('AybOrgani' , 'qsax')
+  formdata.append('QamoqBolmagan' , 'true')
+  formdata.append('QamoqBolmagan' , 'ha')
+  formdata.append('QamoqUy' , 'Bolgan')
+  formdata.append('JinoyatZarar' , '12332mln')
+  formdata.append('ZararQoplanish' , '121')
+  formdata.append('MolMulQoplanish' , 'sda')
+  formdata.append('QoplanishFoiz' , 'aas')
+  formdata.append('AybTopish' , 'as')
+  formdata.append('Moddasi' , 'asdasd')
+  formdata.append('Qismi' , 'sd')
+  formdata.append('Bandi' , 'band')
+  formdata.append('AyblovVozKech' , 'as')
+  formdata.append('JazoTur' , 'dsa')
+  formdata.append('JazoMiqdori' , 'asd')
+  formdata.append('ShartliHukm' , 'dsa')
+  formdata.append('Modda57' , 'da')
+  formdata.append('Modda96' , 'da')
+  formdata.append('MuddatOtib' , 'fe')
+  formdata.append('XavfYoqot' , 'sada')
+  formdata.append('Pushaymon' , 'das')
+  formdata.append('Yarashgan' , 'sda')
+  formdata.append('Kasallik' , 'sad')
+  formdata.append('AktiTufay' , 'asddas')
+  formdata.append('userscol' , 'sa')
+  formdata.append('IjYoq' , 'fsfd')
+  formdata.append('AmaldaPushay' , 'asd')
+  formdata.append('SAybliModda' , 'SAybliModda')
+  formdata.append('SAybliQismi' , 'SAybliQismi')
+  formdata.append('SAybliBandi' , 'SAybliBandi')
+  formdata.append('SAydanVoz' , 'SAydanVoz')
+  formdata.append('SJazoTuri' , 'SJazoTuri')
+  formdata.append('SJazoMiq' , 'SJazoMiq')
+  formdata.append('SShartli' , 'SShartli')
+  formdata.append('S57Modda' , 'S57Modda')
+  formdata.append('S96Modda' , 'S96Modda')
+  formdata.append('SOtibket' , 'SOtibket')
+  formdata.append('SIjXavf' , 'SIjXavf')
+  formdata.append('SAmaldaPush' , 'SAmaldaPush')
+  formdata.append('SYarshMun' , 'SYarshMun')
+  formdata.append('SKasallik' , 'SKasallik') 
+  formdata.append('SAktAs' , 'SAktAs')
+  formdata.append('SYoq' , 'SYoq')
+  formdata.append('SAmal' , 'SAmal')
+  formdata.append('Ijkattabol' , "Ijkattabol")
+  formdata.append('Unchaogir' , 'Unchaogir')
+  formdata.append('Ogir' , 'Ogir')
+  formdata.append('OtaOgir' , 'OtaOgir')
 
+  axios.post(`${url}/works/person/${key}`,formdata).then(res=>{
+      console.log('created');
+    setTimeout(() => {
+      this.getData()
+    }, 100);
+  }).catch(err=>{
+    console.log("err");
+      console.log(err);
+  })
 
 }
+DeleteData=(key)=>{
+  let headers = {
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
 
-
+  }
+  console.log(key);
+axios.delete(`${url}/works/${key}`, headers).then(res=>{
+alert('o`chirildi')
+this.getData()
+}).catch(err=>{
+  alert('qayta uruning') 
+})
+}
   openModal2 = () => {
     document.querySelector(".Modal2").classList.add("openModal2")
   }
   close_modal = () => {
     document.querySelector(".Modal2").classList.remove("openModal2")
   }
-
-  handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    this.setState({ searchText: selectedKeys[0] })
-    this.setState({ searchedColumn: dataIndex });
-  };
-  handleReset = (clearFilters) => {
-    clearFilters();
-    this.setState({ searchText: "" });
-  };
-
-  getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-      <div
-        style={{
-          padding: 8,
-        }}
-        onKeyDown={(e) => e.stopPropagation()}
-      >
-        <Input
-          ref={this.state.searchInput}
-          placeholder={`Search ${dataIndex}`}
-          value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{
-            marginBottom: 8,
-            display: 'block',
-          }}
-        />
-        <Space>
-          <Button
-            type="primary"
-            onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
-            size="small"
-            style={{
-              width: 90,
-            }}
-          >
-            Search
-          </Button>
-          <Button
-            onClick={() => clearFilters && this.handleReset(clearFilters)}
-            size="small"
-            style={{
-              width: 90,
-            }}
-          >
-            Reset
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={() => {
-              confirm({
-                closeDropdown: false,
-              });
-              this.setState({ searchText: selectedKeys[0] });
-              this.setState({ SearchedColumn: dataIndex });
-            }}
-          >
-            Filter
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={() => {
-              close();
-            }}
-          >
-            close
-          </Button>
-        </Space>
-      </div>
-    ),
-    filterIcon: (filtered) => (
-      <SearchOutlined
-        style={{
-          color: filtered ? '#1890ff' : undefined,
-        }}
-      />
-    ),
-    onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-    onFilterDropdownOpenChange: (visible) => {
-      if (visible) {
-        setTimeout(() => this.state.searchInput.current?.select(), 100);
-      }
-    },
-    render: (text) =>
-      this.state.searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{
-            backgroundColor: '#ffc069',
-            padding: 0,
-          }}
-          searchWords={[this.state.searchText]}
-          autoEscape
-          textToHighlight={text ? text.toString() : ''}
-        />
-      ) : (
-        text
-      ),
-  });
 
 
   componentDidMount() {
@@ -431,6 +301,70 @@ postData=()=>{
   }
 
   render() {
+    const columns = [
+      {
+        title: "F.I.Sh",
+        width: "10%",
+        render: (text, record) => {
+          return record.person.map((item, key) => (<div key={key}>{item.UserName}</div>))
+        },
+      },
+      {
+        title: "Name",
+        dataIndex: "Date",
+        width: "15%",
+        render: (text, record) => {
+          return record.person.map((item, key) => (<div key={key}>{item.Date}</div>))
+        }
+      },
+    
+      {
+        title: "hukum sanasi",
+        key: "SSudHukmSana",
+        width: "15%",
+        dataIndex: "SSudHukmSana",
+      },
+      {
+        title: "jinoyat sanasi",
+        key: "JinoyatVaqti",
+        width: "15%",
+        dataIndex: "JinoyatVaqti",
+      },
+      {
+        title: "jinoyat hududi",
+        key: "JinoyatHudud",
+        width: "15%",
+        dataIndex: "JinoyatHudud",
+      },
+      {
+        title: "Sudya",
+        key: "SSudyaFIO",
+        width: "15%",
+        dataIndex: "SSudyaFIO",
+      },
+      {
+        title: "Prokuror",
+        key: "IshPorkFIO",
+        width: "15%",
+        dataIndex: "IshPorkFIO",
+      },
+      {
+        title: "action",
+        key: "employed",
+        width: "15%",
+        render: (_, record) => {
+        return  <div >
+            <Button onClick={()=>{this.pushUser(record.WorkId)}} style={{ marginRight: '10px' }} type="primary">Push</Button>
+            <Button style={{ marginRight: '10px' }} type="primary">Edit</Button>
+            <Button onClick={()=>{this.DeleteData(record.WorkId)}} type="primary" danger>
+              Delete
+            </Button>
+          </div>
+        }
+      },
+    
+    ];
+    
     return (
       <>
         <div className="tabled">
