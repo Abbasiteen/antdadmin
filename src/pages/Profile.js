@@ -54,7 +54,7 @@ export default class Profile extends Component {
     loading: true
   }
   getData = () => {
-    axios.get("https://prokror.onrender.com/admins")
+    axios.get("https://klinika.onrender.com/operator")
       .then(res => {
         this.setState({ data: res.data })
       })
@@ -77,14 +77,14 @@ export default class Profile extends Component {
         width: "32%",
       },
       {
-        title: "Familiyasi",
-        dataIndex: "surname",
-        key: "surname",
+        title: "Email",
+        dataIndex: "email",
+        key: "email",
       },
       {
-        title: "Nikcname",
-        dataIndex: "nickname",
-        key: "nickname",
+        title: "password",
+        dataIndex: "password",
+        key: "password",
       },
       {
         title: "action",

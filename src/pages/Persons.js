@@ -2,7 +2,6 @@ import { ToTopOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 import React, { Component } from 'react'
-
 import {
   Row,
   Col,
@@ -15,12 +14,11 @@ import {
 } from "antd";
 import {
   EditOutlined,
-  DeleteOutlined
+  DeleteOutlined,
+  CloseOutlined 
 } from "@ant-design/icons";
 
-
-
-
+import "../assets/styles/All.css"
 
 
 
@@ -34,7 +32,7 @@ export default class Persons extends Component {
     isModalOpen: false
   }
   getPersons = () => {
-    axios.get("https://prokror.onrender.com/works/person")
+    axios.get("https://klinika.onrender.com/users")
       .then(res => {
         this.setState({ data: res.data })
       })
@@ -47,7 +45,7 @@ export default class Persons extends Component {
   }
 
   deletePerson = (id) => {
-    axios.delete(`https://prokror.onrender.com/works/person/${id}`).then(res => {
+    axios.delete(`https://klinika.onrender.com/users/${id}`).then(res => {
       console.log(res.data);
     }).catch(err => {
       console.log(err);
@@ -130,7 +128,7 @@ export default class Persons extends Component {
     })
 
   }
-  
+
   componentDidMount() {
     this.getPersons()
   }
@@ -138,55 +136,44 @@ export default class Persons extends Component {
     const columns = [
       {
         title: "Ism",
-        dataIndex: "UserName",
+        dataIndex: "username",
         key: "function",
         width: "15%",
       },
       {
-        title: "Sana",
-        dataIndex: "Date",
+        title: "Familiyasi",
+        dataIndex: "surname",
         key: "function",
       },
-    
+
       {
-        title: "Jinsi",
-        key: "status",
-        dataIndex: "Jinsi",
+        title: "Yoshi",
+        key: "age",
+        dataIndex: "age",
       },
       {
-        title: "Nogironligi",
-        key: "employed",
-        dataIndex: "Nogironligi",
-    
+        title: "Telefon Raqami",
+        key: "telNumber",
+        dataIndex: "telNumber",
       },
       {
-        title: "Ish Joyi",
-        dataIndex: "Ishjoyi",
-        key: "function",
-      },
-      {
-        title: "Lavozimi",
-        dataIndex: "lavozimi",
-        key: "function",
-      },
-      {
-        title: "Oilaviy Ahvoli",
-        dataIndex: "OilaAxvoli",
-        key: "function",
-      },
-      {
-        title: "Voyaga Yetmagan Farzandi",
-        dataIndex: "VoyYetmaganFarzandi",
-        key: "function",
+        title: "Dedline",
+        dataIndex: "dedline",
+        key: "dedline",
       },
       {
         title: "Action",
         dataIndex: "Action",
-        render: (text, record) => { return <Space><EditOutlined onClick={()=> this.putPersons(record.UserId)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deletePerson(record.UserId) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+        render: (text, record) => { return <Space><EditOutlined onClick={() => this.putPersons(record.UserId)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deletePerson(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
       },
     ];
     return (
       <div>
+
+        <div className="modal4">
+
+        </div>
+
         <div className="tabled">
           <Row gutter={[24, 0]}>
             <Col xs="24" xl={24}>
@@ -210,6 +197,14 @@ export default class Persons extends Component {
                       />
                     )
                   }
+                </div>
+                <div className="uploadfile pb-15 shadow-none">
+                  <Button
+                    className="ant-full-box" id="addBtn"
+                    icon={<ToTopOutlined />}
+                  >
+                    Odam Qo'shish
+                  </Button>
                 </div>
               </Card>
             </Col>

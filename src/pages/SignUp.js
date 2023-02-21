@@ -15,8 +15,8 @@ import React, { Component } from 'react'
 const columns = [
   {
     title: "Ismi",
-    dataIndex: "UserName",
-    key: "UserName",
+    dataIndex: "name",
+    key: "name",
     width: "32%",
   },
   {
@@ -30,12 +30,11 @@ const columns = [
     dataIndex: "hour",
   },
   {
-    title: "EMPLOYED",
-    key: "employed",
-    dataIndex: "employed",
+    title: "Pages",
+    key: "pages",
+    dataIndex: "pages",
   },
 ];
-
 
 
 export default class Billing extends Component {
@@ -44,7 +43,7 @@ export default class Billing extends Component {
     loading: true
   }
   getData = () => {
-    axios.get("https://prokror.onrender.com/history")
+    axios.get("https://klinika.onrender.com/history")
       .then(res => {
         this.setState({ data: res.data })
       })
