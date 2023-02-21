@@ -185,7 +185,7 @@ function Sidenav({ color }) {
             <span className="label">Nazorat</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="7">
+        <Menu.Item key="9">
           <NavLink to="/odamlar">
             <span
               className="icon"
