@@ -6,7 +6,7 @@ import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Main from "./components/layout/Main";
-import "antd/dist/antd.css";
+import 'antd/dist/antd.min.css'
 import "./assets/styles/main.css";
 import Persons from './pages/Persons'
 import "./assets/styles/responsive.css";

@@ -54,7 +54,7 @@ export default class Persons extends Component {
     })
   }
 
-  postPersons = () => {
+  putPersons = (id) => {
     const formdata = new FormData()
     formdata.append("UserName", "Abbas2")
     formdata.append("Date", "hhhh")
@@ -121,8 +121,8 @@ export default class Persons extends Component {
     formdata.append('Ogir', 'Ogir')
     formdata.append('OtaOgir', 'OtaOgir')
 
-    axios.post('https://prokror.onrender.com/works/person', formdata).then(res => {
-      console.log('created');
+    axios.put(`https://prokror.onrender.com/works/person/${id}`, formdata).then(res => {
+      console.log('edited');
       this.getPersons()
     }).catch(err => {
       console.log("err");
@@ -182,7 +182,7 @@ export default class Persons extends Component {
       {
         title: "Action",
         dataIndex: "Action",
-        render: (text, record) => { return <Space><EditOutlined style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deletePerson(record.UserId) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+        render: (text, record) => { return <Space><EditOutlined onClick={()=> this.putPersons(record.UserId)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deletePerson(record.UserId) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
       },
     ];
     return (

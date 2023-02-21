@@ -24,7 +24,8 @@ export default class Tables extends Component {
     form: 1,
     data: [],
     searchText: "",
-    searchedColumn: ""
+    searchedColumn: "",
+    workId:1
   }
 
 
@@ -91,76 +92,76 @@ switch (key) {
 postData=()=>{
  
   var formdata= new FormData()
-  formdata.append("UserName", document.querySelector("#s1").value)
-  formdata.append("Date", document.querySelector("#s2").value)
-  formdata.append("Jinsi", document.querySelector("#s3").value)
-  formdata.append("RuxiyHolat", document.querySelector("#s4").value)
-  formdata.append("Ishjoyi", document.querySelector("#s5").value)
-  formdata.append('lavozimi', document.querySelector("#s6").value)
-  formdata.append('OilaAxvoli', document.querySelector("#s7").value)
-  formdata.append('VoyYetmaganFarzandi', document.querySelector("#s8").value)
-  formdata.append("MuqaddamSud", document.querySelector("#s9").value)
-  formdata.append('MuqaddamVaqti', document.querySelector("#s10").value)
+  // formdata.append("UserName", document.querySelector("#s1").value)
+  // formdata.append("Date", document.querySelector("#s2").value)
+  // formdata.append("Jinsi", document.querySelector("#s3").value)
+  // formdata.append("RuxiyHolat", document.querySelector("#s4").value)
+  // formdata.append("Ishjoyi", document.querySelector("#s5").value)
+  // formdata.append('lavozimi', document.querySelector("#s6").value)
+  // formdata.append('OilaAxvoli', document.querySelector("#s7").value)
+  // formdata.append('VoyYetmaganFarzandi', document.querySelector("#s8").value)
+  // formdata.append("MuqaddamSud", document.querySelector("#s9").value)
+  // formdata.append('MuqaddamVaqti', document.querySelector("#s10").value)
   formdata.append('AyblovQisqa', document.querySelector("#s11").value)
   formdata.append("JinoyatVaqti", document.querySelector("#s12").value)
   formdata.append("JinoyatHudud", document.querySelector("#s13").value)
   formdata.append("JinoyatJoyi", document.querySelector("#s14").value)
-  formdata.append("UshlanganSana", document.querySelector("#s15").value)
-  formdata.append("AybElon", document.querySelector("#s16").value)
-  formdata.append("AybModda", document.querySelector("#s17").value)
-  formdata.append("AybModdaQism", document.querySelector("#s18").value)
-  formdata.append("AybModdaBandi", document.querySelector("#s19").value)
-  formdata.append("AybOrgani", document.querySelector("#s20").value)
+  // formdata.append("UshlanganSana", document.querySelector("#s15").value)
+  // formdata.append("AybElon", document.querySelector("#s16").value)
+  // formdata.append("AybModda", document.querySelector("#s17").value)
+  // formdata.append("AybModdaQism", document.querySelector("#s18").value)
+  // formdata.append("AybModdaBandi", document.querySelector("#s19").value)
+  // formdata.append("AybOrgani", document.querySelector("#s20").value)
   formdata.append("AybElonFIO", document.querySelector("#s21").value)
-  formdata.append('QamoqBolmagan', document.querySelector("#s22").value)
-  formdata.append('QamoqExtiyot', document.querySelector("#s23").value)
-  formdata.append('QamoqUy',document.querySelector("#s24").value)
+  // formdata.append('QamoqBolmagan', document.querySelector("#s22").value)
+  // formdata.append('QamoqExtiyot', document.querySelector("#s23").value)
+  // formdata.append('QamoqUy',document.querySelector("#s24").value)
   formdata.append('AyblovProkLavozim', document.querySelector("#s25").value)
   formdata.append('AyblovProkFIO', document.querySelector("#s26").value)
-  formdata.append('JinoyatZarar', document.querySelector("#s27").value)
-  formdata.append('ZararQoplanish', document.querySelector("#s28").value)
-  formdata.append('MolMulQoplanish', document.querySelector("#s29").value)
-  formdata.append('QoplanishFoiz', document.querySelector("#s30").value)
+  // formdata.append('JinoyatZarar', document.querySelector("#s27").value)
+  // formdata.append('ZararQoplanish', document.querySelector("#s28").value)
+  // formdata.append('MolMulQoplanish', document.querySelector("#s29").value)
+  // formdata.append('QoplanishFoiz', document.querySelector("#s30").value)
   formdata.append('IshProk', document.querySelector("#s31").value)
   formdata.append('IshPorkFIO', document.querySelector("#s32").value)
-  formdata.append('AybTopishAybTopish', document.querySelector("#s33").value)
-  formdata.append('Moddasi', document.querySelector("#s34").value)
-  formdata.append('Qismi', document.querySelector("#s35").value,)
-  formdata.append('Bandi', document.querySelector("#s36").value)
-  formdata.append('AyblovVozKech', document.querySelector("#s37").value)
-  formdata.append('JazoTur', document.querySelector("#s38").value)
-  formdata.append('JazoMiqdori', document.querySelector("#s39").value)
-  formdata.append('ShartliHukm', document.querySelector("#s40").value)
-  formdata.append('Modda57', document.querySelector("#s41").value)
-  formdata.append('Modda96', document.querySelector("#s42").value)
-  formdata.append('MuddatOtib', document.querySelector("#s43").value)
-  formdata.append('XavfYoqot', document.querySelector("#s44").value)
-  formdata.append('Pushaymon', document.querySelector("#s45").value)
-  formdata.append('Yarashgan', document.querySelector("#s46").value)
-  formdata.append('Kasallik', document.querySelector("#s47").value)
-  formdata.append('AktiTufay', document.querySelector("#s48").value)
-  formdata.append('IjYoq', document.querySelector("#s49").value)  
-  formdata.append('AmaldaPushay', document.querySelector("#s50").value)
+  // formdata.append('AybTopish', document.querySelector("#s33").value)
+  // formdata.append('Moddasi', document.querySelector("#s34").value)
+  // formdata.append('Qismi', document.querySelector("#s35").value)
+  // formdata.append('Bandi', document.querySelector("#s36").value)
+  // formdata.append('AyblovVozKech', document.querySelector("#s37").value)
+  // formdata.append('JazoTur', document.querySelector("#s38").value)
+  // formdata.append('JazoMiqdori', document.querySelector("#s39").value)
+  // formdata.append('ShartliHukm', document.querySelector("#s40").value)
+  // formdata.append('Modda57', document.querySelector("#s41").value)
+  // formdata.append('Modda96', document.querySelector("#s42").value)
+  // formdata.append('MuddatOtib', document.querySelector("#s43").value)
+  // formdata.append('XavfYoqot', document.querySelector("#s44").value)
+  // formdata.append('Pushaymon', document.querySelector("#s45").value)
+  // formdata.append('Yarashgan', document.querySelector("#s46").value)
+  // formdata.append('Kasallik', document.querySelector("#s47").value)
+  // formdata.append('AktiTufay', document.querySelector("#s48").value)
+  // formdata.append('IjYoq', document.querySelector("#s49").value)  
+  // formdata.append('AmaldaPushay', document.querySelector("#s50").value)
   formdata.append('SSudHukmSana', document.querySelector("#s51").value)
   formdata.append('SSudyaFIO', document.querySelector("#s52").value)
-  formdata.append('SAybliModda', document.querySelector("#s53").value)
-  formdata.append('SAybliQismi', document.querySelector("#s54").value)
-  formdata.append('SAybliBandi', document.querySelector("#s55").value)
-  formdata.append('SAydanVoz', document.querySelector("#s56").value)
-  formdata.append('SJazoTuri', document.querySelector("#s57").value) 
-  formdata.append('SJazoMiq', document.querySelector("#s58").value)
-  formdata.append('SShartli', document.querySelector("#s59").value)
-  formdata.append('S57Modda', document.querySelector("#s60").value)
-  formdata.append('S96Modda', document.querySelector("#s61").value)
-  formdata.append('SOtibket', document.querySelector("#s62").value)
-  formdata.append('SYoq', document.querySelector("#s63").value)
-  formdata.append('SAmaldaPush', document.querySelector("#s64").value)
-  formdata.append('SYarshMun', document.querySelector("#s65").value)
-  formdata.append('SKasallik', document.querySelector("#s66").value)
-  formdata.append('SAktAs', document.querySelector("#s67").value)
-  formdata.append('SIjXavf', document.querySelector("#s68").value)
-  formdata.append('SAmaldaPush', document.querySelector("#s69").value)
-  formdata.append('Ogir', document.querySelector("#s70").value)
+  // formdata.append('SAybliModda', document.querySelector("#s53").value)
+  // formdata.append('SAybliQismi', document.querySelector("#s54").value)
+  // formdata.append('SAybliBandi', document.querySelector("#s55").value)
+  // formdata.append('SAydanVoz', document.querySelector("#s56").value)
+  // formdata.append('SJazoTuri', document.querySelector("#s57").value) 
+  // formdata.append('SJazoMiq', document.querySelector("#s58").value)
+  // formdata.append('SShartli', document.querySelector("#s59").value)
+  // formdata.append('S57Modda', document.querySelector("#s60").value)
+  // formdata.append('S96Modda', document.querySelector("#s61").value)
+  // formdata.append('SOtibket', document.querySelector("#s62").value)
+  // formdata.append('SIjXavf', document.querySelector("#s63").value)
+  // formdata.append('SAmaldaPush', document.querySelector("#s64").value)
+  // formdata.append('SYarshMun', document.querySelector("#s65").value)
+  // formdata.append('SKasallik', document.querySelector("#s66").value)
+  // formdata.append('SAktAs', document.querySelector("#s67").value)
+  // formdata.append('SYoq', document.querySelector("#s68").value)
+  // formdata.append('SAmaldaPush', document.querySelector("#s69").value)
+  // formdata.append('Ogir', document.querySelector("#s70").value)
   formdata.append('TumanXul', document.querySelector("#s71").value)
   formdata.append('ShaharXul', document.querySelector("#s72").value)
   formdata.append('BoshXul', document.querySelector("#s73").value)
@@ -175,70 +176,65 @@ this.close_modal()
 }
 pushUser=(key)=>{
   const formdata = new FormData()
-  formdata.append("UserName", "Abbas2")
-  formdata.append("Date", "hhhh")
-  formdata.append("Jinsi", "si")
-  formdata.append("RuxiyHolat", "a")
-  formdata.append("Ishjoyi", "aa")
-  formdata.append('lavozimi', "a")
-  formdata.append('OilaAxvoli', "a")
-  formdata.append('VoyYetmaganFarzandi' , 'as')
-  formdata.append('MuqaddamSud' , 'AAA')
-  formdata.append('MuqaddamVaqti' , 'a')
-  formdata.append('AyblovQisqa' , 'aasas')
-  formdata.append('UshlanganSana' , 'asasasasdas')
-  formdata.append('AybElon' , '1222')
-  formdata.append('AybModda' , '19')
-  formdata.append('AybModdaQism', '2')
-  formdata.append('AybModdaBandi' , '31')
-  formdata.append('AybOrgani' , 'qsax')
-  formdata.append('QamoqBolmagan' , 'true')
-  formdata.append('QamoqBolmagan' , 'ha')
-  formdata.append('QamoqUy' , 'Bolgan')
-  formdata.append('JinoyatZarar' , '12332mln')
-  formdata.append('ZararQoplanish' , '121')
-  formdata.append('MolMulQoplanish' , 'sda')
-  formdata.append('QoplanishFoiz' , 'aas')
-  formdata.append('AybTopish' , 'as')
-  formdata.append('Moddasi' , 'asdasd')
-  formdata.append('Qismi' , 'sd')
-  formdata.append('Bandi' , 'band')
-  formdata.append('AyblovVozKech' , 'as')
-  formdata.append('JazoTur' , 'dsa')
-  formdata.append('JazoMiqdori' , 'asd')
-  formdata.append('ShartliHukm' , 'dsa')
-  formdata.append('Modda57' , 'da')
-  formdata.append('Modda96' , 'da')
-  formdata.append('MuddatOtib' , 'fe')
-  formdata.append('XavfYoqot' , 'sada')
-  formdata.append('Pushaymon' , 'das')
-  formdata.append('Yarashgan' , 'sda')
-  formdata.append('Kasallik' , 'sad')
-  formdata.append('AktiTufay' , 'asddas')
-  formdata.append('userscol' , 'sa')
-  formdata.append('IjYoq' , 'fsfd')
-  formdata.append('AmaldaPushay' , 'asd')
-  formdata.append('SAybliModda' , 'SAybliModda')
-  formdata.append('SAybliQismi' , 'SAybliQismi')
-  formdata.append('SAybliBandi' , 'SAybliBandi')
-  formdata.append('SAydanVoz' , 'SAydanVoz')
-  formdata.append('SJazoTuri' , 'SJazoTuri')
-  formdata.append('SJazoMiq' , 'SJazoMiq')
-  formdata.append('SShartli' , 'SShartli')
-  formdata.append('S57Modda' , 'S57Modda')
-  formdata.append('S96Modda' , 'S96Modda')
-  formdata.append('SOtibket' , 'SOtibket')
-  formdata.append('SIjXavf' , 'SIjXavf')
-  formdata.append('SAmaldaPush' , 'SAmaldaPush')
-  formdata.append('SYarshMun' , 'SYarshMun')
-  formdata.append('SKasallik' , 'SKasallik') 
-  formdata.append('SAktAs' , 'SAktAs')
-  formdata.append('SYoq' , 'SYoq')
-  formdata.append('SAmal' , 'SAmal')
-  formdata.append('Ijkattabol' , "Ijkattabol")
-  formdata.append('Unchaogir' , 'Unchaogir')
-  formdata.append('Ogir' , 'Ogir')
-  formdata.append('OtaOgir' , 'OtaOgir')
+  formdata.append("UserName", document.querySelector("#s1").value)
+  formdata.append("Date", document.querySelector("#s2").value)
+  formdata.append("Jinsi", document.querySelector("#s3").value)
+  formdata.append("RuxiyHolat", document.querySelector("#s4").value)
+  formdata.append("Ishjoyi", document.querySelector("#s5").value)
+  formdata.append('lavozimi', document.querySelector("#s6").value)
+  formdata.append('OilaAxvoli', document.querySelector("#s7").value)
+  formdata.append('VoyYetmaganFarzandi', document.querySelector("#s8").value)
+  formdata.append('MuqaddamSud', document.querySelector("#s9").value)
+  formdata.append('MuqaddamVaqti', document.querySelector("#s10").value)
+  formdata.append('UshlanganSana', document.querySelector("#s15").value)
+  formdata.append('AybElon', document.querySelector("#s16").value)
+  formdata.append('AybModda', document.querySelector("#s17").value)
+  formdata.append('AybModdaQism', document.querySelector("#s18").value)
+  formdata.append('AybModdaBandi', document.querySelector("#s19").value)
+  formdata.append('AybOrgani', document.querySelector("#s20").value)
+  formdata.append('QamoqBolmagan', document.querySelector("#s22").value)
+  formdata.append('QamoqExtiyot', document.querySelector("#s23").value)
+  formdata.append('QamoqUy', document.querySelector("#s24").value)
+  formdata.append('JinoyatZarar', document.querySelector("#s27").value)
+  formdata.append('ZararQoplanish', document.querySelector("#s28").value)
+  formdata.append('MolMulQoplanish', document.querySelector("#s29").value)
+  formdata.append('QoplanishFoiz', document.querySelector("#s30").value)
+  formdata.append('AybTopish', document.querySelector("#s33").value)
+  formdata.append('Moddasi', document.querySelector("#s34").value)
+  formdata.append('Qismi', document.querySelector("#s35").value)
+  formdata.append('Bandi', document.querySelector("#s36").value)
+  formdata.append('AyblovVozKech', document.querySelector("#s37").value)
+  formdata.append('JazoTur', document.querySelector("#s38").value)
+  formdata.append('JazoMiqdori', document.querySelector("#s39").value)
+  formdata.append('ShartliHukm', document.querySelector("#s40").value)
+  formdata.append('Modda57', document.querySelector("#s41").value)
+  formdata.append('Modda96', document.querySelector("#s42").value)
+  formdata.append('MuddatOtib', document.querySelector("#s43").value)
+  formdata.append('XavfYoqot', document.querySelector("#s44").value)
+  formdata.append('Pushaymon', document.querySelector("#s45").value)
+  formdata.append('Yarashgan', document.querySelector("#s46").value)
+  formdata.append('Kasallik', document.querySelector("#s47").value)
+  formdata.append('AktiTufay', document.querySelector("#s48").value)
+  formdata.append('IjYoq', document.querySelector("#s49").value)
+  formdata.append('AmaldaPushay', document.querySelector("#s50").value)
+  formdata.append('SAybliModda', document.querySelector("#s53").value)
+  formdata.append('SAybliQismi', document.querySelector("#s54").value)
+  formdata.append('SAybliBandi', document.querySelector("#s55").value)
+  formdata.append('SAydanVoz', document.querySelector("#s56").value)
+  formdata.append('SJazoTuri', document.querySelector("#s57").value)
+  formdata.append('SJazoMiq', document.querySelector("#s58").value)
+  formdata.append('SShartli', document.querySelector("#s59").value)
+  formdata.append('S57Modda', document.querySelector("#s60").value)
+  formdata.append('S96Modda', document.querySelector("#s61").value)
+  formdata.append('SOtibket', document.querySelector("#s62").value)
+  formdata.append('SIjXavf', document.querySelector("#s63").value)
+  formdata.append('SAmaldaPush', document.querySelector("#s64").value)
+  formdata.append('SYarshMun', document.querySelector("#s65").value)
+  formdata.append('SKasallik', document.querySelector("#s66").value)
+  formdata.append('SAktAs', document.querySelector("#s67").value)
+  formdata.append('SYoq', document.querySelector("#s68").value)
+  formdata.append('SAmaldaPush', document.querySelector("#s69").value)
+  formdata.append('Ogir', document.querySelector("#s70").value)
 
   axios.post(`${url}/works/person/${key}`,formdata).then(res=>{
      alert("yaratildi")
@@ -266,13 +262,21 @@ alert('o`chirildi')
   window.location.reload()
 })
 }
+openPush=(key)=>{
+  this.openForm(1)
+  this.openModal2()
+  this.setState({workId:key})
+}
   openModal2 = () => {
     document.querySelector(".Modal2").classList.add("openModal2")
   }
   close_modal = () => {
     document.querySelector(".Modal2").classList.remove("openModal2")
   }
-
+openwork=()=>{
+  this.openForm(5)
+  this.openModal2()
+}
 
   componentDidMount() {
     this.getData()
@@ -281,6 +285,30 @@ alert('o`chirildi')
 
   render() {
     const columns = [
+        {
+        title: "Sudya",
+        key: "SSudyaFIO",
+        width: "15%",
+        dataIndex: "SSudyaFIO",
+      },
+      {
+        title: "Prokuror",
+        key: "IshPorkFIO",
+        width: "15%",
+        dataIndex: "IshPorkFIO",
+      }, 
+      {
+        title: "hukum sanasi",
+        key: "SSudHukmSana",
+        width: "15%",
+        dataIndex: "SSudHukmSana",
+      },
+      {
+        title: "jinoyat sanasi",
+        key: "JinoyatVaqti",
+        width: "15%",
+        dataIndex: "JinoyatVaqti",
+      },
       {
         title: "F.I.Sh",
         width: "10%",
@@ -297,43 +325,21 @@ alert('o`chirildi')
         }
       },
     
-      {
-        title: "hukum sanasi",
-        key: "SSudHukmSana",
-        width: "15%",
-        dataIndex: "SSudHukmSana",
-      },
-      {
-        title: "jinoyat sanasi",
-        key: "JinoyatVaqti",
-        width: "15%",
-        dataIndex: "JinoyatVaqti",
-      },
+     
       {
         title: "jinoyat hududi",
         key: "JinoyatHudud",
         width: "15%",
         dataIndex: "JinoyatHudud",
       },
-      {
-        title: "Sudya",
-        key: "SSudyaFIO",
-        width: "15%",
-        dataIndex: "SSudyaFIO",
-      },
-      {
-        title: "Prokuror",
-        key: "IshPorkFIO",
-        width: "15%",
-        dataIndex: "IshPorkFIO",
-      },
+   
       {
         title: "action",
         key: "employed",
         width: "15%",
         render: (_, record) => {
         return  <div>
-            <Button onClick={()=>{this.pushUser(record.WorkId)}} style={{ marginRight: '10px' }} type="primary">Push</Button>
+            <Button onClick={()=>{this.openPush(record.WorkId)}} style={{ marginRight: '10px' }} type="primary">Push</Button>
             <Button style={{ marginRight: '10px' }} type="primary">Edit</Button>
             <Button onClick={()=>{this.DeleteData(record.WorkId)}} type="primary" danger>
               Delete
@@ -420,7 +426,7 @@ alert('o`chirildi')
                       <Radio.Button value="c">docx ko`rinishda yuklab olish</Radio.Button>
                     </Radio.Group>
 
-                    <Button onClick={this.openModal2} className="modal_btn">Add</Button>
+                    <Button onClick={()=>{this.openwork()}} className="modal_btn">Add</Button>
                   </>
                 }
               >
@@ -506,24 +512,6 @@ alert('o`chirildi')
             <div className="modal_body">
 
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyblovning qisqacha mazmuni</label><br />
-                <input className="sel1 sel2" name="sel1" id="s11" />
-              </div>
-
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan vaqt</label><br />
-                <input className="sel1 sel2" type="date" name="sel1" id="s12" />
-              </div>
-
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan hudud</label><br />
-                <input className="sel1 sel2" name="sel1" id="s13" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan joy</label><br />
-                <input className="sel1 sel2" name="sel1" id="s14" />
-              </div>
-              <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Shaxs ushlangan sana(JPK 224,227)</label><br />
                 <input className="sel1 sel2" name="sel1" id="s15" />
               </div>
@@ -544,7 +532,7 @@ alert('o`chirildi')
                 <input className="sel1 sel2" name="sel1" id="s19" />
               </div>
             </div>
-          </div>
+           </div>
           <div className="form2">
             <Button className="abbas1" onClick={() => this.openForm(3)}>3-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Tergov yuzasidan ma'lumotlar</h3> </center>
@@ -552,14 +540,7 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergov organi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s20" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergovchining F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s21" />
-              </div></div>
-            <center><h3 style={{ color: 'white' }}>Ehtiyot chorasi</h3> </center>
-
-            <div className="modal_body">
+         </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Qamoq bilan bogʼliq boʼlmagan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s22" />
@@ -571,17 +552,39 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Uy qamogʼi ehtiyot chorasi tanlangan sana</label><br />
                 <input className="sel1 sel2" type="date" name="sel1" id="s24" />
-              </div></div>
-            <center><h3 style={{ color: 'white' }}>Ayblov xulosasini tasdiqlagan prokuror</h3> </center>
-            <div className="modal_body">
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning lavozimi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s25" />
               </div>
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s26" />
-              </div></div>
+                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s65" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s69" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s68" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
+                <input className="sel1 sel2" name="sel1" id="s67" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
+                <input className="sel1 sel2" name="sel1" id="s66" />
+              </div>
+            </div>
+
+              
+            <center><h3 style={{ color: 'white' }}>Ayblov xulosasini tasdiqlagan prokuror</h3> </center>
+           
+       
+            <div className="modal_body">
+       
+               
+          
+              </div> 
             <center><h3 style={{ color: 'white' }}>Jinoyat ishi bo‘yicha yetkazilgan zarar haqida ma'lumotlarJinoyat ishi bo‘yicha yetkazilgan zarar haqida ma'lumotlar</h3> </center>
             <div className="modal_body">
               <div className="card1">
@@ -602,22 +605,17 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jinoyat ishi bo‘yicha yetkazilgan zararning qoplanishi foizi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s30" />
-              </div></div>
+              </div>
+              
+              </div>
             <center><h3 style={{ color: 'white' }}>Ishda ishtirok etayotgan prokuror haqida ma'lumotlar</h3> </center>
             <div className="modal_body">
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning lavozimi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s31" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s32" />
-              </div>
-
+      
+ </div>
             </div>
-          </div>
+         
           <div className="form3">
-            <Button className="abbas1" onClick={() => this.openForm(4)}>4-bo`limga o`tish</Button>
+            
             <center><h3 style={{ color: 'white' }}>Ishda ishtirok etayotgan prokurorning fikri</h3> </center>
             <div className="modal_body">
               <div className="card1">
@@ -693,19 +691,12 @@ alert('o`chirildi')
                 <input className="sel1 sel2" name="sel1" id="s50" />
               </div>
             </div>
+            <Button className="abbas1" onClick={() => this.pushUser(this.state.workId)}>malumot yuborish</Button>
           </div>
           <div className="form4">
             <Button className="abbas1" onClick={() => this.openForm(5)}>5-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Sud natijasi</h3> </center>
             <div className="modal_body">
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Sud hukmi sanasi</label><br />
-                <input className="sel1 sel2" type='date' name="sel1" id="s51" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Sud'ya F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s52" />
-              </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybli deb topish moddasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s53" />
@@ -753,27 +744,7 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s64" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s65" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
-                <input className="sel1 sel2" name="sel1" id="s66" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
-                <input className="sel1 sel2" name="sel1" id="s67" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s68" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s69" />
-              </div>
+           
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jinoyatning ijtimoiy xavflilik darajasi</label><br />
                 <select className="sel1 sel2" name="sel1" id="s70">
@@ -786,24 +757,83 @@ alert('o`chirildi')
             <center><h3 style={{ color: 'white' }}>Sud hukmiga nisbatan prokuror xulosasi</h3> </center>
             <div className="modal_body">
 
+          
+
+            </div>
+          </div></div>
+          <div className="form5">
+            <Button className="abbas1" onClick={() => this.openForm(1)}>Boshiga qaytish</Button>
+            <div className="modal_body">
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Аyblovning qisqacha mazmuni</label><br />
+                <input className="sel1 sel2" name="sel1" id="s11" />
+</div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan vaqt</label><br />
+                  <input className="sel1 sel2" type="date" name="sel1" id="s12" />
+                </div> 
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan hudud</label><br />
+                  <input className="sel1 sel2" name="sel1" id="s13" />
+                </div>
+              
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan joy</label><br />
+                <input className="sel1 sel2" name="sel1" id="s14" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergovchining F.I.Sh.</label><br />
+                <input className="sel1 sel2" name="sel1" id="s21" />
+              </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning lavozimi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="s25" />
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning F.I.Sh.</label><br />
+                  <input className="sel1 sel2" name="sel1" id="s26" />
+                </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning lavozimi</label><br />
+                <input className="sel1 sel2" name="sel1" id="s31" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning F.I.Sh.</label><br />
+                <input className="sel1 sel2" name="sel1" id="s32" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Sud hukmi sanasi</label><br />
+                <input className="sel1 sel2" type='date' name="sel1" id="s51" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Sud'ya F.I.Sh.</label><br />
+                <input className="sel1 sel2" name="sel1" id="s52" />
+              </div>
+
+
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Tuman (shahar) prokuraturasi xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s71" />
               </div>
+              
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Qoraqalpog‘iston Respublikasi, viloyatlar, Toshkent shahar prokuraturasi xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s72" />
               </div>
+
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Bosh prokuraturagning xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s73" />
               </div>
-
-            </div>
-          </div>
-          <div className="form5">
-            <Button className="abbas1" onClick={() => this.openForm(1)}>Boshiga qaytish</Button>
-
+</div>
             <div className="modal_body">
               <Checkbox.Group style={{ width: '100%' }}>
                 <Row>
@@ -832,8 +862,8 @@ alert('o`chirildi')
          
 
 
-
-        </div>
+</div>
+      
       </>
     );
   }
