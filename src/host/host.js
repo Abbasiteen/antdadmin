@@ -1,2 +1,2 @@
-var url="https://klinika.onrender.com"
+var url ="https://klinika.onrender.com"
 module.exports={url}

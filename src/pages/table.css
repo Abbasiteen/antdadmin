@@ -22,7 +22,7 @@ flex-wrap: wrap;
     width: 100% !important;
     min-height: 100vh !important;
     
-    background-color: #00000095 !important;
+    background-color: white;
     position: absolute;
     backdrop-filter: blur(30px);
     top: 0; right: -120%;
@@ -32,6 +32,7 @@ flex-wrap: wrap;
 }
 .openModal2 {
     right: 0;
+    
 }
 .close_modal {
     position: absolute;
@@ -118,4 +119,49 @@ left: 20px;
     position: absolute;
     right: 20px; top: 20px;
     font-size: 18px;
+}
+.form1{
+    display: flex;
+    justify-content: center;
+
+}
+.form{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    width:80% ;
+}
+.sdsds{
+    width:88%;
+    margin-left:6%;
+}
+.Modal2 input{
+    width: 30%;
+    min-width:300px;
+    margin: 0 7px 0 0;
+    border-radius: 6px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #d9d9d9;
+}
+.ism,.familya,.yosh,.pasport,.tel,.sana1{
+    width: 25%;
+        min-width: 300px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+}
+.message{
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 48px;
+    margin-bottom: 50px ;
+}
+
+textarea{
+    border: 1px solid #d9d9d9;
+    width: 88%;
+}
+path{
+    color: #000;
 }

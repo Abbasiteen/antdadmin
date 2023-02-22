@@ -5,7 +5,6 @@ import logo from "../../assets/images/logo.png";
 function Sidenav({ color }) {
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
-
   const dashboard = [
     <svg
       width="20"
@@ -130,6 +129,10 @@ function Sidenav({ color }) {
       />
     </svg>,
   ];
+  const home=()=>{
+    localStorage.removeItem("token11")
+    window.location.reload()
+  }
 
   return (
     <>
@@ -212,7 +215,7 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7">
-          <NavLink to="/sign-in">
+          <NavLink onClick={()=>home()}>
             <span className="icon">{signin}</span>
             <span className="label">Chiqish</span>
           </NavLink>
