@@ -23,8 +23,6 @@ export default class Tables extends Component {
   state = {
     form: 1,
     data: [],
-    searchText: "",
-    searchedColumn: ""
   }
 
 
@@ -35,7 +33,7 @@ getData=()=>{
         'Content-Type': 'application/json'
     }
   }
-  axios.get(`${url}/works`,headers).then(res=>{
+  axios.get(`${url}/users`,headers).then(res=>{
     this.setState({ data: res.data })
     console.log(this.state.data)
   }).catch(err=>{
@@ -88,158 +86,21 @@ switch (key) {
     break;
 }
 }
-postData=()=>{
+// postData=()=>{
  
-  var formdata= new FormData()
-  formdata.append("UserName", document.querySelector("#s1").value)
-  formdata.append("Date", document.querySelector("#s2").value)
-  formdata.append("Jinsi", document.querySelector("#s3").value)
-  formdata.append("RuxiyHolat", document.querySelector("#s4").value)
-  formdata.append("Ishjoyi", document.querySelector("#s5").value)
-  formdata.append('lavozimi', document.querySelector("#s6").value)
-  formdata.append('OilaAxvoli', document.querySelector("#s7").value)
-  formdata.append('VoyYetmaganFarzandi', document.querySelector("#s8").value)
-  formdata.append("MuqaddamSud", document.querySelector("#s9").value)
-  formdata.append('MuqaddamVaqti', document.querySelector("#s10").value)
-  formdata.append('AyblovQisqa', document.querySelector("#s11").value)
-  formdata.append("JinoyatVaqti", document.querySelector("#s12").value)
-  formdata.append("JinoyatHudud", document.querySelector("#s13").value)
-  formdata.append("JinoyatJoyi", document.querySelector("#s14").value)
-  formdata.append("UshlanganSana", document.querySelector("#s15").value)
-  formdata.append("AybElon", document.querySelector("#s16").value)
-  formdata.append("AybModda", document.querySelector("#s17").value)
-  formdata.append("AybModdaQism", document.querySelector("#s18").value)
-  formdata.append("AybModdaBandi", document.querySelector("#s19").value)
-  formdata.append("AybOrgani", document.querySelector("#s20").value)
-  formdata.append("AybElonFIO", document.querySelector("#s21").value)
-  formdata.append('QamoqBolmagan', document.querySelector("#s22").value)
-  formdata.append('QamoqExtiyot', document.querySelector("#s23").value)
-  formdata.append('QamoqUy',document.querySelector("#s24").value)
-  formdata.append('AyblovProkLavozim', document.querySelector("#s25").value)
-  formdata.append('AyblovProkFIO', document.querySelector("#s26").value)
-  formdata.append('JinoyatZarar', document.querySelector("#s27").value)
-  formdata.append('ZararQoplanish', document.querySelector("#s28").value)
-  formdata.append('MolMulQoplanish', document.querySelector("#s29").value)
-  formdata.append('QoplanishFoiz', document.querySelector("#s30").value)
-  formdata.append('IshProk', document.querySelector("#s31").value)
-  formdata.append('IshPorkFIO', document.querySelector("#s32").value)
-  formdata.append('AybTopishAybTopish', document.querySelector("#s33").value)
-  formdata.append('Moddasi', document.querySelector("#s34").value)
-  formdata.append('Qismi', document.querySelector("#s35").value,)
-  formdata.append('Bandi', document.querySelector("#s36").value)
-  formdata.append('AyblovVozKech', document.querySelector("#s37").value)
-  formdata.append('JazoTur', document.querySelector("#s38").value)
-  formdata.append('JazoMiqdori', document.querySelector("#s39").value)
-  formdata.append('ShartliHukm', document.querySelector("#s40").value)
-  formdata.append('Modda57', document.querySelector("#s41").value)
-  formdata.append('Modda96', document.querySelector("#s42").value)
-  formdata.append('MuddatOtib', document.querySelector("#s43").value)
-  formdata.append('XavfYoqot', document.querySelector("#s44").value)
-  formdata.append('Pushaymon', document.querySelector("#s45").value)
-  formdata.append('Yarashgan', document.querySelector("#s46").value)
-  formdata.append('Kasallik', document.querySelector("#s47").value)
-  formdata.append('AktiTufay', document.querySelector("#s48").value)
-  formdata.append('IjYoq', document.querySelector("#s49").value)  
-  formdata.append('AmaldaPushay', document.querySelector("#s50").value)
-  formdata.append('SSudHukmSana', document.querySelector("#s51").value)
-  formdata.append('SSudyaFIO', document.querySelector("#s52").value)
-  formdata.append('SAybliModda', document.querySelector("#s53").value)
-  formdata.append('SAybliQismi', document.querySelector("#s54").value)
-  formdata.append('SAybliBandi', document.querySelector("#s55").value)
-  formdata.append('SAydanVoz', document.querySelector("#s56").value)
-  formdata.append('SJazoTuri', document.querySelector("#s57").value) 
-  formdata.append('SJazoMiq', document.querySelector("#s58").value)
-  formdata.append('SShartli', document.querySelector("#s59").value)
-  formdata.append('S57Modda', document.querySelector("#s60").value)
-  formdata.append('S96Modda', document.querySelector("#s61").value)
-  formdata.append('SOtibket', document.querySelector("#s62").value)
-  formdata.append('SYoq', document.querySelector("#s63").value)
-  formdata.append('SAmaldaPush', document.querySelector("#s64").value)
-  formdata.append('SYarshMun', document.querySelector("#s65").value)
-  formdata.append('SKasallik', document.querySelector("#s66").value)
-  formdata.append('SAktAs', document.querySelector("#s67").value)
-  formdata.append('SIjXavf', document.querySelector("#s68").value)
-  formdata.append('SAmaldaPush', document.querySelector("#s69").value)
-  formdata.append('Ogir', document.querySelector("#s70").value)
-  formdata.append('TumanXul', document.querySelector("#s71").value)
-  formdata.append('ShaharXul', document.querySelector("#s72").value)
-  formdata.append('BoshXul', document.querySelector("#s73").value)
   
-  axios.post(`${url}/works`, formdata).then(res=>{
-    alert("yuborildi")
- window.location.reload() 
-this.close_modal()
-  }).catch(err=>{
-    alert("malumot yuborilmadi mutahasis bilan gaplashing")
-  })
-}
+  
+//   axios.post(`${url}/works`, formdata).then(res=>{
+//     alert("yuborildi")
+//  window.location.reload() 
+// this.close_modal()
+//   }).catch(err=>{
+//     alert("malumot yuborilmadi mutahasis bilan gaplashing")
+//   })
+// }
 pushUser=(key)=>{
   const formdata = new FormData()
-  formdata.append("UserName", "Abbas2")
-  formdata.append("Date", "hhhh")
-  formdata.append("Jinsi", "si")
-  formdata.append("RuxiyHolat", "a")
-  formdata.append("Ishjoyi", "aa")
-  formdata.append('lavozimi', "a")
-  formdata.append('OilaAxvoli', "a")
-  formdata.append('VoyYetmaganFarzandi' , 'as')
-  formdata.append('MuqaddamSud' , 'AAA')
-  formdata.append('MuqaddamVaqti' , 'a')
-  formdata.append('AyblovQisqa' , 'aasas')
-  formdata.append('UshlanganSana' , 'asasasasdas')
-  formdata.append('AybElon' , '1222')
-  formdata.append('AybModda' , '19')
-  formdata.append('AybModdaQism', '2')
-  formdata.append('AybModdaBandi' , '31')
-  formdata.append('AybOrgani' , 'qsax')
-  formdata.append('QamoqBolmagan' , 'true')
-  formdata.append('QamoqBolmagan' , 'ha')
-  formdata.append('QamoqUy' , 'Bolgan')
-  formdata.append('JinoyatZarar' , '12332mln')
-  formdata.append('ZararQoplanish' , '121')
-  formdata.append('MolMulQoplanish' , 'sda')
-  formdata.append('QoplanishFoiz' , 'aas')
-  formdata.append('AybTopish' , 'as')
-  formdata.append('Moddasi' , 'asdasd')
-  formdata.append('Qismi' , 'sd')
-  formdata.append('Bandi' , 'band')
-  formdata.append('AyblovVozKech' , 'as')
-  formdata.append('JazoTur' , 'dsa')
-  formdata.append('JazoMiqdori' , 'asd')
-  formdata.append('ShartliHukm' , 'dsa')
-  formdata.append('Modda57' , 'da')
-  formdata.append('Modda96' , 'da')
-  formdata.append('MuddatOtib' , 'fe')
-  formdata.append('XavfYoqot' , 'sada')
-  formdata.append('Pushaymon' , 'das')
-  formdata.append('Yarashgan' , 'sda')
-  formdata.append('Kasallik' , 'sad')
-  formdata.append('AktiTufay' , 'asddas')
-  formdata.append('userscol' , 'sa')
-  formdata.append('IjYoq' , 'fsfd')
-  formdata.append('AmaldaPushay' , 'asd')
-  formdata.append('SAybliModda' , 'SAybliModda')
-  formdata.append('SAybliQismi' , 'SAybliQismi')
-  formdata.append('SAybliBandi' , 'SAybliBandi')
-  formdata.append('SAydanVoz' , 'SAydanVoz')
-  formdata.append('SJazoTuri' , 'SJazoTuri')
-  formdata.append('SJazoMiq' , 'SJazoMiq')
-  formdata.append('SShartli' , 'SShartli')
-  formdata.append('S57Modda' , 'S57Modda')
-  formdata.append('S96Modda' , 'S96Modda')
-  formdata.append('SOtibket' , 'SOtibket')
-  formdata.append('SIjXavf' , 'SIjXavf')
-  formdata.append('SAmaldaPush' , 'SAmaldaPush')
-  formdata.append('SYarshMun' , 'SYarshMun')
-  formdata.append('SKasallik' , 'SKasallik') 
-  formdata.append('SAktAs' , 'SAktAs')
-  formdata.append('SYoq' , 'SYoq')
-  formdata.append('SAmal' , 'SAmal')
-  formdata.append('Ijkattabol' , "Ijkattabol")
-  formdata.append('Unchaogir' , 'Unchaogir')
-  formdata.append('Ogir' , 'Ogir')
-  formdata.append('OtaOgir' , 'OtaOgir')
-
+  
   axios.post(`${url}/works/person/${key}`,formdata).then(res=>{
      alert("yaratildi")
 window.location.reload()  
@@ -282,50 +143,48 @@ alert('o`chirildi')
   render() {
     const columns = [
       {
-        title: "F.I.Sh",
+        title: "Username",
+        width: "13%",
+        dataIndex: "username",
+      },
+      {
+        title: "Surname",
+        width: "13%",
+        dataIndex: "surname",
+      },
+      {
+        title: "Age",
+        key: "age",
         width: "10%",
-        render: (text, record) => {
-          return record.person.map((item, key) => (<div key={key}>{item.UserName}</div>))
-        },
+        dataIndex: "age",
+        sorter: (a, b) => a.age.length - b.age.length,
+        sortDirections: ['descend', 'ascend']
       },
       {
-        title: "Name",
-        dataIndex: "Date",
+        title: "passportNum",
+        key: "passportNum",
         width: "15%",
-        render: (text, record) => {
-          return record.person.map((item, key) => (<div key={key}>{item.Date}</div>))
-        }
-      },
-    
-      {
-        title: "hukum sanasi",
-        key: "SSudHukmSana",
-        width: "15%",
-        dataIndex: "SSudHukmSana",
+        dataIndex: "passportNum",
       },
       {
-        title: "jinoyat sanasi",
-        key: "JinoyatVaqti",
+        title: "telNumber",
+        key: "telNumber",
         width: "15%",
-        dataIndex: "JinoyatVaqti",
+        dataIndex: "telNumber",
       },
       {
-        title: "jinoyat hududi",
-        key: "JinoyatHudud",
+        title: "dedline",
+        key: "dedline",
         width: "15%",
-        dataIndex: "JinoyatHudud",
+        dataIndex: "dedline",
+        sorter: (a, b) => a.dedline.length - b.dedline.length,
+        sortDirections: ['descend', 'ascend']
       },
       {
-        title: "Sudya",
-        key: "SSudyaFIO",
+        title: ()=>{return <div>ss <input type="text" /> </div>},
+        key: "dedline",
         width: "15%",
-        dataIndex: "SSudyaFIO",
-      },
-      {
-        title: "Prokuror",
-        key: "IshPorkFIO",
-        width: "15%",
-        dataIndex: "IshPorkFIO",
+        dataIndex: "dedline",
       },
       {
         title: "action",
