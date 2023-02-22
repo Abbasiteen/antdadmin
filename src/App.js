@@ -39,15 +39,21 @@ export default class componentName extends Component {
     var formdata = new FormData()
     formdata.append("username", document.querySelector("#nickname").value)
     formdata.append("password", document.querySelector("#password").value)
-
+var dd= new FormData()
+    var block = document.querySelector("#nickname").value
+    localStorage.setItem("poster",JSON.stringify({"poster":block}))
+    dd.append("name",block)
+    dd.append("pages","/login")
     axios.post("https://klinika.onrender.com/login", formdata).then(res => {
       console.log(res.data);
       this.setState({ token: res.data })
       localStorage.setItem("token11", res.data)
-    }).catch(err => {
+      axios.post("https://klinika.onrender.com/history",dd)
+    }).catch(err=>{
       alert("Parol xato terildi")
     })
   }
+
 
   render() {
     return (

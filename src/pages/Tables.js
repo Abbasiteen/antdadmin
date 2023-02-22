@@ -23,6 +23,8 @@ export default class Tables extends Component {
   state = {
     form: 1,
     data: [],
+    openid:0,
+    openid2:0
   }
 
 
@@ -87,10 +89,63 @@ switch (key) {
     break;
 }
 }
+addZero(i) {
+  if (i < 10) { i = "0" + i }
+  return i;
+}
+
+
+pushComent=()=>{
+  var formdata=new FormData()
+  const d = new Date();
+  var now = new Date();
+  var month = (now.getMonth() + 1);
+  var day = now.getDate();
+  if (month < 10){
+    month = "0" + month;}
+  if (day < 10){
+    day = "0" + day;}
+  var today =  month +'-' +  day+'-' + now.getFullYear() ;
+
+let h = this.addZero(d.getHours());
+let m = this.addZero(d.getMinutes());
+let s = this.addZero(d.getSeconds());
+let time = h + ":" + m + ":" + s;
+  var posterq= JSON.parse(localStorage.getItem("poster"))
+  formdata.append("date",today)
+  formdata.append("hour",time)
+  formdata.append('poster',posterq.poster)
+  formdata.append("message",document.querySelector("#postmes").value)
+  console.log(formdata);
+  axios.post(`${url}/comment/${this.state.openid}`).then(res=>{
+    alert("yuborildi")
+    window.location.reload()
+  }).catch(err=>{
+    alert("xato")
+  })
+}
 
 pushUser=(key)=>{
 
   const formdata = new FormData()
+
+  const d = new Date();
+  var now = new Date();
+  var month = (now.getMonth() + 1);
+  var day = now.getDate();
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+  var today = day + '-' + month + '-' + now.getFullYear();
+  let h = this.addZero(d.getHours());
+  let m = this.addZero(d.getMinutes());
+  let s = this.addZero(d.getSeconds());
+  let time = h + ":" + m + ":" + s;
+  formdata.append("date", today)
+  formdata.append("hour", time)
   formdata.append("creator","abbas")
   formdata.append("username",document.querySelector('#posti').value)
   formdata.append("surname", document.querySelector('#postf').value)
@@ -111,7 +166,12 @@ setTimeout(() => {
     console.log("err");
   })
 
-}
+} 
+ openComent=(key)=>{
+this.openForm(2)   
+this.openModal2()
+ this.setState({openid:key})
+  }
 DeleteData=(key)=>{
   let headers = {
     headers: {
@@ -123,6 +183,7 @@ DeleteData=(key)=>{
     
 
   }
+
   console.log(key);
 axios.delete(`${url}/users/${key}`, headers).then(res=>{
 alert('o`chirildi')
@@ -196,10 +257,12 @@ openwork=()=>{
       },
 
       {
-        title: ()=>{return <div>ss <input type="text" /> </div>},
+        title: "Comment",
         key: "dedline",
-        width: "15%",
-        dataIndex: "dedline",
+        width: "14%",
+        render:(_,record)=>{
+          return <div><Button style={{ marginRight: '10px' }} onClick={() => {this.openComent(record.id)}} type="primary">Push Coment</Button></div>
+        }
       },
 
       {
@@ -293,7 +356,15 @@ openwork=()=>{
               </Button>
             </div>
             </div>
-          <div className="form2">2</div>
+          <div className="form2">  <div className="message">
+            <label>Xabar</label><br />
+            <textarea name="" id="postmes" cols="119.5" rows="10"></textarea><br />
+            <Button onClick={()=>{this.pushComent() }} className="sdsds" type="primary" block>
+              Yuborish
+            </Button>
+          </div>
+          
+          </div>
           <div className="form3">3</div>
           <div className="form4">4</div>
           <div className="form5">
