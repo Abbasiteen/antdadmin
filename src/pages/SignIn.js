@@ -29,7 +29,7 @@ export default class SignIn extends Component {
         console.log(res.data);
       })
       .catch((err) => {
-        console.log("XAto")
+        console.log("Xato")
       })
   }
   render() {

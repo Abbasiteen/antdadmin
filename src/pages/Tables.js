@@ -86,21 +86,10 @@ switch (key) {
     break;
 }
 }
-// postData=()=>{
- 
-  
-  
-//   axios.post(`${url}/works`, formdata).then(res=>{
-//     alert("yuborildi")
-//  window.location.reload() 
-// this.close_modal()
-//   }).catch(err=>{
-//     alert("malumot yuborilmadi mutahasis bilan gaplashing")
-//   })
-// }
+
 pushUser=(key)=>{
   const formdata = new FormData()
-  
+
   axios.post(`${url}/works/person/${key}`,formdata).then(res=>{
      alert("yaratildi")
 window.location.reload()  
@@ -127,13 +116,21 @@ alert('o`chirildi')
   window.location.reload()
 })
 }
+openPush=(key)=>{
+  this.openForm(1)
+  this.openModal2()
+  this.setState({workId:key})
+}
   openModal2 = () => {
     document.querySelector(".Modal2").classList.add("openModal2")
   }
   close_modal = () => {
     document.querySelector(".Modal2").classList.remove("openModal2")
   }
-
+openwork=()=>{
+  this.openForm(5)
+  this.openModal2()
+}
 
   componentDidMount() {
     this.getData()
@@ -142,6 +139,30 @@ alert('o`chirildi')
 
   render() {
     const columns = [
+        {
+        title: "Sudya",
+        key: "SSudyaFIO",
+        width: "15%",
+        dataIndex: "SSudyaFIO",
+      },
+      {
+        title: "Prokuror",
+        key: "IshPorkFIO",
+        width: "15%",
+        dataIndex: "IshPorkFIO",
+      }, 
+      {
+        title: "hukum sanasi",
+        key: "SSudHukmSana",
+        width: "15%",
+        dataIndex: "SSudHukmSana",
+      },
+      {
+        title: "jinoyat sanasi",
+        key: "JinoyatVaqti",
+        width: "15%",
+        dataIndex: "JinoyatVaqti",
+      },
       {
         title: "Username",
         width: "13%",
@@ -164,14 +185,11 @@ alert('o`chirildi')
         title: "passportNum",
         key: "passportNum",
         width: "15%",
-        dataIndex: "passportNum",
+        render: (text, record) => {
+          return record.person.map((item, key) => (<div key={key}>{item.Date}</div>))
+        }
       },
-      {
-        title: "telNumber",
-        key: "telNumber",
-        width: "15%",
-        dataIndex: "telNumber",
-      },
+
       {
         title: "dedline",
         key: "dedline",
@@ -180,19 +198,21 @@ alert('o`chirildi')
         sorter: (a, b) => a.dedline.length - b.dedline.length,
         sortDirections: ['descend', 'ascend']
       },
+
       {
         title: ()=>{return <div>ss <input type="text" /> </div>},
         key: "dedline",
         width: "15%",
         dataIndex: "dedline",
       },
+
       {
         title: "action",
         key: "employed",
         width: "15%",
         render: (_, record) => {
         return  <div>
-            <Button onClick={()=>{this.pushUser(record.WorkId)}} style={{ marginRight: '10px' }} type="primary">Push</Button>
+            <Button onClick={()=>{this.openPush(record.WorkId)}} style={{ marginRight: '10px' }} type="primary">Push</Button>
             <Button style={{ marginRight: '10px' }} type="primary">Edit</Button>
             <Button onClick={()=>{this.DeleteData(record.WorkId)}} type="primary" danger>
               Delete
@@ -279,7 +299,7 @@ alert('o`chirildi')
                       <Radio.Button value="c">docx ko`rinishda yuklab olish</Radio.Button>
                     </Radio.Group>
 
-                    <Button onClick={this.openModal2} className="modal_btn">Add</Button>
+                    <Button onClick={()=>{this.openwork()}} className="modal_btn">Add</Button>
                   </>
                 }
               >
@@ -365,24 +385,6 @@ alert('o`chirildi')
             <div className="modal_body">
 
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyblovning qisqacha mazmuni</label><br />
-                <input className="sel1 sel2" name="sel1" id="s11" />
-              </div>
-
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan vaqt</label><br />
-                <input className="sel1 sel2" type="date" name="sel1" id="s12" />
-              </div>
-
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan hudud</label><br />
-                <input className="sel1 sel2" name="sel1" id="s13" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan joy</label><br />
-                <input className="sel1 sel2" name="sel1" id="s14" />
-              </div>
-              <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Shaxs ushlangan sana(JPK 224,227)</label><br />
                 <input className="sel1 sel2" name="sel1" id="s15" />
               </div>
@@ -403,7 +405,7 @@ alert('o`chirildi')
                 <input className="sel1 sel2" name="sel1" id="s19" />
               </div>
             </div>
-          </div>
+           </div>
           <div className="form2">
             <Button className="abbas1" onClick={() => this.openForm(3)}>3-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Tergov yuzasidan ma'lumotlar</h3> </center>
@@ -411,14 +413,7 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergov organi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s20" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergovchining F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s21" />
-              </div></div>
-            <center><h3 style={{ color: 'white' }}>Ehtiyot chorasi</h3> </center>
-
-            <div className="modal_body">
+         </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Qamoq bilan bogʼliq boʼlmagan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s22" />
@@ -430,17 +425,39 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Uy qamogʼi ehtiyot chorasi tanlangan sana</label><br />
                 <input className="sel1 sel2" type="date" name="sel1" id="s24" />
-              </div></div>
-            <center><h3 style={{ color: 'white' }}>Ayblov xulosasini tasdiqlagan prokuror</h3> </center>
-            <div className="modal_body">
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning lavozimi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s25" />
               </div>
               <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s26" />
-              </div></div>
+                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s65" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s69" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
+                <input className="sel1 sel2" name="sel1" id="s68" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
+                <input className="sel1 sel2" name="sel1" id="s67" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
+                <input className="sel1 sel2" name="sel1" id="s66" />
+              </div>
+            </div>
+
+              
+            <center><h3 style={{ color: 'white' }}>Ayblov xulosasini tasdiqlagan prokuror</h3> </center>
+           
+       
+            <div className="modal_body">
+       
+               
+          
+              </div> 
             <center><h3 style={{ color: 'white' }}>Jinoyat ishi bo‘yicha yetkazilgan zarar haqida ma'lumotlarJinoyat ishi bo‘yicha yetkazilgan zarar haqida ma'lumotlar</h3> </center>
             <div className="modal_body">
               <div className="card1">
@@ -461,22 +478,17 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jinoyat ishi bo‘yicha yetkazilgan zararning qoplanishi foizi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s30" />
-              </div></div>
+              </div>
+              
+              </div>
             <center><h3 style={{ color: 'white' }}>Ishda ishtirok etayotgan prokuror haqida ma'lumotlar</h3> </center>
             <div className="modal_body">
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning lavozimi</label><br />
-                <input className="sel1 sel2" name="sel1" id="s31" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s32" />
-              </div>
-
+      
+ </div>
             </div>
-          </div>
+         
           <div className="form3">
-            <Button className="abbas1" onClick={() => this.openForm(4)}>4-bo`limga o`tish</Button>
+            
             <center><h3 style={{ color: 'white' }}>Ishda ishtirok etayotgan prokurorning fikri</h3> </center>
             <div className="modal_body">
               <div className="card1">
@@ -552,19 +564,12 @@ alert('o`chirildi')
                 <input className="sel1 sel2" name="sel1" id="s50" />
               </div>
             </div>
+            <Button className="abbas1" onClick={() => this.pushUser(this.state.workId)}>malumot yuborish</Button>
           </div>
           <div className="form4">
             <Button className="abbas1" onClick={() => this.openForm(5)}>5-bo`limga o`tish</Button>
             <center><h3 style={{ color: 'white' }}>Sud natijasi</h3> </center>
             <div className="modal_body">
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Sud hukmi sanasi</label><br />
-                <input className="sel1 sel2" type='date' name="sel1" id="s51" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Sud'ya F.I.Sh.</label><br />
-                <input className="sel1 sel2" name="sel1" id="s52" />
-              </div>
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybli deb topish moddasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s53" />
@@ -612,27 +617,7 @@ alert('o`chirildi')
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
                 <input className="sel1 sel2" name="sel1" id="s64" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Yarashilganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s65" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Kasallik tufayli</label><br />
-                <input className="sel1 sel2" name="sel1" id="s66" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Amnistiya akti asosida</label><br />
-                <input className="sel1 sel2" name="sel1" id="s67" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotishi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s68" />
-              </div>
-              <div className="card1">
-                <label htmlFor="sel1" className="sel2_text">Aybdor o‘z qilmishiga amalda pushaymon bo‘lganligi munosabati bilan</label><br />
-                <input className="sel1 sel2" name="sel1" id="s69" />
-              </div>
+           
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Jinoyatning ijtimoiy xavflilik darajasi</label><br />
                 <select className="sel1 sel2" name="sel1" id="s70">
@@ -645,24 +630,83 @@ alert('o`chirildi')
             <center><h3 style={{ color: 'white' }}>Sud hukmiga nisbatan prokuror xulosasi</h3> </center>
             <div className="modal_body">
 
+          
+
+            </div>
+          </div></div>
+          <div className="form5">
+            <Button className="abbas1" onClick={() => this.openForm(1)}>Boshiga qaytish</Button>
+            <div className="modal_body">
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Аyblovning qisqacha mazmuni</label><br />
+                <input className="sel1 sel2" name="sel1" id="s11" />
+</div>
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan vaqt</label><br />
+                  <input className="sel1 sel2" type="date" name="sel1" id="s12" />
+                </div> 
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan hudud</label><br />
+                  <input className="sel1 sel2" name="sel1" id="s13" />
+                </div>
+              
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Jinoyat sodir etilgan joy</label><br />
+                <input className="sel1 sel2" name="sel1" id="s14" />
+              </div>
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Аyb eʼlon qilgan tergovchining F.I.Sh.</label><br />
+                <input className="sel1 sel2" name="sel1" id="s21" />
+              </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning lavozimi</label><br />
+                  <input className="sel1 sel2" name="sel1" id="s25" />
+                </div>
+
+                <div className="card1">
+                  <label htmlFor="sel1" className="sel2_text">Аyblov xulosasini tasdiqlagan prokurorning F.I.Sh.</label><br />
+                  <input className="sel1 sel2" name="sel1" id="s26" />
+                </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning lavozimi</label><br />
+                <input className="sel1 sel2" name="sel1" id="s31" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Ishda ishtirok etayotgan prokurorning F.I.Sh.</label><br />
+                <input className="sel1 sel2" name="sel1" id="s32" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Sud hukmi sanasi</label><br />
+                <input className="sel1 sel2" type='date' name="sel1" id="s51" />
+              </div>
+
+              <div className="card1">
+                <label htmlFor="sel1" className="sel2_text">Sud'ya F.I.Sh.</label><br />
+                <input className="sel1 sel2" name="sel1" id="s52" />
+              </div>
+
+
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Tuman (shahar) prokuraturasi xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s71" />
               </div>
+              
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Qoraqalpog‘iston Respublikasi, viloyatlar, Toshkent shahar prokuraturasi xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s72" />
               </div>
+
               <div className="card1">
                 <label htmlFor="sel1" className="sel2_text">Bosh prokuraturagning xulosasi</label><br />
                 <input className="sel1 sel2" name="sel1" id="s73" />
               </div>
-
-            </div>
-          </div>
-          <div className="form5">
-            <Button className="abbas1" onClick={() => this.openForm(1)}>Boshiga qaytish</Button>
-
+</div>
             <div className="modal_body">
               <Checkbox.Group style={{ width: '100%' }}>
                 <Row>
@@ -691,8 +735,8 @@ alert('o`chirildi')
          
 
 
-
-        </div>
+</div>
+      
       </>
     );
   }
