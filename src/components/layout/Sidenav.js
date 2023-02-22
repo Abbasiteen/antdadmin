@@ -215,10 +215,10 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7">
-          <NavLink onClick={()=>home()}>
+          <a onClick={()=>home()}>
             <span className="icon">{signin}</span>
             <span className="label">Chiqish</span>
-          </NavLink>
+          </a>
         </Menu.Item>
       
       </Menu>
