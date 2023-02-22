@@ -3,13 +3,14 @@ import {
   Col,
   Card,
   Button,
-  List,
   Descriptions,
   Avatar,
   Radio,
   Space,
   Spin,
-  Table
+  Table,
+  Input,
+  Form,
 } from "antd";
 
 import {
@@ -18,14 +19,15 @@ import {
   InstagramOutlined,
   UserOutlined,
   EditOutlined,
-  DeleteOutlined
+  DeleteOutlined,
+  CloseOutlined
 } from "@ant-design/icons";
 
 import React, { Component } from 'react'
 import BgProfile from "../assets/images/bg-profile.jpg";
 import profilavatar from "../assets/images/face-1.jpg";
+import "../assets/styles/All.css"
 import axios from "axios";
-
 
 const pencil = [
   <svg
@@ -63,18 +65,61 @@ export default class Profile extends Component {
       })
   }
 
+  deleteData = (id) => {
+    axios.delete(`https://klinika.onrender.com/operator/${id}`)
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  editOpenModal = (id, name, surname, password, tel, email) => {
+    document.querySelector(".editModal2").style = "display:block"
+    document.querySelector("#Id").value = id
+    document.querySelector("#name").value = name
+    document.querySelector("#surname").value = surname
+    document.querySelector("#password").value = password 
+    document.querySelector("#tel").value = tel
+    document.querySelector("#email").value = email
+  }
+  closeEdit = () => {
+    document.querySelector(".editModal2").style = "display:none"
+  }
+
+  editData = () => {
+    const ID = document.querySelector("#Id").value 
+    var newData = new FormData()
+    newData.append("name", document.querySelector("#name").value)
+    newData.append("surname", document.querySelector("#surname").value)
+    newData.append("password", document.querySelector("#password").value)
+    newData.append("telNumber", document.querySelector("#tel").value)
+    newData.append("email", document.querySelector("#email").value)
+    axios.put(`https://klinika.onrender.com/operator/${ID}`, newData)
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   componentDidMount() {
     this.getData()
   }
-  
-  render() {
 
+  render() {
     const columns = [
       {
         title: "Ismi",
         dataIndex: "name",
-        key: "name",
-        width: "32%",
+        key: "name"
+      },
+      {
+        title: "Familiyasi",
+        dataIndex: "surname",
+        key: "surname",
       },
       {
         title: "Email",
@@ -82,18 +127,51 @@ export default class Profile extends Component {
         key: "email",
       },
       {
-        title: "password",
+        title: "Paroli",
         dataIndex: "password",
         key: "password",
       },
       {
+        title: "Telefon Raqami",
+        dataIndex: "telNumber",
+        key: "telNumber",
+      },
+      {
         title: "action",
         key: "employed",
-        render: (text, record) => { return <Space><EditOutlined style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined  style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+        render: (text, record) => { return <Space><EditOutlined onClick={() => { this.editOpenModal(record.id, record.name, record.surname, record.password, record.telNumber, record.email) }} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deleteData(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
       },
     ];
     return (
       <>
+        <div className="editModal2">
+          <CloseOutlined style={{ color: "#fff", fontSize: "26px", position: 'absolute', top: 10, right: 20, cursor: "pointer" }} onClick={this.closeEdit} />
+          <Form
+            layout="vertical"
+            autoComplete="off"
+          >
+            <h4>Id</h4>
+            <Input disabled id="Id" />
+            <h4>Ismi</h4>
+            <Input placeholder="Name" id="name" />
+            <h4>Familiya</h4>
+            <Input placeholder="Familiya" id="surname" />
+            <h4>Email</h4>
+            <Input placeholder="Email" id="email" />
+            <h4>Parol</h4>
+            <Input placeholder="Parol" id="password" />
+            <h4>Telefon Raqami</h4>
+            <Input placeholder="Telefon Raqami" id="tel" />
+            <Form.Item>
+              <Space>
+                <Button type="primary" htmlType="submit" style={{ marginTop: 50 }} onClick={this.editData}>
+                  Submit
+                </Button>
+              </Space>
+            </Form.Item>
+          </Form>
+
+        </div>
         <div
           className="profile-nav-bg"
           style={{ backgroundImage: "url(" + BgProfile + ")" }}
@@ -190,7 +268,7 @@ export default class Profile extends Component {
                     <Spin tip="Loading" size="large"></Spin>
                   </Space>
                 ) : (
-                <Table
+                  <Table
                     columns={columns}
                     dataSource={this.state.data}
                     pagination={false}
@@ -217,7 +295,7 @@ export default class Profile extends Component {
                       </List.Item>
                     )}
                   /> */
-              )
+                )
               }
             </Card>
           </Col>

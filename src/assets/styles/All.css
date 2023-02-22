@@ -8,3 +8,18 @@
  z-index: 99;
  display: none;
 }
+.editModal2 {
+ width: 400px;
+ height: auto;
+ background-color: #3f3f3f52;
+ position: fixed;
+ top: 18%; left: 50%;
+ transform: translateX(-50%);
+ z-index: 99;
+ padding: 20px !important;
+ display: none;
+}
+.editModal2 h4 {
+ color: #fff;
+ margin-top: 20px;
+}

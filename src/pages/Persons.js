@@ -55,69 +55,6 @@ export default class Persons extends Component {
   putPersons = (id) => {
     const formdata = new FormData()
     formdata.append("UserName", "Abbas2")
-    formdata.append("Date", "hhhh")
-    formdata.append("Jinsi", "si")
-    formdata.append("RuxiyHolat", "a")
-    formdata.append("Ishjoyi", "aa")
-    formdata.append('lavozimi', "a")
-    formdata.append('OilaAxvoli', "a")
-    formdata.append('VoyYetmaganFarzandi', 'as')
-    formdata.append('MuqaddamSud', 'AAA')
-    formdata.append('MuqaddamVaqti', 'a')
-    formdata.append('AyblovQisqa', 'aasas')
-    formdata.append('UshlanganSana', 'asasasasdas')
-    formdata.append('AybElon', '1222')
-    formdata.append('AybModda', '19')
-    formdata.append('AybModdaQism', '2')
-    formdata.append('AybModdaBandi', '31')
-    formdata.append('AybOrgani', 'qsax')
-    formdata.append('QamoqBolmagan', 'true')
-    formdata.append('QamoqBolmagan', 'ha')
-    formdata.append('QamoqUy', 'Bolgan')
-    formdata.append('JinoyatZarar', '12332mln')
-    formdata.append('ZararQoplanish', '121')
-    formdata.append('MolMulQoplanish', 'sda')
-    formdata.append('QoplanishFoiz', 'aas')
-    formdata.append('AybTopish', 'as')
-    formdata.append('Moddasi', 'asdasd')
-    formdata.append('Qismi', 'sd')
-    formdata.append('Bandi', 'band')
-    formdata.append('AyblovVozKech', 'as')
-    formdata.append('JazoTur', 'dsa')
-    formdata.append('JazoMiqdori', 'asd')
-    formdata.append('ShartliHukm', 'dsa')
-    formdata.append('Modda57', 'da')
-    formdata.append('Modda96', 'da')
-    formdata.append('MuddatOtib', 'fe')
-    formdata.append('XavfYoqot', 'sada')
-    formdata.append('Pushaymon', 'das')
-    formdata.append('Yarashgan', 'sda')
-    formdata.append('Kasallik', 'sad')
-    formdata.append('AktiTufay', 'asddas')
-    formdata.append('userscol', 'sa')
-    formdata.append('IjYoq', 'fsfd')
-    formdata.append('AmaldaPushay', 'asd')
-    formdata.append('SAybliModda', 'SAybliModda')
-    formdata.append('SAybliQismi', 'SAybliQismi')
-    formdata.append('SAybliBandi', 'SAybliBandi')
-    formdata.append('SAydanVoz', 'SAydanVoz')
-    formdata.append('SJazoTuri', 'SJazoTuri')
-    formdata.append('SJazoMiq', 'SJazoMiq')
-    formdata.append('SShartli', 'SShartli')
-    formdata.append('S57Modda', 'S57Modda')
-    formdata.append('S96Modda', 'S96Modda')
-    formdata.append('SOtibket', 'SOtibket')
-    formdata.append('SIjXavf', 'SIjXavf')
-    formdata.append('SAmaldaPush', 'SAmaldaPush')
-    formdata.append('SYarshMun', 'SYarshMun')
-    formdata.append('SKasallik', 'SKasallik')
-    formdata.append('SAktAs', 'SAktAs')
-    formdata.append('SYoq', 'SYoq')
-    formdata.append('SAmal', 'SAmal')
-    formdata.append('Ijkattabol', "Ijkattabol")
-    formdata.append('Unchaogir', 'Unchaogir')
-    formdata.append('Ogir', 'Ogir')
-    formdata.append('OtaOgir', 'OtaOgir')
 
     axios.put(`https://prokror.onrender.com/works/person/${id}`, formdata).then(res => {
       console.log('edited');
@@ -126,7 +63,12 @@ export default class Persons extends Component {
       console.log("err");
       console.log(err);
     })
-
+  }
+  openEdit = (id) => {
+    document.querySelector(".modal4").style = "display: flex"
+  }
+  closeEdit = () => {
+    document.querySelector(".modal4").style = "display: none"
   }
 
   componentDidMount() {
@@ -164,14 +106,14 @@ export default class Persons extends Component {
       {
         title: "Action",
         dataIndex: "Action",
-        render: (text, record) => { return <Space><EditOutlined onClick={() => this.putPersons(record.UserId)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deletePerson(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+        render: (text, record) => { return <Space><EditOutlined onClick={() => this.openEdit(record.id)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deletePerson(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
       },
     ];
     return (
       <div>
 
         <div className="modal4">
-
+          <CloseOutlined style={{ color: "#fff", fontSize: "26px", position: 'absolute', top: 20, right: 20, cursor: "pointer" }} onClick={this.closeEdit} />
         </div>
 
         <div className="tabled">
