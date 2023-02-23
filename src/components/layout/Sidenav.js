@@ -1,4 +1,5 @@
 import { Menu } from "antd";
+import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
@@ -130,7 +131,7 @@ function Sidenav({ color }) {
     </svg>,
   ];
   const home=()=>{
-    localStorage.removeItem("token11")
+    sessionStorage.removeItem("token11")
     window.location.reload()
   }
 
@@ -143,7 +144,7 @@ function Sidenav({ color }) {
       <hr />
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
-          <NavLink to="/">
+          <NavLink to="/dashboard">
             <span
               className="icon"
               style={{

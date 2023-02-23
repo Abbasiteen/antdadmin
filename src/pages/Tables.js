@@ -112,7 +112,7 @@ let h = this.addZero(d.getHours());
 let m = this.addZero(d.getMinutes());
 let s = this.addZero(d.getSeconds());
 let time = h + ":" + m + ":" + s;
-  var posterq= JSON.parse(localStorage.getItem("poster"))
+  var posterq= JSON.parse(sessionStorage.getItem("poster"))
   formdata.append("date",today)
   formdata.append("hour",time)
   formdata.append('poster',posterq.poster)
@@ -140,6 +140,7 @@ pushUser=(key)=>{
   if (day < 10) {
     day = "0" + day;
   }
+  var yu=JSON.parse(sessionStorage.getItem('poster'))
   var today = day + '-' + month + '-' + now.getFullYear();
   let h = this.addZero(d.getHours());
   let m = this.addZero(d.getMinutes());
@@ -147,7 +148,7 @@ pushUser=(key)=>{
   let time = h + ":" + m + ":" + s;
   formdata.append("date", today)
   formdata.append("hour", time)
-  formdata.append("creator","abbas")
+  formdata.append("poster",yu.poster)
   formdata.append("username",document.querySelector('#posti').value)
   formdata.append("surname", document.querySelector('#postf').value)
   formdata.append("age", document.querySelector('#posty').value)
@@ -155,7 +156,7 @@ pushUser=(key)=>{
   formdata.append("telNumber", document.querySelector('#postt').value)
   formdata.append("passportNum", document.querySelector('#postp').value)
   formdata.append("passportSer", document.querySelector('#postse').value)
-  formdata.append("message", document.querySelector('#postm').value)
+  formdata.append("comment", document.querySelector('#postm').value)
   formdata.append("dedline", document.querySelector('#posts').value)
   console.log(formdata);
   axios.post(`${url}/users/`, formdata).then(res=>{

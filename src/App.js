@@ -8,6 +8,8 @@ import SignUp from "./pages/SignUp";
 import Main from "./components/layout/Main";
 import 'antd/dist/antd.min.css'
 import "./assets/styles/main.css";
+import "./assets/styles/new.css";
+
 import Persons from './pages/Persons'
 import "./assets/styles/responsive.css";
 import {
@@ -31,7 +33,8 @@ const { Content } = Layout;
 
 export default class componentName extends Component {
   state = {
-    token: localStorage.getItem("token11")
+    token: sessionStorage.getItem("token11"),
+    loader:true
   }
 
   addZero(i) {
@@ -63,32 +66,50 @@ export default class componentName extends Component {
     dd.append("day",today )
     dd.append("hour",time )
     var block = document.querySelector("#nickname").value
-    localStorage.setItem("poster",JSON.stringify({"poster":block}))
+    sessionStorage.setItem("poster",JSON.stringify({"poster":block}))
     dd.append("name",block)
     dd.append("page","login")
     axios.post("https://klinika.onrender.com/login", formdata).then(res => {
       console.log(res.data);
       this.setState({ token: res.data })
-      localStorage.setItem("token11", res.data)
+      sessionStorage.setItem("token11", res.data)
+   
       axios.post("https://klinika.onrender.com/history",dd)
     }).catch(err=>{
       alert("Parol xato terildi")
     })
   }
-
+componentDidMount(){
+  setTimeout(() => {
+    this.setState({ loader: false })
+  }, 5000);
+}
 
   render() {
     return (
       <div>
         {this.state.token ? (<Switch>
-          <Main>
+         
+         {this.state.loader?(
+            <main class="abas11">
+              <div class="preloader">
+                <div class="preloader__square"></div>
+                <div class="preloader__square"></div>
+                <div class="preloader__square"></div>
+                <div class="preloader__square"></div>
+              </div>
+              <div class="status">Loading<span class="status__dot">.</span><span class="status__dot">.</span><span class="status__dot">.</span></div>
+            </main>
+         ):(<Main>
             <Route path="/nazorat" exact component={SignUp} />
             <Route exact path="/" component={Home} />
             <Route exact path="/ishlar" component={Tables} />
             <Route exact path="/comment" component={Billing} />
             <Route exact path="/odamlar" component={Persons} />
             <Route exact path="/profile" component={Profile} />
-          </Main>
+            <Route exact path="/dashboard" component={Home} />
+          </Main>)}
+       
         </Switch>) : (
           <>
             <Layout style={{ margin: "auto" }} className="layout-default layout-signin">
