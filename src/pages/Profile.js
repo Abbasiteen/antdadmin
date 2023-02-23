@@ -60,6 +60,9 @@ export default class Profile extends Component {
       .then(res => {
         this.setState({ data: res.data })
       })
+      .catch(err => {
+        window.location.reload()
+      })
       .finally(() => {
         this.setState({ loading: false })
       })
@@ -68,10 +71,11 @@ export default class Profile extends Component {
   deleteData = (id) => {
     axios.delete(`https://klinika.onrender.com/operator/${id}`)
       .then(res => {
-        console.log(res.data)
+        alert("Operator O'chirildi")
+        window.location.reload()
       })
       .catch((err) => {
-        console.log(err)
+        alert("Operator O'chirilmadi")
       })
   }
 
@@ -80,7 +84,7 @@ export default class Profile extends Component {
     document.querySelector("#Id").value = id
     document.querySelector("#name").value = name
     document.querySelector("#surname").value = surname
-    document.querySelector("#password").value = password 
+    document.querySelector("#password").value = password
     document.querySelector("#tel").value = tel
     document.querySelector("#email").value = email
   }
@@ -89,7 +93,7 @@ export default class Profile extends Component {
   }
 
   editData = () => {
-    const ID = document.querySelector("#Id").value 
+    const ID = document.querySelector("#Id").value
     var newData = new FormData()
     newData.append("name", document.querySelector("#name").value)
     newData.append("surname", document.querySelector("#surname").value)
@@ -97,12 +101,13 @@ export default class Profile extends Component {
     newData.append("telNumber", document.querySelector("#tel").value)
     newData.append("email", document.querySelector("#email").value)
     axios.put(`https://klinika.onrender.com/operator/${ID}`, newData)
-    .then(res => {
-      console.log(res.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+      .then(res => {
+        alert('Operator Tahrirlandi')
+        window.location.reload()
+      })
+      .catch((err) => {
+        alert('Operator Tahrirlanmadi')
+      })
   }
 
   componentDidMount() {

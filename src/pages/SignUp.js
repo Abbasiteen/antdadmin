@@ -48,7 +48,7 @@ export default class Billing extends Component {
         this.setState({ data: res.data })
       })
       .catch((err) => {
-        console.log(err);
+        window.location.reload()
       })
       .finally(() => {
         this.setState({ loading: false })
@@ -69,7 +69,7 @@ export default class Billing extends Component {
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
-                title="Projects Table1"
+                title="Nazorat"
                 extra={
                   <>
                     <Radio.Group defaultValue="all">

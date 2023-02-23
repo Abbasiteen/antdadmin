@@ -47,31 +47,13 @@ export default class Billing extends Component {
       })
   }
   deleteComment = (Id) => {
-    axios.delete(`https://prokror.onrender.com/comment/${Id}`)
+    axios.delete(`https://klinika.onrender.com/comment/${Id}`)
       .then(res => {
+        alert("Comment O'chirildi")
         window.location.reload()
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
-  editCommentModal = (Id) => {
-    document.querySelector(".editModal").style = "display: flex"
-    document.querySelector("#categoryInp3").value = Id
-  }
-  closeEditModal = () => {
-    document.querySelector(".editModal").style = "display: none"
-  }
-  editComment = () => {
-    const inp = document.querySelector("#categoryInp3").value
-    var newForm = new FormData()
-    newForm.append("CategoryName", document.querySelector("#categoryInp2").value)
-    axios.put(`https://klinika.onrender.com/comment/${inp}`, newForm)
-      .then(res => {
-        alert("yuborildi")
-        window.location.reload()
-      }).catch(err=>{
-        alert('xato')
+        alert("Comment O'chirilmadi")
       })
   }
 
@@ -111,29 +93,6 @@ export default class Billing extends Component {
       <>
 
 
-        <div className="editModal">
-          <Form
-            layout="vertical"
-            autoComplete="off"
-          > 
-            <CloseOutlined onClick={this.closeEditModal} className="close_modal2" />
-            <Form.Item>
-              <h4 className="category_text">ID</h4>
-              <Input disabled id="categoryInp3" style={{ marginBottom: "20px", marginTop: "10px" }} />
-              <h4 className="category_text">Comment</h4>
-              <Input placeholder="Comment" id="categoryInp2" />
-              <h4 className="category_text">Kim yuborgan</h4>
-              <Input placeholder="Comment" id="categoryInp4" />
-            </Form.Item>
-            <Form.Item>
-              <Space>
-                <Button type="primary" typeof="submit" htmlType="submit" onClick={this.editComment}>
-                  Tahrirlash
-                </Button>
-              </Space>
-            </Form.Item>
-          </Form>
-        </div>
 
         <div className="tabled">
           <Row gutter={[24, 0]}>
@@ -141,7 +100,7 @@ export default class Billing extends Component {
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
-                title="Categoriya"
+                title="Commetariya"
                 extra={
                   <>
                     <Radio.Group defaultValue="all">
