@@ -31,7 +31,8 @@ flex-wrap: wrap;
     padding-top: 5%;
 }
 .openModal2 {
-    right: 0;
+    right: 0%;
+    padding-left: 10%;
     
 }
 .close_modal {
