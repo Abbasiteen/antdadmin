@@ -20,7 +20,8 @@ import {
   UserOutlined,
   EditOutlined,
   DeleteOutlined,
-  CloseOutlined
+  CloseOutlined,
+  ToTopOutlined
 } from "@ant-design/icons";
 
 import React, { Component } from 'react'
@@ -53,7 +54,8 @@ const pencil = [
 export default class Profile extends Component {
   state = {
     data: [],
-    loading: true
+    loading: true,
+    price: []
   }
   getData = () => {
     axios.get("https://klinika.onrender.com/operator")
@@ -68,6 +70,16 @@ export default class Profile extends Component {
       })
   }
 
+  getPrice = () => {
+    axios.get("https://klinika.onrender.com/price")
+      .then(res => {
+        this.setState({ price: res.data })
+      })
+      .catch(err => {
+        window.location.reload()
+      })
+  }
+
   deleteData = (id) => {
     axios.delete(`https://klinika.onrender.com/operator/${id}`)
       .then(res => {
@@ -76,6 +88,25 @@ export default class Profile extends Component {
       })
       .catch((err) => {
         alert("Operator O'chirilmadi")
+      })
+  }
+
+  postOperator = () => {
+    var postForm = new FormData()
+    postForm.append("name", document.querySelector("#name2").value)
+    postForm.append("surname", document.querySelector("#surname2").value)
+    postForm.append("email", document.querySelector("#email2").value)
+    postForm.append("password", document.querySelector("#password2").value)
+    postForm.append("telNumber", document.querySelector("#tel2").value)
+
+    axios.post("https://klinika.onrender.com/operator", postForm)
+      .then(res => {
+        alert("Operator Qo'shildi")
+        window.location.reload()
+      })
+      .catch(err => {
+        alert("Operator Qo'shilmadi")
+        console.log(err);
       })
   }
 
@@ -90,6 +121,32 @@ export default class Profile extends Component {
   }
   closeEdit = () => {
     document.querySelector(".editModal2").style = "display:none"
+  }
+  openModal2 = () => {
+    document.querySelector(".Modal10").style = "display: block"
+  }
+  closeModal2 = () => {
+    document.querySelector(".Modal10").style = "display: none"
+  }
+  editPriceModal = (id) => {
+    document.querySelector(".modal0").style = "display: block"
+    document.querySelector("#PriceID").value = id
+  }
+  closeModal0 = () => {
+    document.querySelector(".modal0").style = "display: none"
+  }
+  editPrice = () => {
+    const ID = document.querySelector("#PriceID").value
+    var newData4 = new FormData()
+    newData4.append("price", document.querySelector("#Price").value)
+    axios.put(`https://klinika.onrender.com/price/${ID}`, newData4)
+    .then(res => {
+      alert("O'zgartirildi")
+      window.location.reload()
+    })
+    .catch(err => {
+      alert("xato")
+    }) 
   }
 
   editData = () => {
@@ -112,6 +169,7 @@ export default class Profile extends Component {
 
   componentDidMount() {
     this.getData()
+    this.getPrice()
   }
 
   render() {
@@ -149,6 +207,45 @@ export default class Profile extends Component {
     ];
     return (
       <>
+
+        <div className="Modal10">
+          <CloseOutlined style={{ color: "#fff", fontSize: "26px", position: 'absolute', top: 10, right: 20, cursor: "pointer" }} onClick={this.closeModal2} />
+          <Form
+            layout="vertical"
+            autoComplete="off"
+          >
+            <h4>Ismi</h4>
+            <Input placeholder="Name" id="name2" />
+            <h4>Familiya</h4>
+            <Input placeholder="Familiya" id="surname2" />
+            <h4>Email</h4>
+            <Input placeholder="Email" id="email2" />
+            <h4>Parol</h4>
+            <Input placeholder="Parol" id="password2" />
+            <h4>Telefon Raqami</h4>
+            <Input placeholder="Telefon Raqami" id="tel2" />
+            <Form.Item>
+              <Space>
+                <Button type="primary" htmlType="submit" style={{ marginTop: 50 }} onClick={this.postOperator}>
+                  Qo'shish
+                </Button>
+              </Space>
+            </Form.Item>
+          </Form>
+
+        </div>
+
+        <div className="modal0">
+          <CloseOutlined style={{ color: "#fff", fontSize: "26px", position: 'absolute', top: 10, right: 20, cursor: "pointer" }} onClick={this.closeModal0} />
+          <h4>Id</h4>
+          <Input disabled id="PriceID" />
+          <h4>Kunlik Narxi</h4>
+          <Input placeholder="Narxi" type="number" id="Price" />
+          <Button type="primary" htmlType="submit" style={{ marginTop: 50 }} onClick={this.editPrice}>
+            Tahrirlash
+          </Button>
+        </div>
+
         <div className="editModal2">
           <CloseOutlined style={{ color: "#fff", fontSize: "26px", position: 'absolute', top: 10, right: 20, cursor: "pointer" }} onClick={this.closeEdit} />
           <Form
@@ -170,13 +267,14 @@ export default class Profile extends Component {
             <Form.Item>
               <Space>
                 <Button type="primary" htmlType="submit" style={{ marginTop: 50 }} onClick={this.editData}>
-                  Submit
+                  Tahrirlash
                 </Button>
               </Space>
             </Form.Item>
           </Form>
 
         </div>
+
         <div
           className="profile-nav-bg"
           style={{ backgroundImage: "url(" + BgProfile + ")" }}
@@ -188,14 +286,20 @@ export default class Profile extends Component {
           title={
             <Row justify="space-between" align="middle" gutter={[24, 0]}>
               <Col span={24} md={12} className="col-info">
-                <Avatar.Group>
-                  <Avatar size={74} shape="square" src={profilavatar} />
+                <Space wrap>
+                  <Avatar size={40}
+                    style={{
+                      backgroundColor: '#87d068',
+                    }}
+                    icon={<UserOutlined />}
+                  />
+                  <h2 className="font-semibold m-0">
+                    {
+                      JSON.parse(sessionStorage.getItem("poster")).poster
+                    }
+                  </h2>
+                </Space>
 
-                  <div className="avatar-info">
-                    <h4 className="font-semibold m-0">Sarah Jacob</h4>
-                    <p>CEO / Co-Founder</p>
-                  </div>
-                </Avatar.Group>
               </Col>
               <Col
                 span={24}
@@ -206,15 +310,16 @@ export default class Profile extends Component {
                   justifyContent: "flex-end",
                 }}
               >
-                <Radio.Group defaultValue="a">
-                  <Radio.Button value="a">OVERVIEW</Radio.Button>
-                  <Radio.Button value="b">TEAMS</Radio.Button>
-                  <Radio.Button value="c">PROJECTS</Radio.Button>
-                </Radio.Group>
+                {
+                  this.state.price.map(item => {
+                    return (<Space ><p>Kunlik Narx: {item.price}<EditOutlined onClick={() => { this.editPriceModal(item.id) }} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /></p></Space>)
+                  })
+                }
               </Col>
             </Row>
           }
         ></Card>
+
 
         <Row gutter={[24, 0]}>
           <Col span={24} md={8} className="mb-24">
@@ -233,31 +338,36 @@ export default class Profile extends Component {
                 equality).{" "}
               </p>
               <hr className="my-25" />
-              <Descriptions title="Oliver Liam">
-                <Descriptions.Item label="Full Name" span={3}>
-                  Sarah Emily Jacob
-                </Descriptions.Item>
-                <Descriptions.Item label="Mobile" span={3}>
-                  (44) 123 1234 123
-                </Descriptions.Item>
-                <Descriptions.Item label="Email" span={3}>
-                  sarahjacob@mail.com
-                </Descriptions.Item>
-                <Descriptions.Item label="Location" span={3}>
-                  USA
-                </Descriptions.Item>
-                <Descriptions.Item label="Social" span={3}>
-                  <a href="#pablo" className="mx-5 px-5">
-                    {<TwitterOutlined />}
-                  </a>
-                  <a href="#pablo" className="mx-5 px-5">
-                    {<FacebookOutlined style={{ color: "#344e86" }} />}
-                  </a>
-                  <a href="#pablo" className="mx-5 px-5">
-                    {<InstagramOutlined style={{ color: "#e1306c" }} />}
-                  </a>
-                </Descriptions.Item>
-              </Descriptions>
+
+
+              {
+                this.state.data.map(item => {
+                  const name = JSON.parse(sessionStorage.getItem("poster")).poster
+                  if (name === item.name) {
+                    return (<Descriptions title="Oliver Liam">
+                      <Descriptions.Item label="Ismi" span={3}>
+                        {item.name}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="Familiyasi" span={3}>
+                        {item.surname}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="Telefon Raqami" span={3}>
+                        {item.telNumber}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="Email" span={3}>
+                        {item.email}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="categoriya" span={3}>
+                        {item.category}
+                      </Descriptions.Item>
+                    </Descriptions>)
+                  }
+                })
+              }
+
+
+
+
             </Card>
           </Col>
           <Col style={{ width: "60%" }} className="mb-28">
@@ -279,30 +389,18 @@ export default class Profile extends Component {
                     pagination={false}
                     className="ant-border-space"
                   />
-                  /* <List
-                    itemLayout="horizontal"
-                    dataSource={this.state.data}
-                    split={false}
-                    className="conversations-list"
-                    renderItem={(item) => (
-                      <List.Item actions={[<Button type="link">REPLY</Button>]}>
-                        <List.Item.Meta
-                          avatar={
-                            <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
-                          }
-                          title={item.name}
-                          description={item.surname}
-                        />
-                        <List.Item.Meta
-                          title={item.name}
-                          description={item.surname}
-                        />
-                      </List.Item>
-                    )}
-                  /> */
                 )
               }
             </Card>
+            <div className="uploadfile pb-15 shadow-none">
+              <Button
+                onClick={this.openModal2}
+                className="ant-full-box" id="addBtn"
+                icon={<ToTopOutlined />}
+              >
+                Operator Qo'shish
+              </Button>
+            </div>
           </Col>
         </Row>
       </>
