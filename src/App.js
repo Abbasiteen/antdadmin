@@ -6,6 +6,7 @@ import Billing from "./pages/Billing";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import Main from "./components/layout/Main";
+import RoomsTable from "./pages/RoomsTable";
 import 'antd/dist/antd.min.css'
 import "./assets/styles/main.css";
 import "./assets/styles/new.css";
@@ -106,6 +107,7 @@ componentDidMount(){
             <Route exact path="/ishlar" component={Tables} />
             <Route exact path="/comment" component={Billing} />
             <Route exact path="/odamlar" component={Persons} />
+            <Route exact path="/xonalar" component={RoomsTable} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/dashboard" component={Home} />
           </Main>)}

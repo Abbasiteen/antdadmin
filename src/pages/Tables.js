@@ -139,9 +139,10 @@ pushUser=(key)=>{
   }
   if (day < 10) {
     day = "0" + day;
-  }
-  var yu=JSON.parse(sessionStorage.getItem('poster'))
+  } 
   var today = day + '-' + month + '-' + now.getFullYear();
+  var yu=JSON.parse(sessionStorage.getItem('poster'))
+ 
   let h = this.addZero(d.getHours());
   let m = this.addZero(d.getMinutes());
   let s = this.addZero(d.getSeconds());

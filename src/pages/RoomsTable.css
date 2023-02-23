@@ -1,0 +1,15 @@
+/* .TableRooms, thead, tbody, tr, td, th{
+    border: 1px solid black;
+}
+.TableRooms{
+    min-width: 100%;
+}
+tr, td, th{
+    padding: 1% 1%;
+    box-sizing: border-box;
+
+}
+.th1{
+    text-align: center;
+    width: 2%;
+} */

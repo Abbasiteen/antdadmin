@@ -221,7 +221,19 @@ function Sidenav({ color }) {
             <span className="label">Chiqish</span>
           </a>
         </Menu.Item>
-      
+        <Menu.Item key="8">
+          <NavLink to="/xonalar">
+            <span
+              className="icon"
+              style={{
+                background: page === "RoomsTable" ? color : "",
+              }}
+            >
+              {dashboard}
+            </span>
+            <span className="label">Xonalar</span>
+          </NavLink>
+        </Menu.Item>
       </Menu>
     </>
   );
