@@ -11,6 +11,7 @@ import {
   Button,
   Spin,
   Space,
+  Input
 } from "antd";
 import {
   EditOutlined,
@@ -37,6 +38,7 @@ export default class Persons extends Component {
         this.setState({ data: res.data })
       })
       .catch((err) => {
+        window.location.reload()
         console.log(err)
       })
       .finally(() => {
@@ -44,34 +46,53 @@ export default class Persons extends Component {
       })
   }
 
+  postRoom = () => {
+    var formData = new FormData()
+    formData.append("number", document.querySelector("#Roominp1").value)
+    formData.append("limit", document.querySelector("#Roominp2").value)
+    axios.post("https://klinika.onrender.com/room", formData)
+    .then((res) => {
+      alert("Xona Qo'shildi")
+      window.location.reload()
+    })
+    .catch(err => {
+      alert("xona Qo'shilmadi")
+    })
+  }
+
   deleteRoom = (id) => {
-    axios.delete(`https://klinika.onrender.com/users/${id}`).then(res => {
-      console.log(res.data);
+    axios.delete(`https://klinika.onrender.com/room/${id}`).then(res => {
+      alert("O'chirildi")
+      window.location.reload()
     }).catch(err => {
       console.log(err);
     })
   }
 
-  putPersons = (id) => {
+  editRoom = () => {
+    const ID = document.querySelector("#RoomID").value
     const formdata = new FormData()
-    formdata.append("UserName", "Abbas2")
+    formdata.append("number", document.querySelector("#RoomInp3").value)
+    formdata.append("limit", document.querySelector("#RoomInp4").value)
 
-    axios.put(`https://prokror.onrender.com/works/person/${id}`, formdata).then(res => {
-      console.log('edited');
-      this.getRoom()
+    axios.put(`https://klinika.onrender.com/room/${ID}`, formdata).then(res => {
+      alert("Xona Tahrirlandi")
+      window.location.reload()
     }).catch(err => {
-      console.log("err");
-      console.log(err);
+      alert("Xona Tahrirlanmadi")
     })
   }
-  openEdit = (id) => {
-    document.querySelector(".modal4").style = "display: flex"
+  openEdit = (id, num, limit) => {
+    document.querySelector(".modal4").style = "display: block"
+    document.querySelector("#RoomID").value = id
+    document.querySelector("#RoomInp3").value = num
+    document.querySelector("#RoomInp4").value = limit
   }
   closeEdit = () => {
     document.querySelector(".modal4").style = "display: none"
   }
   openCreate = () => {
-    document.querySelector(".modal5").style = "display: flex"
+    document.querySelector(".modal5").style = "display: block"
   }
   closeCreate = () => {
     document.querySelector(".modal5").style = "display: none"
@@ -97,17 +118,33 @@ export default class Persons extends Component {
       {
         title: "Action",
         dataIndex: "Action",
-        render: (text, record) => { return <Space><EditOutlined onClick={() => this.openEdit(record.id)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deleteRoom(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+        render: (text, record) => { return <Space><EditOutlined onClick={() => this.openEdit(record.id, record.number, record.limit)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deleteRoom(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
       },
     ];
     return (
       <div>
 
         <div className="modal5">
-          <CloseOutlined style={{ fontSize: "26px", position: 'absolute', top: 20, right: 20, cursor: "pointer", color: "#fff !important" }} onClick={this.closeCreate} />
+          <h4 className="Room_text">Xona Raqami</h4>
+          <Input placeholder="Xona Raqami" type="number" id="Roominp1" />
+          <h4 className="Room_text">Odam Soni</h4>
+          <Input placeholder="Odam Soni" id="Roominp2" />
+          <CloseOutlined className="close_modal" style={{ fontSize: "26px", position: 'absolute', top: 20, right: 20, cursor: "pointer"}} onClick={this.closeCreate} />
+          <Button type="primary" typeof="submit" htmlType="submit" onClick={this.postRoom}>
+            Qo'shish
+          </Button>
         </div>
 
         <div className="modal4">
+          <h4 className="Room_text">ID</h4>
+          <Input disabled id="RoomID" />
+          <h4 className="Room_text">Xona Raqami</h4>
+          <Input placeholder="Xona Raqami" type="number" id="RoomInp3" />
+          <h4 className="Room_text">Odam Soni</h4>
+          <Input placeholder="Odam Soni" id="RoomInp4" />
+          <Button type="primary" typeof="submit" htmlType="submit" onClick={this.editRoom}>
+            Tahrirlash
+          </Button>
           <CloseOutlined style={{ fontSize: "26px", position: 'absolute', top: 20, right: 20, cursor: "pointer", color: "#fff !important" }} onClick={this.closeEdit} />
         </div>
 
@@ -117,7 +154,7 @@ export default class Persons extends Component {
               <Card
                 bordered={false}
                 className="criclebox tablespace mb-24"
-                title="Odamlar Jadvali"
+                title="Xonalar Jadvali"
               >
                 <div className="table-responsive">
                   {
@@ -136,7 +173,7 @@ export default class Persons extends Component {
                   }
                 </div>
                 <div className="uploadfile pb-15 shadow-none">
-                  <Button 
+                  <Button
                     onClick={this.openCreate}
                     className="ant-full-box" id="addBtn"
                     icon={<ToTopOutlined />}
