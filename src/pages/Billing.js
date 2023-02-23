@@ -40,7 +40,7 @@ export default class Billing extends Component {
         this.setState({ data: res.data })
       })
       .catch((err) => {
-        console.log(err)
+      window.location.reload()
       })
       .finally(() => {
         this.setState({ loading: false })
@@ -49,7 +49,7 @@ export default class Billing extends Component {
   deleteComment = (Id) => {
     axios.delete(`https://prokror.onrender.com/comment/${Id}`)
       .then(res => {
-        console.log(res.data)
+        window.location.reload()
       })
       .catch((err) => {
         console.log(err)
@@ -68,7 +68,10 @@ export default class Billing extends Component {
     newForm.append("CategoryName", document.querySelector("#categoryInp2").value)
     axios.put(`https://klinika.onrender.com/comment/${inp}`, newForm)
       .then(res => {
-        console.log(res.data)
+        alert("yuborildi")
+        window.location.reload()
+      }).catch(err=>{
+        alert('xato')
       })
   }
 
