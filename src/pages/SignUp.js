@@ -21,8 +21,8 @@ const columns = [
   },
   {
     title: "Sanasi",
-    dataIndex: "date",
-    key: "date",
+    dataIndex: "day",
+    key: "day",
   },
   {
     title: "Vaqti",

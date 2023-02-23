@@ -96,6 +96,7 @@ addZero(i) {
 
 
 pushComent=()=>{
+
   var formdata=new FormData()
   const d = new Date();
   var now = new Date();
@@ -115,14 +116,14 @@ let time = h + ":" + m + ":" + s;
   formdata.append("date",today)
   formdata.append("hour",time)
   formdata.append('poster',posterq.poster)
-  formdata.append("message",document.querySelector("#postmes").value)
-  console.log(formdata);
-  axios.post(`${url}/comment/${this.state.openid}`).then(res=>{
-    alert("yuborildi")
-    window.location.reload()
-  }).catch(err=>{
-    alert("xato")
-  })
+  formdata.append("comment",document.querySelector("#postmes").value)
+  
+axios.post(`${url}/comment/${this.state.openid}`,formdata ).then(res=>{
+alert("yuborildi")
+window.location.reload()  
+}).catch(err=>{
+alert("xato")
+})
 }
 
 pushUser=(key)=>{
@@ -356,7 +357,8 @@ openwork=()=>{
               </Button>
             </div>
             </div>
-          <div className="form2">  <div className="message">
+          <div className="form2">
+            <div className="message">
             <label>Xabar</label><br />
             <textarea name="" id="postmes" cols="119.5" rows="10"></textarea><br />
             <Button onClick={()=>{this.pushComent() }} className="sdsds" type="primary" block>

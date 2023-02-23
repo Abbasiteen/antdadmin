@@ -21,9 +21,9 @@ import {
 } from "antd";
 import axios from "axios";
 
-function onChange(checked) {
-  console.log(`switch to ${checked}`);
-}
+// function onChange(checked) {
+//   console.log(`switch to ${checked}`);
+// }
 const { Title } = Typography;
 const { Content } = Layout;
 
@@ -34,16 +34,38 @@ export default class componentName extends Component {
     token: localStorage.getItem("token11")
   }
 
-
+  addZero(i) {
+    if (i < 10) { i = "0" + i }
+    return i;
+  }
   postLogin = () => {
+    const d = new Date();
+    var now = new Date();
+    var month = (now.getMonth() + 1);
+    var day = now.getDate();
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+    var today = month + '-' + day + '-' + now.getFullYear();
+
+    let h = this.addZero(d.getHours());
+    let m = this.addZero(d.getMinutes());
+    let s = this.addZero(d.getSeconds());
+    let time = h + ":" + m + ":" + s;
     var formdata = new FormData()
     formdata.append("username", document.querySelector("#nickname").value)
     formdata.append("password", document.querySelector("#password").value)
-var dd= new FormData()
+    
+    var dd= new FormData()
+    dd.append("day",today )
+    dd.append("hour",time )
     var block = document.querySelector("#nickname").value
     localStorage.setItem("poster",JSON.stringify({"poster":block}))
     dd.append("name",block)
-    dd.append("pages","/login")
+    dd.append("page","login")
     axios.post("https://klinika.onrender.com/login", formdata).then(res => {
       console.log(res.data);
       this.setState({ token: res.data })
@@ -63,7 +85,7 @@ var dd= new FormData()
             <Route path="/nazorat" exact component={SignUp} />
             <Route exact path="/" component={Home} />
             <Route exact path="/ishlar" component={Tables} />
-            <Route exact path="/turlar" component={Billing} />
+            <Route exact path="/comment" component={Billing} />
             <Route exact path="/odamlar" component={Persons} />
             <Route exact path="/profile" component={Profile} />
           </Main>

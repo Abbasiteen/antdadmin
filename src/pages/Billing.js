@@ -47,7 +47,7 @@ export default class Billing extends Component {
       })
   }
   deleteComment = (Id) => {
-    axios.delete(`https://prokror.onrender.com/category/${Id}`)
+    axios.delete(`https://prokror.onrender.com/comment/${Id}`)
       .then(res => {
         console.log(res.data)
       })

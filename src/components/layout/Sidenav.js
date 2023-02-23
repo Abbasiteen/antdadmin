@@ -143,7 +143,7 @@ function Sidenav({ color }) {
       <hr />
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
-          <NavLink to="/bosh-sahifa">
+          <NavLink to="/">
             <span
               className="icon"
               style={{
@@ -165,11 +165,11 @@ function Sidenav({ color }) {
             >
               {tables}
             </span>
-            <span className="label">Barcha ishlar</span>
+            <span className="label">Mijozlar</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="3">
-          <NavLink to="/turlar">
+          <NavLink to="/comment">
             <span
               className="icon"
               style={{
@@ -178,27 +178,27 @@ function Sidenav({ color }) {
             >
               {billing}
             </span>
-            <span className="label">Turlar</span>
+            <span className="label">Cammentariyalar</span>
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item key="8">
+        <Menu.Item key="4">
           <NavLink to="/nazorat">
             <span className="icon">{signup}</span>
             <span className="label">Nazorat</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="9">
+        <Menu.Item key="5">
           <NavLink to="/odamlar">
             <span
               className="icon"
               style={{
-                background: page === "profile" ? color : "",
+                background: page === "odamlar" ? color : "",
               }}
             >
-              {profile}
+              {signin}
             </span>
-            <span className="label">Odamlar</span>
+            <span className="label">Xona royhati</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="6">
@@ -211,7 +211,7 @@ function Sidenav({ color }) {
             >
               {profile}
             </span>
-            <span className="label">Foydalanuvchilar</span>
+            <span className="label">Operatorlar</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7">
