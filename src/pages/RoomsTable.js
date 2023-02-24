@@ -1,4 +1,3 @@
-import { isTemplateNode } from '@vue/compiler-core'
 import { Button, Col, Row, Table } from 'antd'
 import axios from 'axios'
 import React, { Component } from 'react'
