@@ -10,6 +10,7 @@ import RoomsTable from "./pages/RoomsTable";
 import 'antd/dist/antd.min.css'
 import "./assets/styles/main.css";
 import "./assets/styles/new.css";
+import Analiz from "./pages/Analiz"
 
 import Persons from './pages/Persons'
 import "./assets/styles/responsive.css";
@@ -104,7 +105,8 @@ componentDidMount(){
          ):(<Main>
             <Route path="/nazorat" exact component={SignUp} />
             <Route exact path="/" component={Home} />
-            <Route exact path="/ishlar" component={Tables} />
+              <Route exact path="/ishlar" component={Tables} />
+              <Route exact path="/analiz" component={Analiz} />
             <Route exact path="/comment" component={Billing} />
             <Route exact path="/xonalar" component={Persons} />
             <Route exact path="/buyurma" component={RoomsTable} />

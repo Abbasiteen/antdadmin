@@ -130,7 +130,11 @@ function Sidenav({ color }) {
       />
     </svg>,
   ];
-  const home=()=>{
+  // const cardIcon = [
+  //   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M9.715 12c1.151 0 2-.849 2-2s-.849-2-2-2-2 .849-2 2 .848 2 2 2z"></path><path d="M20 4H4c-1.103 0-2 .841-2 1.875v12.25C2 19.159 2.897 20 4 20h16c1.103 0 2-.841 2-1.875V5.875C22 4.841 21.103 4 20 4zm0 14-16-.011V6l16 .011V18z"></path><path d="M14 9h4v2h-4zm1 4h3v2h-3zm-1.57 2.536c0-1.374-1.676-2.786-3.715-2.786S6 14.162 6 15.536V16h7.43v-.464z"></path></svg>
+  // ]
+
+  const home = () => {
     sessionStorage.removeItem("token11")
     window.location.reload()
   }
@@ -214,7 +218,7 @@ function Sidenav({ color }) {
             </span>
             <span className="label">Operatorlar</span>
           </NavLink>
-        </Menu.Item>      
+        </Menu.Item>
         <Menu.Item key="8">
           <NavLink to="/buyurma">
             <span
@@ -229,12 +233,26 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7">
-          <a onClick={()=>home()}>
+          <a onClick={() => home()}>
             <span className="icon">{signin}</span>
             <span className="label">Chiqish</span>
           </a>
         </Menu.Item>
-  
+
+        <Menu.Item key="8">
+          <NavLink to="/analiz">
+            <span
+              className="icon"
+              style={{
+                background: page === "RoomsTable" ? color : "",
+              }}
+            >
+              {dashboard}
+            </span>
+            <span className="label">Anzlizlar</span>
+          </NavLink>
+        </Menu.Item>
+
       </Menu>
     </>
   );
