@@ -16,7 +16,8 @@ import {
 import {
     EditOutlined,
     DeleteOutlined,
-    CloseOutlined
+    CloseOutlined,
+    DownloadOutlined,
 } from "@ant-design/icons";
 
 import "../assets/styles/All.css"
@@ -29,11 +30,10 @@ import "../assets/styles/All.css"
 export default class Persons extends Component {
     state = {
         data: [],
-        loading: true,
-        isModalOpen: false
+        loading: true
     }
-    getRoom = () => {
-        axios.get("https://klinika.onrender.com/room")
+    getAnaliz = () => {
+        axios.get("https://klinika.onrender.com/users/analiz")
             .then(res => {
                 this.setState({ data: res.data })
             })
@@ -46,22 +46,8 @@ export default class Persons extends Component {
             })
     }
 
-    postRoom = () => {
-        var formData = new FormData()
-        formData.append("number", document.querySelector("#Roominp1").value)
-        formData.append("limit", document.querySelector("#Roominp2").value)
-        axios.post("https://klinika.onrender.com/room", formData)
-            .then((res) => {
-                alert("Xona Qo'shildi")
-                window.location.reload()
-            })
-            .catch(err => {
-                alert("xona Qo'shilmadi")
-            })
-    }
-
-    deleteRoom = (id) => {
-        axios.delete(`https://klinika.onrender.com/room/${id}`).then(res => {
+    deleteAnaliz = (id) => {
+        axios.delete(`https://klinika.onrender.com/users/analiz/${id}`).then(res => {
             alert("O'chirildi")
             window.location.reload()
         }).catch(err => {
@@ -91,49 +77,50 @@ export default class Persons extends Component {
     closeEdit = () => {
         document.querySelector(".modal4").style = "display: none"
     }
-    openCreate = () => {
-        document.querySelector(".modal5").style = "display: block"
-    }
-    closeCreate = () => {
-        document.querySelector(".modal5").style = "display: none"
-    }
 
     componentDidMount() {
-        this.getRoom()
+        this.getAnaliz()
     }
     render() {
         const columns = [
             {
-                title: "Xona Raqami",
-                dataIndex: "number",
-                key: "number",
-                width: "30%",
+                title: "Ismi",
+                dataIndex: "username",
+                key: "username",
+                width: "20%",
             },
             {
-                title: "Odam soni",
+                title: "Familiyasi",
+                dataIndex: "surname",
+                key: "surname",
+            },
+            {
+                title: "Analiz Nomi",
+                dataIndex: "analizName",
+                key: "analizName",
+            },
+            {
+                title: "Analiz Fileni Yuklab Olish",
                 dataIndex: "limit",
-                key: "limit",
-                width: "30%",
+                render: (text, record) => {
+                    return <Space wrap>
+                        <Button
+                            type="primary"
+                            icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}
+                        >
+                            Yuklash
+                        </Button>
+                    </Space>
+                }
             },
             {
                 title: "Action",
                 dataIndex: "Action",
-                render: (text, record) => { return <Space><EditOutlined onClick={() => this.openEdit(record.id, record.number, record.limit)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deleteRoom(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+                render: (text, record) => { return <Space><EditOutlined onClick={() => this.openEdit(record.id, record.number, record.limit)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} /><DeleteOutlined onClick={() => { this.deleteAnaliz(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
             },
         ];
         return (
             <div>
-
-                <div className="modal5">
-                    <h4 className="Room_text">Xona Raqami</h4>
-                    <Input placeholder="Xona Raqami" type="number" id="Roominp1" />
-                    <h4 className="Room_text">Odam Soni</h4>
-                    <Input placeholder="Odam Soni" id="Roominp2" />
-                    <CloseOutlined className="close_modal" style={{ fontSize: "26px", position: 'absolute', top: 20, right: 20, cursor: "pointer" }} onClick={this.closeCreate} />
-                    <Button type="primary" typeof="submit" htmlType="submit" onClick={this.postRoom}>
-                        Qo'shish
-                    </Button>
-                </div>
 
                 <div className="modal4">
                     <h4 className="Room_text">ID</h4>
@@ -154,7 +141,7 @@ export default class Persons extends Component {
                             <Card
                                 bordered={false}
                                 className="criclebox tablespace mb-24"
-                                title="Xonalar Jadvali"
+                                title="Analizlar Jadvali"
                             >
                                 <div className="table-responsive">
                                     {
@@ -171,15 +158,6 @@ export default class Persons extends Component {
                                             />
                                         )
                                     }
-                                </div>
-                                <div className="uploadfile pb-15 shadow-none">
-                                    <Button
-                                        onClick={this.openCreate}
-                                        className="ant-full-box" id="addBtn"
-                                        icon={<ToTopOutlined />}
-                                    >
-                                        Xona Qo'shish
-                                    </Button>
                                 </div>
                             </Card>
                         </Col>
