@@ -13,3 +13,47 @@ tr, td, th{
     text-align: center;
     width: 2%;
 } */
+.BtnModal{
+    display: flex;
+    justify-content: end;
+}
+.InputTable{
+    margin: 3% 0 !important;
+}
+.ModalRoomstable{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 10000000;
+    height: 100vh;
+    background-color: rgba(8, 8, 83, 0.41);
+    transition: all 0.4s ease-in-out;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+}
+.ModalCard{
+    padding: 2%;
+    margin: auto;
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.487);
+    border-radius: 10px;
+}
+.ScrollTable{
+    overflow: scroll;
+    height: 75vh;
+}
+.RoomBlock{
+    border-radius: 10px;
+    margin: 2% 1%;
+    padding: 0 1%;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.163);
+}
+.BlockTop{ 
+    
+    padding: 1% 0;
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+}

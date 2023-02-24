@@ -1,4 +1,4 @@
-import { Button, Col, Row, Table } from 'antd'
+import { Button, Col, Input, Modal, Row, Table } from 'antd'
 import axios from 'axios'
 import React, { Component } from 'react'
 import { url } from '../host/host'
@@ -8,9 +8,19 @@ import "./RoomsTable.css"
 
 export default class RoomsTable extends Component {
      state ={
-         rooms: []
+         rooms: [],
+         isModalOpen: false
 
      }
+
+    showModal = () => {
+       document.querySelector(".ModalRoomstable").style ="right: 0"
+    };
+    closeModal = () => {
+        document.querySelector(".ModalRoomstable").style = "right: -100%"
+    };
+   
+
 
 
     getRooms = () =>{
@@ -40,7 +50,7 @@ export default class RoomsTable extends Component {
 
                 {
                     title: "№",
-                    width: "5%",
+                    width: "2%",
                     dataIndex: "key",
                 },
                 {
@@ -49,7 +59,7 @@ export default class RoomsTable extends Component {
                     dataIndex: "username",
                 },
                 {
-                    title: "Telefon raqami",
+                    title: "Telefon",
                     key: "telNumber",
                     width: "10%",
                     dataIndex: "telNumber",
@@ -57,51 +67,56 @@ export default class RoomsTable extends Component {
                     sortDirections: ['descend', 'ascend']
                 },
                 {
-                    title: "Boshlanish sanasi",
+                    title: "sanasi",
                     key: "StartDate",
-                    width: "10%",
+                    width: "5%",
                     dataIndex: "",
                 },
                 {
-                    title: "Necha kungaligi",
+                    title: "kun",
                     key: "stay",
                     width: "5%",
                     dataIndex: "stay",
                 },
                 {
-                    title: "Kunlik to'lov miqdori(so'mda)",
+                    title: "Kunlik",
                     key: "pay",
                     width: "5%",
                     dataIndex: "daily",
-                    sorter: (a, b) => a.dedline.length - b.dedline.length,
-                    sortDirections: ['descend', 'ascend']
+                  
                 },
                 {
-                    title: "Qilingan to'lov miqdori",
+                    title: "to'lov",
                     key: "money",
                     width: "5%",
                     dataIndex: "money",
-                    sorter: (a, b) => a.dedline.length - b.dedline.length,
-                    sortDirections: ['descend', 'ascend']
+                  
                 },
                 {
-                    title: "Umumiy to'lov miqdori",
+                    title: "Umumiy",
                     key: "dedline",
                     width: "5%",
                     dataIndex: "dedline",
-                    sorter: (a, b) => a.dedline.length - b.dedline.length,
-                    sortDirections: ['descend', 'ascend']
+                
                 },
             
 
-                // {
-                //     title: "Comment",
-                //     key: "dedline",
-                //     width: "14%",
-                //     render: (_, record) => {
-                //         return <div><Button style={{ marginRight: '10px' }} onClick={() => { this.openComent(record.id) }} type="primary">Push Coment</Button></div>
-                //     }
-                // },
+                {
+                    title: "Edit",
+                    key: "edit",
+                    width: "5%",
+                    render: () => {
+                        return <div><Button style={{background:'orange',color:'white'}} type="text">Edit</Button></div>
+                    }
+                },
+                {
+                    title: "Delete",
+                    key: "delete",
+                    width: "5%",
+                    render: () => {
+                        return <div><Button type="danger">O'chirish</Button></div>
+                    }
+                },
 
                 // {
                 //     title: "action",
@@ -121,17 +136,35 @@ export default class RoomsTable extends Component {
         return (
             <>
                 <div className='RoomsTable'>
+
+                    <div className='ModalRoomstable'>
+                       <div className='ModalCard'>
+                        <h2>Hello world</h2>
+                        <Input type='text' className='InputTable' placeholder='text' />
+                        <Input type='text' className='InputTable' placeholder='text' />
+                        <Input type='text' className='InputTable' placeholder='text' />
+                        <div className="BtnModal">
+                                <Button type='danger' onClick={() => { this.closeModal() }}>Yopish</Button>
+                        </div>
+                        </div>
+                    </div>
+                   
                     <Row>
                         <Col md="4">
                             <h3>Buyurtmalar</h3>
                         </Col>
                     </Row>
                 
-                    <Row>
+                    <Row className="ScrollTable">
                       
                       { this.state.rooms.map((item)=>(
-                        <Col span={24}>
-                          <h2>{item.number}</h2>
+                        <div className="RoomBlock">
+                              <div className='BlockTop'> <h2>Xona raqami: {item.number}</h2>
+                                  <Button type="primary" onClick={()=> {this.showModal()}}>Odam qo'shish</Button>
+                                  <Button type="primary">Odam qo'shish</Button>
+                                </div>
+                                  
+                              
                               <Table
                                   columns={columns}
                                   dataSource={item.persons}
@@ -139,9 +172,11 @@ export default class RoomsTable extends Component {
                                   className="ant-border-space"
                               />
                             
-                
+                              
+
+                          </div>
                             
-                          </Col>
+                          
                       )) }
                     
                           

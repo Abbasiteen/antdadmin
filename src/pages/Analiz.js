@@ -1,6 +1,6 @@
 import { ToTopOutlined } from "@ant-design/icons";
 import axios from "axios";
-import url from "../host/host"
+
 
 import React, { Component } from 'react'
 import {
@@ -22,6 +22,7 @@ import {
 } from "@ant-design/icons";
 
 import "../assets/styles/All.css"
+
 
 
 
@@ -104,16 +105,18 @@ export default class Persons extends Component {
                 dataIndex: "limit",
                 render: (text, record) => {
                     return <Space wrap>
+
                         <a href={"https://klinika.onrender.com/analizDownload/"+record.analizFile}>
                             <Button
                                 type="primary"
                                 icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}
-                                htmlType="submit"
-                                onClick={() => this.downloadFile(record.analizFile)}
-                            >
+                                htmlType="submit">
                                 Yuklash
                             </Button>
                         </a>
+
+
+
                     </Space>
                 }
             },
