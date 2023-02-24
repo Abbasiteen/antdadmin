@@ -256,6 +256,9 @@ openwork=()=>{
         key: "dedline",
         width: "15%",
         dataIndex: "dedline",
+        render:(_,record)=>(
+          record.dedline ? (<div>{record.dedline}</div>):(<button>qoshish</button>)
+        ),
         sorter: (a, b) => a.dedline.length - b.dedline.length,
         sortDirections: ['descend', 'ascend']
       },

@@ -160,6 +160,19 @@ function Sidenav({ color }) {
             <span className="label">Bosh sahifa</span>
           </NavLink>
         </Menu.Item>
+        <Menu.Item key="8">
+          <NavLink to="/dedline">
+            <span
+              className="icon"
+              style={{
+                background: page ==="dedline" ? color : "",
+              }}
+            >
+              {dashboard}
+            </span>
+            <span className="label">Aloqaga chiqing</span>
+          </NavLink>
+        </Menu.Item>
         <Menu.Item key="2">
           <NavLink to="/ishlar">
             <span
@@ -220,7 +233,7 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="8">
-          <NavLink to="/buyurma">
+          <NavLink to="/buyurtma">
             <span
               className="icon"
               style={{
@@ -229,7 +242,7 @@ function Sidenav({ color }) {
             >
               {dashboard}
             </span>
-            <span className="label">Buyurmalar</span>
+            <span className="label">Buyurtmalar</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7">

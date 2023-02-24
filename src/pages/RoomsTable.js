@@ -124,7 +124,7 @@ export default class RoomsTable extends Component {
                 <div className='RoomsTable'>
                     <Row>
                         <Col md="4">
-                            <h3>Buyurmalar</h3>
+                            <h3>Buyurtmalar</h3>
                         </Col>
                     </Row>
                 

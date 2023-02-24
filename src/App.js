@@ -24,6 +24,7 @@ import {
   Input,
 } from "antd";
 import axios from "axios";
+import Dedline from "./pages/Dedline";
 
 // function onChange(checked) {
 //   console.log(`switch to ${checked}`);
@@ -106,10 +107,11 @@ componentDidMount(){
             <Route path="/nazorat" exact component={SignUp} />
             <Route exact path="/" component={Home} />
               <Route exact path="/ishlar" component={Tables} />
+              <Route exact path="/dedline" component={Dedline} />
               <Route exact path="/analiz" component={Analiz} />
             <Route exact path="/comment" component={Billing} />
             <Route exact path="/xonalar" component={Persons} />
-            <Route exact path="/buyurma" component={RoomsTable} />
+            <Route exact path="/buyurtma" component={RoomsTable} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/dashboard" component={Home} />
           </Main>)}
