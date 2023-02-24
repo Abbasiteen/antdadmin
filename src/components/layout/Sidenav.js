@@ -190,11 +190,11 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="5">
-          <NavLink to="/odamlar">
+          <NavLink to="/xonalar">
             <span
               className="icon"
               style={{
-                background: page === "odamlar" ? color : "",
+                background: page === "xonalar" ? color : "",
               }}
             >
               {signin}
@@ -214,15 +214,9 @@ function Sidenav({ color }) {
             </span>
             <span className="label">Operatorlar</span>
           </NavLink>
-        </Menu.Item>
-        <Menu.Item key="7">
-          <a onClick={()=>home()}>
-            <span className="icon">{signin}</span>
-            <span className="label">Chiqish</span>
-          </a>
-        </Menu.Item>
+        </Menu.Item>      
         <Menu.Item key="8">
-          <NavLink to="/xonalar">
+          <NavLink to="/buyurma">
             <span
               className="icon"
               style={{
@@ -231,9 +225,16 @@ function Sidenav({ color }) {
             >
               {dashboard}
             </span>
-            <span className="label">Xonalar</span>
+            <span className="label">Buyurmalar</span>
           </NavLink>
         </Menu.Item>
+        <Menu.Item key="7">
+          <a onClick={()=>home()}>
+            <span className="icon">{signin}</span>
+            <span className="label">Chiqish</span>
+          </a>
+        </Menu.Item>
+  
       </Menu>
     </>
   );

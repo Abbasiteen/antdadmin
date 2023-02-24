@@ -9,20 +9,20 @@ function EChart() {
 
   const items = [
     {
-      Title: "3,6K",
-      user: "Users",
+      Title: "3",
+      user: "keldi",
     },
     {
-      Title: "2m",
-      user: "Clicks",
+      Title: "20",
+      user: "gaplashdi",
     },
     {
-      Title: "$772",
-      user: "Sales",
+      Title: "$300",
+      user: "oyligi",
     },
     {
-      Title: "82",
-      user: "Items",
+      Title: "17",
+      user: "kelmadi",
     },
   ];
 
@@ -38,13 +38,12 @@ function EChart() {
         />
       </div>
       <div className="chart-vistior">
-        <Title level={5}>Active Users</Title>
+        <Title level={5}>Operatorlarni oylik aktivligi</Title>
         <Paragraph className="lastweek">
-          than last week <span className="bnb2">+30%</span>
+          o`tgan oylik natija<span className="bnb2">+30%</span>
         </Paragraph>
         <Paragraph className="lastweek">
-          We have created multiple options for you to put together and customise
-          into pixel perfect pages.
+        operatorlar aktivligi ularning qongiroqlarga qanchalik kop odamlarni ushlab qolishi bilan baxolanadi
         </Paragraph>
         <Row gutter>
           {items.map((v, index) => (

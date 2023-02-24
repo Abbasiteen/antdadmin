@@ -124,14 +124,14 @@ export default class RoomsTable extends Component {
                 <div className='RoomsTable'>
                     <Row>
                         <Col md="4">
-                            <h3>Xonalar</h3>
+                            <h3>Buyurmalar</h3>
                         </Col>
                     </Row>
                 
                     <Row>
                       
                       { this.state.rooms.map((item)=>(
-                          <Col span={24}>
+                        <Col span={24}>
                           <h2>{item.number}</h2>
                               <Table
                                   columns={columns}

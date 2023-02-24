@@ -92,22 +92,22 @@ componentDidMount(){
         {this.state.token ? (<Switch>
          
          {this.state.loader?(
-            <main class="abas11">
-              <div class="preloader">
-                <div class="preloader__square"></div>
-                <div class="preloader__square"></div>
-                <div class="preloader__square"></div>
-                <div class="preloader__square"></div>
+            <main className="abas11">
+              <div className="preloader">
+                <div className="preloader__square"></div>
+                <div className="preloader__square"></div>
+                <div className="preloader__square"></div>
+                <div className="preloader__square"></div>
               </div>
-              <div class="status">Loading<span class="status__dot">.</span><span class="status__dot">.</span><span class="status__dot">.</span></div>
+              <div className="status">Loading<span className="status__dot">.</span><span className="status__dot">.</span><span className="status__dot">.</span></div>
             </main>
          ):(<Main>
             <Route path="/nazorat" exact component={SignUp} />
             <Route exact path="/" component={Home} />
             <Route exact path="/ishlar" component={Tables} />
             <Route exact path="/comment" component={Billing} />
-            <Route exact path="/odamlar" component={Persons} />
-            <Route exact path="/xonalar" component={RoomsTable} />
+            <Route exact path="/xonalar" component={Persons} />
+            <Route exact path="/buyurma" component={RoomsTable} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/dashboard" component={Home} />
           </Main>)}

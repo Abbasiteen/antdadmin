@@ -249,13 +249,13 @@ function Header({
 }) {
   // const { Title, Text } = Typography;
 
-  // const [visible, setVisible] = useState(false);
-  // const [sidenavType, setSidenavType] = useState("transparent");
+  const [visible, setVisible] = useState(false);
+  const [sidenavType, setSidenavType] = useState("transparent");
 
   useEffect(() => window.scrollTo(0, 0));
 
   const showDrawer = () => setVisible(true);
-  // const hideDrawer = () => setVisible(false);
+  const hideDrawer = () => setVisible(false);
 
   return (
     <>
@@ -266,7 +266,7 @@ function Header({
         <Col span={24} md={6}>
           <Breadcrumb>
             <Breadcrumb.Item>
-              <NavLink to="/">Pages</NavLink>
+              <NavLink to="/">Oyna</NavLink>
             </Breadcrumb.Item>
             <Breadcrumb.Item>{name}</Breadcrumb.Item>
           </Breadcrumb>

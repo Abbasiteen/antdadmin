@@ -91,7 +91,10 @@ const credit = [
     ></path>
   </svg>,
 ];
-
+const Signin=()=>{
+  sessionStorage.removeItem("token11")
+  window.location.reload()
+}
 const clockicon = [
   <svg
     width="20"
@@ -198,7 +201,7 @@ function Header({
         <Col span={24} md={6}>
           <Breadcrumb>
             <Breadcrumb.Item>
-              <NavLink to="/">Pages</NavLink>
+              <NavLink to="/">Oyna</NavLink>
             </Breadcrumb.Item>
             <Breadcrumb.Item style={{ textTransform: "capitalize" }}>
               {name.replace("/", "")}
@@ -247,15 +250,10 @@ function Header({
 
 
 
-          <Link to="/sign-in" className="btn-sign-in">
+          <Link to="/" onClick={()=>{Signin()}} className="btn-sign-in">
             {profile}
             <span>Sign in</span>
           </Link>
-          <Input
-            className="header-search"
-            placeholder="Type here..."
-            prefix={<SearchOutlined />}
-          />
         </Col>
       </Row>
     </>

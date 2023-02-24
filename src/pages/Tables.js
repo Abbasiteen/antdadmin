@@ -43,6 +43,7 @@ getData=()=>{
     window.location.reload()
   })
 }
+
 openForm=(key)=>{
 switch (key) {
   case 1:

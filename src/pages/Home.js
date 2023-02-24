@@ -101,28 +101,28 @@ function Home() {
   ];
   const count = [
     {
-      today: "Today’s Sales",
-      title: "$53,000",
-      persent: "+30%",
+      today: "Xonalardagi buyurtmalar",
+      title: "100ta",
+      persent: "+10ta",
       icon: dollor,
       bnb: "bnb2",
     },
     {
-      today: "Today’s Users",
-      title: "3,200",
-      persent: "+20%",
+      today: "Bugungi Qo`ngiroqlar",
+      title: "200ta",
+      persent: "+50ta",
       icon: profile,
       bnb: "bnb2",
     },
     {
-      today: "New Clients",
-      title: "+1,200",
-      persent: "-20%",
+      today: "Kunlik hona narxi",
+      title: "350ming",
+      persent: "-5ming",
       icon: heart,
       bnb: "redtext",
     },
     {
-      today: "New Orders",
+      today: "oylik daromad",
       title: "$13,200",
       persent: "10%",
       icon: cart,

@@ -7,11 +7,11 @@ function Footer() {
       <Row className="just">
         <Col xs={24} md={12} lg={12}>
           <div className="copyright">
-            © 2023, made with
-            {<HeartFilled />} by
+            © 2023, 
             <a href="mailto:webabbas9@gmail.com" className="font-weight-bold">
-              abbas team
+              abbas team yaratdi
             </a>
+            {<HeartFilled />} 
             sayt test rejimida ishlayapdi
           </div>
         </Col>
