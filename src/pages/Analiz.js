@@ -21,6 +21,7 @@ import {
 } from "@ant-design/icons";
 
 import "../assets/styles/All.css"
+import { url } from "../host/host";
 
 
 
@@ -121,6 +122,7 @@ export default class Persons extends Component {
                 dataIndex: "limit",
                 render: (text, record) => {
                     return <Space wrap>
+<<<<<<< Updated upstream
                         <Button
                             type="primary"
                             icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}
@@ -129,6 +131,15 @@ export default class Persons extends Component {
                         >
                             Yuklash
                         </Button>
+=======
+                        <a href={url + '/' + record.analizFile} >
+                            <Button
+                                type="primary"
+                                icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}
+                            >
+                                Yuklash
+                            </Button></a>
+>>>>>>> Stashed changes
                     </Space>
                 }
             },
