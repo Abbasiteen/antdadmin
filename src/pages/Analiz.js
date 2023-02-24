@@ -122,16 +122,7 @@ export default class Persons extends Component {
                 dataIndex: "limit",
                 render: (text, record) => {
                     return <Space wrap>
-<<<<<<< Updated upstream
-                        <Button
-                            type="primary"
-                            icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}
-                            htmlType="submit"
-                            onClick={() => { this.downloadFile(record.id) }}
-                        >
-                            Yuklash
-                        </Button>
-=======
+
                         <a href={url + '/' + record.analizFile} >
                             <Button
                                 type="primary"
@@ -139,7 +130,6 @@ export default class Persons extends Component {
                             >
                                 Yuklash
                             </Button></a>
->>>>>>> Stashed changes
                     </Space>
                 }
             },
