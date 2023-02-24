@@ -1,5 +1,6 @@
 import { ToTopOutlined } from "@ant-design/icons";
 import axios from "axios";
+import url from "../host/host"
 
 import React, { Component } from 'react'
 import {
@@ -77,24 +78,6 @@ export default class Persons extends Component {
     closeEdit = () => {
         document.querySelector(".modal4").style = "display: none"
     }
-    downloadFile = (id) => {
-        axios
-            .request({
-                url: `https://klinika.onrender.com/analizDownload/${id}`,
-                method: "GET"
-            })
-
-            .then((res) => {
-                const downloadUrl = window.URL.createObjectURL(new Blob([res.data]));
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-                link.setAttribute('download', res.data);
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
-            });
-    }
-
     componentDidMount() {
         this.getAnaliz()
     }
@@ -121,14 +104,16 @@ export default class Persons extends Component {
                 dataIndex: "limit",
                 render: (text, record) => {
                     return <Space wrap>
-                        <Button
-                            type="primary"
-                            icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}
-                            htmlType="submit"
-                            onClick={() => { this.downloadFile(record.id) }}
-                        >
-                            Yuklash
-                        </Button>
+                        <a href={"https://klinika.onrender.com/analizDownload/"+record.analizFile}>
+                            <Button
+                                type="primary"
+                                icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}
+                                htmlType="submit"
+                                onClick={() => this.downloadFile(record.analizFile)}
+                            >
+                                Yuklash
+                            </Button>
+                        </a>
                     </Space>
                 }
             },
