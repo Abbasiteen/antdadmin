@@ -1,4 +1,4 @@
-import { Button, Col, Input, Modal, Row, Table } from 'antd'
+import { Button, Col, Input, Modal, Row, Select, Table } from 'antd'
 import axios from 'axios'
 import React, { Component } from 'react'
 import { url } from '../host/host'
@@ -9,9 +9,24 @@ import "./RoomsTable.css"
 export default class RoomsTable extends Component {
      state ={
          rooms: [],
-         isModalOpen: false
-
+         isModalOpen: false,
+         data:[]
      }
+     getData=()=>{
+        let headers = {
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+          }
+        }
+        axios.get(`${url}/users`, headers).then(res=>{
+          this.setState({data:res.data})
+        }).catch(err=>{
+          window.location.reload()
+        })
+      }
 
     showModal = () => {
        document.querySelector(".ModalRoomstable").style ="right: 0"
@@ -21,19 +36,15 @@ export default class RoomsTable extends Component {
     };
    
 
-
+    handleChange = (value) => {
+        console.log(`selected ${value}`);
+      };
 
     getRooms = () =>{
       
         var now = new Date();
         var month = (now.getMonth() + 1);
         var day = now.getDate();
-        // if (month < 10) {
-        //     month = "0" + month;
-        // }
-        // if (day < 10) {
-        //     day = "0" + day;
-        // }
         var today = month + '-' + day + '-' + now.getFullYear();
         axios.get(`${url}/room/set/${today}`).then(res=>{
         this.setState({rooms: res.data})
@@ -43,34 +54,22 @@ export default class RoomsTable extends Component {
 
     componentDidMount(){
         this.getRooms()
+    this.getData()
     }
+
     render() {
     
             const columns = [
-
-                {
-                    title: "№",
-                    width: "2%",
-                    dataIndex: "key",
-                },
                 {
                     title: "F.I.O",
                     width: "10%",
                     dataIndex: "username",
                 },
                 {
-                    title: "Telefon",
-                    key: "telNumber",
-                    width: "10%",
-                    dataIndex: "telNumber",
-                    sorter: (a, b) => a.age.length - b.age.length,
-                    sortDirections: ['descend', 'ascend']
-                },
-                {
                     title: "sanasi",
                     key: "StartDate",
                     width: "5%",
-                    dataIndex: "",
+                    dataIndex: "started",
                 },
                 {
                     title: "kun",
@@ -92,15 +91,13 @@ export default class RoomsTable extends Component {
                     dataIndex: "money",
                   
                 },
-                {
-                    title: "Umumiy",
-                    key: "dedline",
-                    width: "5%",
-                    dataIndex: "dedline",
+                // {
+                //     title: "Umumiy",
+                //     key: "dedline",
+                //     width: "5%",
+                //     dataIndex: "dedline",
                 
-                },
-            
-
+                // },
                 {
                     title: "Edit",
                     key: "edit",
@@ -118,19 +115,7 @@ export default class RoomsTable extends Component {
                     }
                 },
 
-                // {
-                //     title: "action",
-                //     key: "employed",
-                //     width: "15%",
-                //     render: (_, record) => {
-                //         return <div>
-                //             <Button style={{ marginRight: '10px' }} onClick={() => { this.openPush() }} type="primary">Edit</Button>
-                //             <Button onClick={() => { this.DeleteData(record.id) }} type="primary" danger>
-                //                 Delete
-                //             </Button>
-                //         </div>
-                //     }
-                // },
+              
 
             ];
         return (
@@ -140,7 +125,7 @@ export default class RoomsTable extends Component {
                     <div className='ModalRoomstable'>
                        <div className='ModalCard'>
                         <h2>Hello world</h2>
-                        <Input type='text' className='InputTable' placeholder='text' />
+                        <Select mode="tags" style={{width: '100%',}} placeholder="Tags Mode" onChange={this.state.handleChange} options={this.state.data}/>
                         <Input type='text' className='InputTable' placeholder='text' />
                         <Input type='text' className='InputTable' placeholder='text' />
                         <div className="BtnModal">
@@ -157,11 +142,10 @@ export default class RoomsTable extends Component {
                 
                     <Row className="ScrollTable">
                       
-                      { this.state.rooms.map((item)=>(
-                        <div className="RoomBlock">
+                      { this.state.rooms.map((item,key)=>(
+                        <div key={key} className="RoomBlock">
                               <div className='BlockTop'> <h2>Xona raqami: {item.number}</h2>
                                   <Button type="primary" onClick={()=> {this.showModal()}}>Odam qo'shish</Button>
-                                  <Button type="primary">Odam qo'shish</Button>
                                 </div>
                                   
                               
@@ -190,30 +174,7 @@ export default class RoomsTable extends Component {
                     
                        
                     </Row>
-                    {/* <table className='TableRooms'>
-                        <thead>
-                            <tr>
-                                <th className='th1'>№</th>
-                                <th className='th2'>F.I.O</th>
-                                <th className='th3'>Telefon raqami</th>
-                                <th className='th4'>Boshlanish sanasi</th>
-                                <th className='th5'>Necha kungaligi</th>
-                                <th className='th6'>Kunlik to'lov miqdori(so'mda)</th>
-                                <th className='th7'>Qilingan to'lov miqdori</th>
-                                <th className='th8'>Umumiy to'lov miqdori</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
-                    </table> */}
+               
                 </div>
             </>
         )
