@@ -147,32 +147,16 @@ export default class RoomsTable extends Component {
                               <div className='BlockTop'> <h2>Xona raqami: {item.number}</h2>
                                   <Button type="primary" onClick={()=> {this.showModal()}}>Odam qo'shish</Button>
                                 </div>
-                                  
-                              
                               <Table
                                   columns={columns}
                                   dataSource={item.persons}
                                   pagination={false}
                                   className="ant-border-space"
                               />
-                            
-                              
-
                           </div>
                             
                           
                       )) }
-                    
-                          
-                            
-                           
-                           
-                            
-                           
-                            
-                           
-                    
-                       
                     </Row>
                
                 </div>

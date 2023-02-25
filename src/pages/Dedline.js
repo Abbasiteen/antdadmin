@@ -28,7 +28,7 @@ export default class Dedline extends Component {
         loading: true,
         isModalOpen: false
     }
-    getRoom = () => {
+    getDedline = () => {
         axios.get("https://klinika.onrender.com/dedline")
             .then(res => {
                 this.setState({ data: res.data })
@@ -42,21 +42,7 @@ export default class Dedline extends Component {
             })
     }
 
-    postRoom = () => {
-        var formData = new FormData()
-        formData.append("number", document.querySelector("#Roominp1").value)
-        formData.append("limit", document.querySelector("#Roominp2").value)
-        axios.post("https://klinika.onrender.com/room", formData)
-            .then((res) => {
-                alert("Xona Qo'shildi")
-                window.location.reload()
-            })
-            .catch(err => {
-                alert("xona Qo'shilmadi")
-            })
-    }
-
-    deleteRoom = (id) => {
+    deleteDedline = (id) => {
         axios.post(`https://klinika.onrender.com/dedline/${id}`).then(res => {
             alert("O'chirildi")
             window.location.reload()
@@ -65,109 +51,83 @@ export default class Dedline extends Component {
         })
     }
 
-    editRoom = () => {
-        const ID = document.querySelector("#RoomID").value
+    editDedline = () => {
+        const ID = document.querySelector("#DedId").value
         const formdata = new FormData()
-        formdata.append("number", document.querySelector("#RoomInp3").value)
-        formdata.append("limit", document.querySelector("#RoomInp4").value)
+        formdata.append("dedline", document.querySelector("#DedInp1").value)
 
-        axios.put(`https://klinika.onrender.com/room/${ID}`, formdata).then(res => {
-            alert("Xona Tahrirlandi")
+        axios.put(`https://klinika.onrender.com/dedline/${ID}`, formdata).then(res => {
+            alert("Tahrirlandi")
             window.location.reload()
         }).catch(err => {
-            alert("Xona Tahrirlanmadi")
+            alert("Tahrirlanmadi")
         })
     }
-    openEdit = (id, num, limit) => {
+    openEdit = (id, ded) => {
         document.querySelector(".modal4").style = "display: block"
-        document.querySelector("#RoomID").value = id
-        document.querySelector("#RoomInp3").value = num
-        document.querySelector("#RoomInp4").value = limit
+        document.querySelector("#DedId").value = id
+        document.querySelector("#DedInp1").value = ded
     }
     closeEdit = () => {
         document.querySelector(".modal4").style = "display: none"
     }
-    openCreate = () => {
-        document.querySelector(".modal5").style = "display: block"
-    }
-    closeCreate = () => {
-        document.querySelector(".modal5").style = "display: none"
-    }
 
     componentDidMount() {
-        this.getRoom()
+        this.getDedline()
     }
     render() {
         const columns = [
             {
                 title: "Username",
                 dataIndex: "username",
-                key: "username",
-                width: "10%",
+                key: "username"
             },
             {
                 title: "Surname",
                 dataIndex: "surname",
-                key: "surname",
-                width: "10%",
+                key: "surname"
             },
             {
                 title: "telNumber",
                 dataIndex: "telNumber",
-                key: "telNumber",
-                width: "10%",
+                key: "telNumber"
             },
             {
                 title: "dedline",
                 dataIndex: "dedline",
-                key: "dedline",
-                width: "10%",
+                key: "dedline"
             },
             {
                 title: "finishday",
                 dataIndex: "finishday",
-                key: "finishday",
-                width: "10%",
+                key: "finishday"
             },
  {
                 title: "allmessage",
                 dataIndex: "dedline",
                 key: "dedline",
-                width: "10%",
                 render: (_, record)=>{
                   return  record.comment.map(item=>(
-                        <div>${item.message}|{item.date}|{item.poster}</div>
+                        <div>{item.message + `\u000B`}{item.date + `\u000B`}{item.poster}</div>
                 ))}
             },
             {
                 title: "Action",
                 dataIndex: "Action",
                 render: (text, record) => { return <Space>
-                <EditOutlined onClick={() => this.openEdit(record.id, record.number, record.limit)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} />
-                <DeleteOutlined onClick={() => { this.deleteRoom(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
+                <EditOutlined onClick={() => this.openEdit(record.id, record.dedline)} style={{ color: "#52c41a", marginLeft: 20, cursor: "pointer" }} />
+                <DeleteOutlined onClick={() => { this.deleteDedline(record.id) }} style={{ color: "#f5222d", marginLeft: 20, cursor: "pointer" }} /></Space> }
             },
         ];
         return (
             <div>
-                <div className="modal5">
-                    <h4 className="Room_text">Xona Raqami</h4>
-                    <Input placeholder="Xona Raqami" type="number" id="Roominp1" />
-                    <h4 className="Room_text">Odam Soni</h4>
-                    <Input placeholder="Odam Soni" id="Roominp2" />
-                    <CloseOutlined className="close_modal" style={{ fontSize: "26px", position: 'absolute', top: 20, right: 20, cursor: "pointer" }} onClick={this.closeCreate} />
-                    <Button type="primary" typeof="submit" htmlType="submit" onClick={this.postRoom}>
-                        Qo'shish
-                    </Button>
-                </div>
 
                 <div className="modal4">
                     <h4 className="Room_text">ID</h4>
-                    <Input disabled id="RoomID" />
-                    <h4 className="Room_text">Xona Raqami</h4>
-                    <Input placeholder="Xona Raqami" type="number" id="RoomInp3" />
-                    <h4 className="Room_text">Odam Soni</h4>
-                    <Input placeholder="Odam Soni" id="RoomInp4" />
-                    <Button type="primary" typeof="submit" htmlType="submit" onClick={this.editRoom}>
+                    <Input disabled id="DedId" />
+                    <h4 className="Room_text">Dedline</h4>
+                    <Input type="date" id="DedInp1" />
+                    <Button type="primary" typeof="submit" htmlType="submit" onClick={this.editDedline}>
                         Tahrirlash
                     </Button>
                     <CloseOutlined style={{ fontSize: "26px", position: 'absolute', top: 20, right: 20, cursor: "pointer", color: "#fff !important" }} onClick={this.closeEdit} />
@@ -179,7 +139,7 @@ export default class Dedline extends Component {
                             <Card
                                 bordered={false}
                                 className="criclebox tablespace mb-24"
-                                title="Xonalar Jadvali"
+                                title="Aloqa Jadvali"
                             >
                                 <div className="table-responsive">
                                     {
@@ -196,15 +156,6 @@ export default class Dedline extends Component {
                                             />
                                         )
                                     }
-                                </div>
-                                <div className="uploadfile pb-15 shadow-none">
-                                    <Button
-                                        onClick={this.openCreate}
-                                        className="ant-full-box" id="addBtn"
-                                        icon={<ToTopOutlined />}
-                                    >
-                                        Xona Qo'shish
-                                    </Button>
                                 </div>
                             </Card>
                         </Col>
