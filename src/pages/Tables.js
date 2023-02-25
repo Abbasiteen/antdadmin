@@ -384,7 +384,7 @@ openwork=()=>{
 
               <div className="familya">
                 <label>Familyangizni kiriting</label><br />
-                <input type="text" id="postf" />
+                <input  type="text" id="postf" />
               </div>
 
               <div className="yosh">
@@ -406,7 +406,7 @@ openwork=()=>{
 
               <div className="tel">
                 <label>Telefon nomer</label><br />
-                <input type="number" id="postt" />
+                <input maxLength={15} type="number" id="postt" />
               </div>
 
               <div className="sana1">
