@@ -58,7 +58,7 @@ export default class Profile extends Component {
     price: []
   }
   getData = () => {
-    axios.get("https://klinika.onrender.com/operator")
+    axios.get("http://nodejs.abbas.uz/operator")
       .then(res => {
         this.setState({ data: res.data })
       })
@@ -71,7 +71,7 @@ export default class Profile extends Component {
   }
 
   getPrice = () => {
-    axios.get("https://klinika.onrender.com/price")
+    axios.get("http://nodejs.abbas.uz/price")
       .then(res => {
         this.setState({ price: res.data })
       })
@@ -81,7 +81,7 @@ export default class Profile extends Component {
   }
 
   deleteData = (id) => {
-    axios.delete(`https://klinika.onrender.com/operator/${id}`)
+    axios.delete(`http://nodejs.abbas.uz/operator/${id}`)
       .then(res => {
         alert("Operator O'chirildi")
         window.location.reload()
@@ -99,7 +99,7 @@ export default class Profile extends Component {
     postForm.append("password", document.querySelector("#password2").value)
     postForm.append("telNumber", document.querySelector("#tel2").value)
 
-    axios.post("https://klinika.onrender.com/operator", postForm)
+    axios.post("http://nodejs.abbas.uz/operator", postForm)
       .then(res => {
         alert("Operator Qo'shildi")
         window.location.reload()
@@ -139,7 +139,7 @@ export default class Profile extends Component {
     const ID = document.querySelector("#PriceID").value
     var newData4 = new FormData()
     newData4.append("price", document.querySelector("#Price").value)
-    axios.put(`https://klinika.onrender.com/price/${ID}`, newData4)
+    axios.put(`http://nodejs.abbas.uz/price/${ID}`, newData4)
     .then(res => {
       alert("O'zgartirildi")
       window.location.reload()
@@ -157,7 +157,7 @@ export default class Profile extends Component {
     newData.append("password", document.querySelector("#password").value)
     newData.append("telNumber", document.querySelector("#tel").value)
     newData.append("email", document.querySelector("#email").value)
-    axios.put(`https://klinika.onrender.com/operator/${ID}`, newData)
+    axios.put(`http://nodejs.abbas.uz/operator/${ID}`, newData)
       .then(res => {
         alert('Operator Tahrirlandi')
         window.location.reload()

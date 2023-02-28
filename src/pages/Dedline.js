@@ -29,7 +29,7 @@ export default class Dedline extends Component {
         isModalOpen: false
     }
     getDedline = () => {
-        axios.get("https://klinika.onrender.com/dedline")
+        axios.get("http://nodejs.abbas.uz/dedline")
             .then(res => {
                 this.setState({ data: res.data })
             })
@@ -43,7 +43,7 @@ export default class Dedline extends Component {
     }
 
     deleteDedline = (id) => {
-        axios.post(`https://klinika.onrender.com/dedline/${id}`).then(res => {
+        axios.post(`http://nodejs.abbas.uz/dedline/${id}`).then(res => {
             alert("O'chirildi")
             window.location.reload()
         }).catch(err => {
@@ -56,7 +56,7 @@ export default class Dedline extends Component {
         const formdata = new FormData()
         formdata.append("dedline", document.querySelector("#DedInp1").value)
 
-        axios.put(`https://klinika.onrender.com/dedline/${ID}`, formdata).then(res => {
+        axios.put(`http://nodejs.abbas.uz/dedline/${ID}`, formdata).then(res => {
             alert("Tahrirlandi")
             window.location.reload()
         }).catch(err => {

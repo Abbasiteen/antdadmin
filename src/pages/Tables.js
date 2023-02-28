@@ -189,7 +189,7 @@ export default class Tables extends Component {
     var formPost = new FormData()
     formPost.append("analizName", document.querySelector("#AnalizName").value)
     formPost.append("analizFile", document.querySelector("#analizFile").files[0])
-    axios.post(`https://klinika.onrender.com/users/analiz/${this.state.openid}`, formPost)
+    axios.post(`http://nodejs.abbas.uz/users/analiz/${this.state.openid}`, formPost)
       .then(res => {
         alert("Jo'natildi")
         window.location.reload()
@@ -242,7 +242,7 @@ export default class Tables extends Component {
     newDATA.append("telNumber", document.querySelector("#telNumber2").value)
     newDATA.append("dedline", document.querySelector("#dedline2").value)
     newDATA.append("address", document.querySelector("#address2").value)
-    axios.put(`https://klinika.onrender.com/users/${this.state.userID}`, newDATA)
+    axios.put(`http://nodejs.abbas.uz/users/${this.state.userID}`, newDATA)
       .then(res => {
         alert("O'zgartirildi")
         window.location.reload()

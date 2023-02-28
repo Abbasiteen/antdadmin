@@ -72,12 +72,12 @@ export default class componentName extends Component {
     sessionStorage.setItem("poster",JSON.stringify({"poster":block}))
     dd.append("name",block)
     dd.append("page","login")
-    axios.post("https://klinika.onrender.com/login", formdata).then(res => {
+    axios.post("http://nodejs.abbas.uz/login", formdata).then(res => {
       console.log(res.data);
       this.setState({ token: res.data })
       sessionStorage.setItem("token11", res.data)
    
-      axios.post("https://klinika.onrender.com/history",dd)
+      axios.post("http://nodejs.abbas.uz/history",dd)
     }).catch(err=>{
       alert("Parol xato terildi")
     })

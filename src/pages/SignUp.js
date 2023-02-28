@@ -43,7 +43,7 @@ export default class Billing extends Component {
     loading: true
   }
   getData = () => {
-    axios.get("https://klinika.onrender.com/history")
+    axios.get("http://nodejs.abbas.uz/history")
       .then(res => {
         this.setState({ data: res.data })
       })

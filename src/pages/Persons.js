@@ -33,7 +33,7 @@ export default class Persons extends Component {
     isModalOpen: false
   }
   getRoom = () => {
-    axios.get("https://klinika.onrender.com/room")
+    axios.get("http://nodejs.abbas.uz/room")
       .then(res => {
         this.setState({ data: res.data })
       })
@@ -50,7 +50,7 @@ export default class Persons extends Component {
     var formData = new FormData()
     formData.append("number", document.querySelector("#Roominp1").value)
     formData.append("limit", document.querySelector("#Roominp2").value)
-    axios.post("https://klinika.onrender.com/room", formData)
+    axios.post("http://nodejs.abbas.uz/room", formData)
     .then((res) => {
       alert("Xona Qo'shildi")
       window.location.reload()
@@ -61,7 +61,7 @@ export default class Persons extends Component {
   }
 
   deleteRoom = (id) => {
-    axios.delete(`https://klinika.onrender.com/room/${id}`).then(res => {
+    axios.delete(`http://nodejs.abbas.uz/room/${id}`).then(res => {
       alert("O'chirildi")
       window.location.reload()
     }).catch(err => {
@@ -75,7 +75,7 @@ export default class Persons extends Component {
     formdata.append("number", document.querySelector("#RoomInp3").value)
     formdata.append("limit", document.querySelector("#RoomInp4").value)
 
-    axios.put(`https://klinika.onrender.com/room/${ID}`, formdata).then(res => {
+    axios.put(`http://nodejs.abbas.uz/room/${ID}`, formdata).then(res => {
       alert("Xona Tahrirlandi")
       window.location.reload()
     }).catch(err => {

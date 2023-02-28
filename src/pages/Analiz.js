@@ -35,7 +35,7 @@ export default class Persons extends Component {
         loading: true
     }
     getAnaliz = () => {
-        axios.get("https://klinika.onrender.com/users/analiz")
+        axios.get("http://nodejs.abbas.uz/users/analiz")
             .then(res => {
                 this.setState({ data: res.data })
             })
@@ -49,7 +49,7 @@ export default class Persons extends Component {
     }
 
     deleteAnaliz = (id) => {
-        axios.delete(`https://klinika.onrender.com/users/analiz/${id}`).then(res => {
+        axios.delete(`http://nodejs.abbas.uz/users/analiz/${id}`).then(res => {
             alert("O'chirildi")
             window.location.reload()
         }).catch(err => {
@@ -63,7 +63,7 @@ export default class Persons extends Component {
         formdata.append("number", document.querySelector("#RoomInp3").value)
         formdata.append("limit", document.querySelector("#RoomInp4").value)
 
-        axios.put(`https://klinika.onrender.com/room/${ID}`, formdata).then(res => {
+        axios.put(`http://nodejs.abbas.uz/room/${ID}`, formdata).then(res => {
             alert("Xona Tahrirlandi")
             window.location.reload()
         }).catch(err => {
@@ -106,7 +106,7 @@ export default class Persons extends Component {
                 render: (text, record) => {
                     return <Space wrap>
 
-                        <a href={"https://klinika.onrender.com/analizDownload/"+record.analizFile}>
+                        <a href={"http://nodejs.abbas.uz/analizDownload/"+record.analizFile}>
                             <Button
                                 type="primary"
                                 icon={<DownloadOutlined style={{ fontSize: "15px", color: "#fff" }} />}

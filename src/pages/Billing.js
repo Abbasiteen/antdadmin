@@ -35,7 +35,7 @@ export default class Billing extends Component {
     loading: true
   }
   getData = () => {
-    axios.get("https://klinika.onrender.com/comment")
+    axios.get("http://nodejs.abbas.uz/comment")
       .then(res => {
         this.setState({ data: res.data })
       })
@@ -47,7 +47,7 @@ export default class Billing extends Component {
       })
   }
   deleteComment = (Id) => {
-    axios.delete(`https://klinika.onrender.com/comment/${Id}`)
+    axios.delete(`http://nodejs.abbas.uz/comment/${Id}`)
       .then(res => {
         alert("Comment O'chirildi")
         window.location.reload()
