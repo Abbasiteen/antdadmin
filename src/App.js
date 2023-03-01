@@ -85,7 +85,7 @@ export default class componentName extends Component {
 componentDidMount(){
   setTimeout(() => {
     this.setState({ loader: false })
-  }, 5000);
+  }, 3000);
 }
 
   render() {

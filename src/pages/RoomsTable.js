@@ -1,4 +1,4 @@
-import { Button, Col, Input, Modal, Row, Select, Table } from 'antd'
+import { Button, Col, Input, Modal, Row, Select, Space, Table } from 'antd'
 import axios from 'axios'
 import React, { Component } from 'react'
 import { url } from '../host/host'
@@ -7,59 +7,67 @@ import "./RoomsTable.css"
 
 
 export default class RoomsTable extends Component {
-     state ={
-         rooms: [],
-         isModalOpen: false,
-         data:[]
-     }
-     getData=()=>{
+    state = {
+        rooms: [],
+        isModalOpen: false,
+        data: [],
+        users: []
+    }
+    getData = () => {
         let headers = {
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-          }
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+            }
         }
-        axios.get(`${url}/users`, headers).then(res=>{
-          this.setState({data:res.data})
-        }).catch(err=>{
-          window.location.reload()
+        axios.get(`${url}/users`, headers).then(res => {
+            this.setState({ data: res.data })
+        }).catch(err => {
+            window.location.reload()
         })
-      }
+    }
+
+    usersGet = () => {
+        axios.get(`${url}/users`)
+            .then(res => {
+                this.setState({ users: res.data })
+            })
+    }
 
     showModal = () => {
-       document.querySelector(".ModalRoomstable").style ="right: 0"
+        document.querySelector(".ModalRoomstable").style = "right: 0"
     };
     closeModal = () => {
         document.querySelector(".ModalRoomstable").style = "right: -100%"
     };
-   
+
 
     handleChange = (value) => {
         console.log(`selected ${value}`);
-      };
+    };
 
-    getRooms = () =>{
-      
+    getRooms = () => {
+
         var now = new Date();
         var month = (now.getMonth() + 1);
         var day = now.getDate();
         var today = month + '-' + day + '-' + now.getFullYear();
-        axios.get(`${url}/room/set/${today}`).then(res=>{
-        this.setState({rooms: res.data})
-        console.log(res.data)
-    })
+        axios.get(`${url}/room/set/${today}`).then(res => {
+            this.setState({ rooms: res.data })
+            console.log(res.data)
+        })
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getRooms()
-    this.getData()
+        this.getData()
+        this.usersGet()
     }
 
     render() {
-    
-            const columns = [
+        const columns = [
                 {
                     title: "F.I.O",
                     width: "10%",
@@ -82,28 +90,28 @@ export default class RoomsTable extends Component {
                     key: "pay",
                     width: "5%",
                     dataIndex: "daily",
-                  
+
                 },
                 {
                     title: "to'lov",
                     key: "money",
                     width: "5%",
                     dataIndex: "money",
-                  
+
                 },
                 // {
                 //     title: "Umumiy",
                 //     key: "dedline",
                 //     width: "5%",
                 //     dataIndex: "dedline",
-                
+
                 // },
                 {
                     title: "Edit",
                     key: "edit",
                     width: "5%",
                     render: () => {
-                        return <div><Button style={{background:'orange',color:'white'}} type="text">Edit</Button></div>
+                        return <div><Button style={{ background: 'orange', color: 'white' }} type="text">Edit</Button></div>
                     }
                 },
                 {
@@ -114,52 +122,52 @@ export default class RoomsTable extends Component {
                         return <div><Button type="danger">O'chirish</Button></div>
                     }
                 },
-
-              
-
             ];
-        return (
+            return(
             <>
-                <div className='RoomsTable'>
+            <div className='RoomsTable'>
 
-                    <div className='ModalRoomstable'>
-                       <div className='ModalCard'>
-                        <h2>Hello world</h2>
-                        <Select mode="tags" style={{width: '100%',}} placeholder="Tags Mode" onChange={this.state.handleChange} options={this.state.data}/>
-                        <Input type='text' className='InputTable' placeholder='text' />
+                <div className='ModalRoomstable'>
+                    <div className='ModalCard'>
+                        <h2>Odam Qo'shish</h2>
+                        <select className='usersSelect'>
+                            {
+                                this.state.users.map(item => {
+                                    return <option>{item.surname} {item.username}</option>
+                                })
+                            }
+                        </select>
                         <Input type='text' className='InputTable' placeholder='text' />
                         <div className="BtnModal">
-                                <Button type='danger' onClick={() => { this.closeModal() }}>Yopish</Button>
-                        </div>
+                            <Button type='danger' onClick={() => { this.closeModal() }}>Yopish</Button>
                         </div>
                     </div>
-                   
-                    <Row>
-                        <Col md="4">
-                            <h3>Buyurtmalar</h3>
-                        </Col>
-                    </Row>
-                
-                    <Row className="ScrollTable">
-                      
-                      { this.state.rooms.map((item,key)=>(
-                        <div key={key} className="RoomBlock">
-                              <div className='BlockTop'> <h2>Xona raqami: {item.number}</h2>
-                                  <Button type="primary" onClick={()=> {this.showModal()}}>Odam qo'shish</Button>
-                                </div>
-                              <Table
-                                  columns={columns}
-                                  dataSource={item.persons}
-                                  pagination={false}
-                                  className="ant-border-space"
-                              />
-                          </div>
-                            
-                          
-                      )) }
-                    </Row>
-               
                 </div>
+
+                <Row>
+                    <Col md="4">
+                        <h3>Buyurtmalar</h3>
+                    </Col>
+                </Row>
+
+                <Row className="ScrollTable">
+
+                    {this.state.rooms.map((item, key) => (
+                        <div key={key} className="RoomBlock">
+                            <div className='BlockTop'> <h2>Xona raqami: {item.number}</h2>
+                                <Button type="primary" onClick={() => { this.showModal() }}>Odam qo'shish</Button>
+                            </div>
+                            <Table
+                                columns={columns}
+                                dataSource={item.persons}
+                                pagination={false}
+                                className="ant-border-space"
+                            />
+                        </div>
+                    ))}
+                </Row>
+
+            </div>
             </>
         )
     }
